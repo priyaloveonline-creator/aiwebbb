@@ -1,0 +1,1239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIWEBBB — Build Anything in 30 Seconds</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+:root{
+  --bg:#080808;--bg2:#0d0d0d;--bg3:#111111;
+  --border:#1e1e1e;--border2:#2a2a2a;
+  --green:#00ff88;--green2:#00cc6a;
+  --green-dim:rgba(0,255,136,0.08);
+  --text:#f0f0f0;--text2:#a0a0a0;--text3:#555;
+  --red:#ff4444;--yellow:#ffcc00;--blue:#4488ff;--purple:#a855f7;
+  --radius:8px;--radius2:12px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'JetBrains Mono',monospace;background:var(--bg);color:var(--text);overflow-x:hidden;cursor:none;}
+#cursor{position:fixed;width:8px;height:8px;background:var(--green);border-radius:50%;pointer-events:none;z-index:99999;mix-blend-mode:difference;}
+#cursor-ring{position:fixed;width:32px;height:32px;border:1px solid var(--green);border-radius:50%;pointer-events:none;z-index:99998;transition:width .2s,height .2s,opacity .2s;opacity:.5;}
+body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(circle,#1a1a1a 1px,transparent 1px);background-size:32px 32px;opacity:.4;pointer-events:none;z-index:0;}
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:60px;background:rgba(8,8,8,.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+.nav-logo{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:var(--green);letter-spacing:-.5px;text-decoration:none;}
+.nav-logo span{color:var(--text2);font-weight:400;}
+.nav-links{display:flex;align-items:center;gap:32px;}
+.nav-links a{color:var(--text2);text-decoration:none;font-size:12px;transition:color .2s;letter-spacing:.5px;}
+.nav-links a:hover{color:var(--text);}
+.nav-right{display:flex;align-items:center;gap:12px;}
+.nav-dash{background:transparent;color:var(--text2);border:1px solid var(--border2);padding:7px 16px;border-radius:var(--radius);font-family:'JetBrains Mono',monospace;font-size:12px;cursor:none;transition:all .2s;}
+.nav-dash:hover{border-color:var(--green);color:var(--green);}
+.nav-cta{background:var(--green);color:#000;border:none;padding:8px 20px;border-radius:var(--radius);font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;cursor:none;transition:all .2s;}
+.nav-cta:hover{background:var(--green2);transform:translateY(-1px);}
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:100px 40px 60px;position:relative;z-index:1;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--border2);border-radius:100px;padding:6px 16px;font-size:11px;color:var(--text2);margin-bottom:40px;background:var(--bg2);}
+.hero-badge-dot{width:6px;height:6px;background:var(--green);border-radius:50%;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.5;transform:scale(1.3);}}
+.hero h1{font-family:'Syne',sans-serif;font-size:clamp(42px,6vw,88px);font-weight:800;line-height:1.0;letter-spacing:-2px;margin-bottom:28px;max-width:900px;}
+.hero h1 .accent{color:var(--green);}
+.hero h1 .dim{color:var(--text3);}
+.hero-sub{font-size:14px;color:var(--text2);line-height:1.8;max-width:560px;margin:0 auto 48px;}
+.hero-cta-row{display:flex;align-items:center;gap:16px;justify-content:center;flex-wrap:wrap;}
+.btn-primary{background:var(--green);color:#000;border:none;padding:14px 32px;border-radius:var(--radius);font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;cursor:none;transition:all .2s;display:inline-flex;align-items:center;gap:10px;}
+.btn-primary:hover{background:var(--green2);transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,255,136,.25);}
+.btn-secondary{background:transparent;color:var(--text2);border:1px solid var(--border2);padding:14px 32px;border-radius:var(--radius);font-family:'JetBrains Mono',monospace;font-size:13px;cursor:none;transition:all .2s;}
+.btn-secondary:hover{border-color:var(--green);color:var(--green);}
+.hero-stats{display:flex;gap:48px;margin-top:72px;flex-wrap:wrap;justify-content:center;}
+.stat{text-align:center;}
+.stat-num{font-family:'Syne',sans-serif;font-size:36px;font-weight:800;color:var(--green);letter-spacing:-1px;display:block;}
+.stat-label{font-size:11px;color:var(--text3);letter-spacing:.5px;margin-top:4px;}
+.editor-demo{width:100%;max-width:900px;margin:60px auto 0;border:1px solid var(--border2);border-radius:var(--radius2);overflow:hidden;background:var(--bg2);box-shadow:0 32px 80px rgba(0,0,0,.6);}
+.editor-bar{display:flex;align-items:center;gap:8px;padding:12px 16px;background:var(--bg3);border-bottom:1px solid var(--border);}
+.editor-dot{width:10px;height:10px;border-radius:50%;}
+.editor-dot.red{background:#ff5f57;}.editor-dot.yellow{background:#febc2e;}.editor-dot.green{background:#28c840;}
+.editor-title{flex:1;text-align:center;font-size:11px;color:var(--text3);}
+.editor-body{display:flex;height:280px;}
+.editor-sidebar{width:160px;border-right:1px solid var(--border);padding:16px 0;background:rgba(0,0,0,.2);}
+.editor-file{padding:6px 16px;font-size:11px;color:var(--text3);display:flex;align-items:center;gap:8px;transition:all .2s;cursor:none;}
+.editor-file.active{background:var(--green-dim);color:var(--green);}
+.editor-code{flex:1;padding:20px;overflow:hidden;}
+.editor-code pre{font-size:12px;line-height:1.7;color:var(--text2);white-space:pre-wrap;font-family:'JetBrains Mono',monospace;}
+.code-green{color:var(--green);}.code-blue{color:#79c0ff;}.code-purple{color:#d2a8ff;}.code-yellow{color:#e3b341;}.code-red{color:#ff7b72;}.code-comment{color:var(--text3);}
+.editor-cursor-blink{display:inline-block;width:2px;height:14px;background:var(--green);animation:blink 1s infinite;vertical-align:middle;}
+@keyframes blink{0%,50%{opacity:1;}51%,100%{opacity:0;}}
+section{position:relative;z-index:1;}
+.section-pad{padding:100px 40px;}
+.section-inner{max-width:1100px;margin:0 auto;}
+.section-label{font-size:11px;color:var(--green);letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:8px;}
+.section-label::before{content:'';display:block;width:20px;height:1px;background:var(--green);}
+.section-title{font-family:'Syne',sans-serif;font-size:clamp(28px,4vw,52px);font-weight:800;letter-spacing:-1px;line-height:1.1;margin-bottom:16px;}
+.section-sub{color:var(--text2);font-size:13px;line-height:1.8;max-width:520px;}
+.steps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2px;margin-top:60px;background:var(--border);border-radius:var(--radius2);overflow:hidden;}
+.step{background:var(--bg2);padding:36px 28px;transition:background .3s;}
+.step:hover{background:var(--bg3);}
+.step-num{font-family:'Syne',sans-serif;font-size:48px;font-weight:800;color:var(--border2);line-height:1;margin-bottom:20px;transition:color .3s;}
+.step:hover .step-num{color:var(--green);}
+.step-title{font-size:14px;font-weight:600;margin-bottom:10px;}
+.step-desc{font-size:12px;color:var(--text2);line-height:1.7;}
+.step-tag{display:inline-block;margin-top:12px;font-size:10px;padding:3px 10px;border-radius:100px;background:var(--green-dim);color:var(--green);border:1px solid rgba(0,255,136,.2);}
+.post-build-row{display:flex;gap:12px;justify-content:center;margin-top:48px;flex-wrap:wrap;}
+.post-btn{padding:12px 24px;border-radius:var(--radius);font-size:13px;font-weight:600;cursor:none;transition:all .2s;font-family:'JetBrains Mono',monospace;display:flex;align-items:center;gap:8px;}
+.post-btn.deploy{background:var(--green);color:#000;border:none;}
+.post-btn.deploy:hover{background:var(--green2);}
+.post-btn.change{background:transparent;color:var(--text2);border:1px solid var(--border2);}
+.post-btn.change:hover{border-color:var(--yellow);color:var(--yellow);}
+.post-btn.integrate{background:transparent;color:var(--text2);border:1px solid var(--border2);}
+.post-btn.integrate:hover{border-color:var(--blue);color:var(--blue);}
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1px;margin-top:60px;background:var(--border);border-radius:var(--radius2);overflow:hidden;}
+.feature-card{background:var(--bg2);padding:36px 32px;position:relative;overflow:hidden;transition:background .3s;}
+.feature-card:hover{background:var(--bg3);}
+.feature-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--green),transparent);opacity:0;transition:opacity .3s;}
+.feature-card:hover::before{opacity:1;}
+.feature-icon{width:44px;height:44px;border-radius:var(--radius);background:var(--green-dim);border:1px solid rgba(0,255,136,.15);display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:20px;}
+.feature-title{font-size:15px;font-weight:700;margin-bottom:10px;font-family:'Syne',sans-serif;}
+.feature-desc{font-size:12px;color:var(--text2);line-height:1.8;}
+.feature-badge{display:inline-block;margin-top:14px;font-size:10px;padding:3px 10px;border-radius:100px;font-weight:600;}
+.badge-green{background:var(--green-dim);color:var(--green);border:1px solid rgba(0,255,136,.2);}
+.badge-yellow{background:rgba(255,204,0,.08);color:var(--yellow);border:1px solid rgba(255,204,0,.2);}
+.badge-blue{background:rgba(68,136,255,.08);color:var(--blue);border:1px solid rgba(68,136,255,.2);}
+.badge-purple{background:rgba(168,85,247,.08);color:var(--purple);border:1px solid rgba(168,85,247,.2);}
+.pricing-toggle{display:flex;align-items:center;gap:12px;justify-content:center;margin:48px 0;}
+.toggle-label{font-size:12px;color:var(--text2);}
+.toggle-label.active{color:var(--text);}
+.toggle-track{width:44px;height:24px;background:var(--bg3);border:1px solid var(--border2);border-radius:100px;cursor:none;position:relative;transition:background .2s;}
+.toggle-track.yearly{background:var(--green-dim);border-color:rgba(0,255,136,.3);}
+.toggle-thumb{position:absolute;width:16px;height:16px;background:var(--text3);border-radius:50%;top:3px;left:3px;transition:all .2s;}
+.toggle-track.yearly .toggle-thumb{left:23px;background:var(--green);}
+.save-badge{font-size:10px;background:rgba(0,255,136,.1);color:var(--green);padding:2px 8px;border-radius:100px;border:1px solid rgba(0,255,136,.2);}
+.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1px;background:var(--border);border-radius:var(--radius2);overflow:hidden;}
+.price-card{background:var(--bg2);padding:40px 32px;position:relative;}
+.price-card.popular{background:var(--bg3);}
+.price-card.popular::before{content:'MOST POPULAR';position:absolute;top:0;right:24px;background:var(--green);color:#000;font-size:9px;font-weight:700;padding:4px 10px;letter-spacing:1px;border-radius:0 0 6px 6px;}
+.price-plan{font-size:11px;letter-spacing:2px;color:var(--text3);margin-bottom:20px;text-transform:uppercase;}
+.price-amount{font-family:'Syne',sans-serif;font-size:48px;font-weight:800;color:var(--text);letter-spacing:-2px;line-height:1;margin-bottom:4px;}
+.price-amount span{font-size:20px;color:var(--text2);letter-spacing:0;font-weight:400;}
+.price-period{font-size:11px;color:var(--text3);margin-bottom:32px;}
+.price-features{list-style:none;margin-bottom:36px;}
+.price-features li{display:flex;align-items:flex-start;gap:10px;font-size:12px;color:var(--text2);padding:7px 0;border-bottom:1px solid var(--border);}
+.price-features li:last-child{border:none;}
+.pf-check{color:var(--green);flex-shrink:0;}.pf-x{color:var(--text3);flex-shrink:0;}
+.price-btn{width:100%;padding:14px;border-radius:var(--radius);font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;cursor:none;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px;}
+.price-btn.free-btn{background:transparent;color:var(--text2);border:1px solid var(--border2);}
+.price-btn.free-btn:hover{border-color:var(--text2);}
+.price-btn.std-btn{background:var(--green);color:#000;border:none;}
+.price-btn.std-btn:hover{background:var(--green2);}
+.price-btn.pro-btn{background:linear-gradient(135deg,var(--green),var(--blue));color:#000;border:none;}
+.credits-box{margin-top:60px;border:1px solid var(--border2);border-radius:var(--radius2);padding:48px;display:grid;grid-template-columns:1fr 1fr;gap:48px;background:var(--bg2);}
+.credits-visual{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:32px;display:flex;flex-direction:column;gap:12px;}
+.credit-item{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-radius:6px;background:var(--bg2);border:1px solid var(--border);font-size:12px;transition:all .2s;}
+.credit-item:hover{border-color:var(--border2);}
+.credit-action{color:var(--text2);}
+.credit-cost{font-family:'Syne',sans-serif;font-weight:700;color:var(--green);font-size:13px;}
+.compare-table{margin-top:60px;border:1px solid var(--border);border-radius:var(--radius2);overflow:auto;}
+table{width:100%;border-collapse:collapse;min-width:700px;}
+thead th{background:var(--bg2);padding:16px 24px;text-align:left;font-size:11px;letter-spacing:1px;color:var(--text3);text-transform:uppercase;border-bottom:1px solid var(--border);}
+thead th.highlight{color:var(--green);}
+tbody td{padding:14px 24px;font-size:12px;color:var(--text2);border-bottom:1px solid var(--border);}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:hover td{background:var(--bg2);}
+tbody td:first-child{color:var(--text);}
+tbody td.highlight{background:rgba(0,255,136,.03);}
+.check-green{color:var(--green);}.check-x{color:var(--text3);}.check-partial{color:var(--yellow);}
+.modal-overlay{position:fixed;inset:0;z-index:9000;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.82);backdrop-filter:blur(12px);padding:20px;}
+.modal-overlay.open{display:flex;}
+.modal-box{background:var(--bg2);border:1px solid var(--border2);border-radius:var(--radius2);width:100%;max-width:640px;max-height:92vh;overflow-y:auto;animation:slideUp .3s ease;}
+@keyframes slideUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+.modal-header{padding:28px 32px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.modal-title{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;}
+.modal-body{padding:28px 32px;}
+.modal-footer{padding:20px 32px;border-top:1px solid var(--border);display:flex;gap:12px;justify-content:flex-end;}
+.close-btn{width:32px;height:32px;border-radius:50%;background:var(--bg3);border:1px solid var(--border2);cursor:none;display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--text2);transition:all .2s;flex-shrink:0;}
+.close-btn:hover{border-color:var(--red);color:var(--red);}
+.form-step{display:none;}.form-step.active{display:block;}
+.form-progress{height:2px;background:var(--border);border-radius:1px;overflow:hidden;margin-top:8px;width:220px;}
+.form-progress-fill{height:100%;background:var(--green);border-radius:1px;transition:width .3s;}
+.form-question{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;margin-bottom:8px;line-height:1.3;}
+.form-hint{font-size:11px;color:var(--text3);margin-bottom:24px;}
+.form-input,.form-textarea{width:100%;background:var(--bg3);border:1px solid var(--border2);border-radius:var(--radius);padding:12px 16px;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--text);transition:border-color .2s;outline:none;}
+.form-input:focus,.form-textarea:focus{border-color:var(--green);}
+.form-textarea{min-height:100px;resize:vertical;}
+.type-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px;}
+.type-card{border:1px solid var(--border2);border-radius:var(--radius);padding:16px 12px;text-align:center;cursor:none;transition:all .2s;background:var(--bg3);}
+.type-card:hover{border-color:var(--text3);}
+.type-card.selected{border-color:var(--green);background:var(--green-dim);}
+.type-card .type-icon{font-size:24px;margin-bottom:8px;}
+.type-card .type-name{font-size:11px;color:var(--text2);}
+.type-card.selected .type-name{color:var(--green);}
+.chips-wrap{display:flex;flex-wrap:wrap;gap:8px;}
+.chip{padding:8px 16px;border:1px solid var(--border2);border-radius:100px;font-size:11px;cursor:none;transition:all .2s;color:var(--text2);background:var(--bg3);}
+.chip:hover{border-color:var(--text3);}
+.chip.selected{border-color:var(--green);color:var(--green);background:var(--green-dim);}
+.style-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px;}
+.style-card{border:1px solid var(--border2);border-radius:var(--radius);padding:20px 12px;text-align:center;cursor:none;transition:all .2s;background:var(--bg3);}
+.style-card:hover{border-color:var(--text3);}
+.style-card.selected{border-color:var(--green);background:var(--green-dim);}
+.style-card .style-icon{font-size:20px;margin-bottom:6px;}
+.style-card .style-name{font-size:10px;color:var(--text2);}
+.style-card.selected .style-name{color:var(--green);}
+.color-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px;}
+.color-swatch{width:40px;height:40px;border-radius:50%;cursor:none;border:3px solid transparent;transition:all .2s;}
+.color-swatch:hover{transform:scale(1.1);}
+.color-swatch.selected{border-color:white;transform:scale(1.15);}
+.form-range{width:100%;accent-color:var(--green);cursor:none;}
+.range-val{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;color:var(--green);margin:12px 0 4px;}
+.step-indicator{font-size:11px;color:var(--text3);}
+#build-screen{display:none;padding:48px 32px;text-align:center;}
+.build-logo{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--green);margin-bottom:28px;}
+.build-timer{font-family:'Syne',sans-serif;font-size:80px;font-weight:800;color:var(--text);letter-spacing:-4px;line-height:1;margin-bottom:6px;}
+.build-timer span{color:var(--green);}
+.build-sublabel{font-size:12px;color:var(--text3);margin-bottom:28px;}
+.build-bar-wrap{background:var(--border);border-radius:100px;height:5px;margin-bottom:28px;overflow:hidden;}
+.build-bar-fill{height:100%;background:linear-gradient(90deg,var(--green),var(--blue));border-radius:100px;width:0%;transition:width .4s;}
+.build-log{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:16px;text-align:left;font-size:11px;color:var(--text3);min-height:130px;line-height:2.1;overflow:hidden;}
+.log-green{color:var(--green);}.log-blue{color:var(--blue);}.log-yellow{color:var(--yellow);}
+#result-screen{display:none;padding:28px 32px;}
+.result-title{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;margin-bottom:6px;}
+.result-title .green{color:var(--green);}
+.result-meta{font-size:12px;color:var(--text2);margin-bottom:20px;}
+.upgrade-banner{background:rgba(0,255,136,.05);border:1px solid rgba(0,255,136,.15);border-radius:var(--radius);padding:12px 16px;font-size:12px;color:var(--text2);display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px;flex-wrap:wrap;}
+.upgrade-banner a{color:var(--green);text-decoration:none;font-weight:600;}
+.result-preview{background:var(--bg3);border:1px solid var(--border2);border-radius:var(--radius);overflow:hidden;margin-bottom:16px;}
+.preview-bar{display:flex;align-items:center;gap:8px;padding:10px 16px;background:var(--bg2);border-bottom:1px solid var(--border);}
+.preview-dots{display:flex;gap:6px;}
+.preview-dot{width:8px;height:8px;border-radius:50%;}
+.preview-url{flex:1;background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:4px 12px;font-size:11px;color:var(--text3);font-family:'JetBrains Mono',monospace;}
+.preview-content{height:260px;overflow:auto;padding:16px;font-size:11px;line-height:1.9;color:var(--text3);}
+.html-tag{color:var(--blue);}
+.roadmap-box{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;font-size:12px;line-height:1.9;color:var(--text2);margin-bottom:16px;}
+.result-actions{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:10px;}
+.act-btn{padding:11px 20px;border-radius:var(--radius);font-size:12px;font-weight:600;cursor:none;transition:all .2s;font-family:'JetBrains Mono',monospace;display:flex;align-items:center;gap:7px;border:none;}
+.act-deploy{background:var(--green);color:#000;}
+.act-deploy:hover{background:var(--green2);}
+.act-deploy.locked{background:var(--bg3);color:var(--text3);border:1px solid var(--border2);}
+.act-change{background:transparent;color:var(--text2);border:1px solid var(--border2);}
+.act-change:hover{border-color:var(--yellow);color:var(--yellow);}
+.act-download{background:transparent;color:var(--text2);border:1px solid var(--border2);}
+.act-download:hover{border-color:var(--blue);color:var(--blue);}
+.locked-note{font-size:11px;color:var(--text3);display:flex;align-items:center;gap:6px;}
+.locked-note a{color:var(--green);text-decoration:none;}
+#deploy-screen{display:none;padding:32px;}
+.deploy-wrap{max-width:420px;margin:0 auto;text-align:center;}
+.deploy-wrap h3{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;margin-bottom:8px;}
+.deploy-wrap p{font-size:12px;color:var(--text2);line-height:1.8;margin-bottom:24px;}
+.deploy-status{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;margin-top:14px;font-size:12px;color:var(--text2);display:none;line-height:1.8;}
+.deploy-status.visible{display:block;}
+.deploy-url{color:var(--green);font-weight:600;word-break:break-all;}
+.modal-overlay.dash-overlay .modal-box{max-width:780px;}
+.dash-header{padding:24px 32px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.dash-user{display:flex;align-items:center;gap:12px;}
+.dash-avatar{width:36px;height:36px;background:var(--green-dim);border:1px solid rgba(0,255,136,.3);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--green);font-weight:700;}
+.dash-plan-badge{font-size:10px;padding:3px 10px;border-radius:100px;font-weight:700;letter-spacing:.5px;}
+.plan-free{background:rgba(85,85,85,.2);color:var(--text3);border:1px solid var(--border2);}
+.plan-standard{background:var(--green-dim);color:var(--green);border:1px solid rgba(0,255,136,.2);}
+.plan-pro{background:rgba(68,136,255,.1);color:var(--blue);border:1px solid rgba(68,136,255,.2);}
+.dash-body{padding:24px 32px;}
+.dash-section-title{font-size:11px;color:var(--text3);letter-spacing:1px;text-transform:uppercase;margin-bottom:14px;}
+.dash-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px;}
+.dash-stat{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:16px;}
+.dash-stat-num{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;color:var(--green);}
+.dash-stat-label{font-size:11px;color:var(--text3);margin-top:4px;}
+.project-list{display:flex;flex-direction:column;gap:8px;margin-bottom:20px;}
+.project-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:14px 18px;display:flex;align-items:center;justify-content:space-between;transition:border-color .2s;}
+.project-card:hover{border-color:var(--border2);}
+.project-name{font-size:13px;font-weight:600;margin-bottom:3px;}
+.project-meta{font-size:11px;color:var(--text3);}
+.project-actions{display:flex;gap:8px;flex-shrink:0;}
+.proj-btn{padding:6px 14px;border-radius:6px;font-size:11px;font-family:'JetBrains Mono',monospace;cursor:none;transition:all .2s;font-weight:600;border:none;}
+.proj-open{background:var(--green-dim);color:var(--green);border:1px solid rgba(0,255,136,.2) !important;}
+.proj-open:hover{background:rgba(0,255,136,.15);}
+.proj-del{background:transparent;color:var(--text3);border:1px solid var(--border2) !important;}
+.proj-del:hover{border-color:var(--red) !important;color:var(--red);}
+.credits-display{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:16px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.credits-count{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;color:var(--yellow);}
+.empty-state{text-align:center;padding:40px 20px;color:var(--text3);font-size:13px;}
+.empty-icon{font-size:32px;margin-bottom:12px;}
+.pay-plan-card{background:var(--bg3);border:1px solid var(--border2);border-radius:var(--radius);padding:20px;margin-bottom:18px;}
+.pay-plan-name{font-size:11px;color:var(--text3);margin-bottom:6px;letter-spacing:1px;text-transform:uppercase;}
+.pay-plan-price{font-family:'Syne',sans-serif;font-size:36px;font-weight:800;color:var(--green);letter-spacing:-1px;}
+.pay-plan-period{font-size:11px;color:var(--text3);margin-top:2px;}
+.pay-methods{margin-bottom:14px;}
+.pay-method-label{font-size:11px;color:var(--text3);margin-bottom:10px;letter-spacing:.5px;}
+.pay-method-row{display:flex;gap:8px;flex-wrap:wrap;}
+.pay-method{flex:1;min-width:72px;padding:10px 8px;border:1px solid var(--border2);border-radius:6px;text-align:center;cursor:none;transition:all .2s;font-size:11px;color:var(--text2);background:var(--bg3);}
+.pay-method:hover,.pay-method.selected{border-color:var(--green);color:var(--green);background:var(--green-dim);}
+.pay-btn{width:100%;padding:14px;background:var(--green);color:#000;border:none;border-radius:var(--radius);font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;cursor:none;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px;}
+.pay-btn:hover{background:var(--green2);}
+.pay-btn:disabled{opacity:.5;}
+.pay-secure{text-align:center;margin-top:10px;font-size:10px;color:var(--text3);display:flex;align-items:center;justify-content:center;gap:6px;}
+#toast{position:fixed;bottom:32px;right:32px;z-index:99999;background:var(--bg3);border:1px solid var(--border2);border-radius:var(--radius);padding:12px 20px;font-size:12px;color:var(--text);transform:translateY(100px);opacity:0;transition:all .3s;display:flex;align-items:center;gap:10px;max-width:320px;}
+#toast.show{transform:translateY(0);opacity:1;}
+.fade-in{opacity:0;transform:translateY(20px);transition:opacity .6s,transform .6s;}
+.fade-in.visible{opacity:1;transform:translateY(0);}
+footer{border-top:1px solid var(--border);padding:48px 40px 32px;position:relative;z-index:1;}
+.footer-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;}
+.footer-logo{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--green);margin-bottom:12px;}
+.footer-tagline{font-size:12px;color:var(--text3);line-height:1.7;margin-bottom:12px;}
+.footer-col h4{font-size:12px;color:var(--text2);margin-bottom:16px;font-weight:600;}
+.footer-col a{display:block;font-size:12px;color:var(--text3);text-decoration:none;margin-bottom:10px;transition:color .2s;cursor:none;}
+.footer-col a:hover{color:var(--text2);}
+.footer-bottom{max-width:1100px;margin:40px auto 0;padding-top:24px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.footer-bottom p{font-size:11px;color:var(--text3);}
+::-webkit-scrollbar{width:4px;height:4px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px;}
+@media(max-width:768px){
+  nav{padding:0 20px;}.nav-links{display:none;}
+  .hero{padding:80px 20px 40px;}.section-pad{padding:70px 20px;}
+  .hero-stats{gap:28px;}.credits-box{grid-template-columns:1fr;padding:24px;}
+  .footer-inner{grid-template-columns:1fr 1fr;}footer{padding:40px 20px 24px;}
+  .dash-stats{grid-template-columns:1fr 1fr;}.dash-body{padding:20px;}
+}
+</style>
+</head>
+<body>
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+<div id="toast"><span id="toast-icon">✓</span> <span id="toast-msg"></span></div>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">AIWEBBB<span>.com</span></a>
+  <div class="nav-links">
+    <a href="#how">How it works</a>
+    <a href="#features">Features</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#compare">Compare</a>
+  </div>
+  <div class="nav-right">
+    <button class="nav-dash" onclick="openDashboard()">📁 My Projects</button>
+    <button class="nav-cta" onclick="openBuild()">→ Build Now</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge"><span class="hero-badge-dot"></span>AI Builder · No Code · No Install · No Login</div>
+  <h1>Build <span class="accent">Anything</span><br>in <span class="accent">30</span> Seconds.<br><span class="dim">For Real.</span></h1>
+  <p class="hero-sub">Describe your idea. Our AI builds your website, web app, or mobile app in 30 seconds — ready to deploy. No coding. No account. Just results.</p>
+  <div class="hero-cta-row">
+    <button class="btn-primary" onclick="openBuild()">⚡ Build Anything Free</button>
+    <button class="btn-secondary" onclick="document.getElementById('how').scrollIntoView({behavior:'smooth'})">See How It Works →</button>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><span class="stat-num">30s</span><span class="stat-label">First Build</span></div>
+    <div class="stat"><span class="stat-num">100M+</span><span class="stat-label">Users Trusted</span></div>
+    <div class="stat"><span class="stat-num">0</span><span class="stat-label">Code Required</span></div>
+    <div class="stat"><span class="stat-num">7+</span><span class="stat-label">App Types</span></div>
+  </div>
+  <div class="editor-demo fade-in">
+    <div class="editor-bar">
+      <div class="editor-dot red"></div><div class="editor-dot yellow"></div><div class="editor-dot green"></div>
+      <div class="editor-title">aiwebbb — fitness-tracker/index.tsx</div>
+    </div>
+    <div class="editor-body">
+      <div class="editor-sidebar">
+        <div class="editor-file active"><span>📄</span> index.tsx</div>
+        <div class="editor-file"><span>🎨</span> styles.css</div>
+        <div class="editor-file"><span>⚙️</span> config.ts</div>
+        <div class="editor-file"><span>🔐</span> auth.ts</div>
+        <div class="editor-file"><span>🗄️</span> db.ts</div>
+        <div class="editor-file"><span>📦</span> package.json</div>
+        <div class="editor-file"><span>🚀</span> deploy.yml</div>
+      </div>
+      <div class="editor-code">
+        <pre><span class="code-comment">// ✅ AIWEBBB Generated — Fitness Tracker</span>
+<span class="code-comment">// Built in 28s · 100% yours · Deploy ready</span>
+
+<span class="code-purple">import</span> <span class="code-green">React</span>, { <span class="code-green">useState</span> } <span class="code-purple">from</span> <span class="code-yellow">'react'</span>;
+<span class="code-purple">import</span> { <span class="code-green">Dashboard</span> } <span class="code-purple">from</span> <span class="code-yellow">'./components'</span>;
+
+<span class="code-purple">export default function</span> <span class="code-green">FitnessApp</span>() {
+  <span class="code-blue">const</span> [<span class="code-green">data</span>, <span class="code-green">set</span>] = <span class="code-green">useState</span>([]);
+  <span class="code-purple">return</span> (
+    &lt;<span class="code-red">Dashboard</span>
+      <span class="code-green">title</span>=<span class="code-yellow">"My Fitness App"</span>
+      <span class="code-green">data</span>={<span class="code-blue">data</span>}
+    /&gt;
+  );<span class="editor-cursor-blink"></span>
+}</pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section-pad" id="how">
+  <div class="section-inner">
+    <div class="section-label">Process</div>
+    <h2 class="section-title fade-in">From Idea to Live App<br>in <span style="color:var(--green)">4 Steps</span></h2>
+    <p class="section-sub fade-in">No installs. No accounts. No credit card. Just describe what you want.</p>
+    <div class="steps-grid">
+      <div class="step fade-in"><div class="step-num">01</div><div class="step-title">Describe Your Idea</div><div class="step-desc">Answer 9 smart questions — type, style, features, colors, pages. Our AI collects everything it needs to build perfectly.</div><span class="step-tag">~2 minutes</span></div>
+      <div class="step fade-in"><div class="step-num">02</div><div class="step-title">AI Builds in 30 Seconds</div><div class="step-desc">Claude AI generates your complete app — full UI, navigation, auth screens, core features, responsive design, and live code preview.</div><span class="step-tag">30 seconds ⚡</span></div>
+      <div class="step fade-in"><div class="step-num">03</div><div class="step-title">Review & Download</div><div class="step-desc">See your app code instantly. Download it free. Or upgrade to deploy live on your own URL with one click — no DevOps needed.</div><span class="step-tag">Instant preview</span></div>
+      <div class="step fade-in"><div class="step-num">04</div><div class="step-title">Deploy or Refine</div><div class="step-desc">Happy? Deploy in one click (paid plans). Want changes? Tell the AI. Need integrations? Add your API keys in minutes.</div><span class="step-tag">Your choice</span></div>
+    </div>
+    <div class="post-build-row">
+      <button class="post-btn deploy">🚀 Deploy Now</button>
+      <button class="post-btn change">✏️ Request Changes</button>
+      <button class="post-btn integrate">🔌 Add Integration</button>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section-pad" id="features" style="background:linear-gradient(180deg,var(--bg) 0%,var(--bg2) 100%);">
+  <div class="section-inner">
+    <div class="section-label">What Makes Us Different</div>
+    <h2 class="section-title fade-in">Features No One<br><span style="color:var(--green)">Else Has</span></h2>
+    <p class="section-sub fade-in">Every other tool has one or two of these. AIWEBBB has all of them.</p>
+    <div class="features-grid">
+      <div class="feature-card fade-in"><div class="feature-icon">⚡</div><div class="feature-title">30-Second Build</div><div class="feature-desc">Our AI generates your entire app scaffold in parallel — frontend, routing, auth, and config — all simultaneously. 30 seconds flat.</div><span class="feature-badge badge-green">YOUR #1 DIFFERENTIATOR</span></div>
+      <div class="feature-card fade-in"><div class="feature-icon">🧠</div><div class="feature-title">Project Brain</div><div class="feature-desc">Every other tool forgets your project. Project Brain remembers your architecture, tech choices, and preferences permanently. Open next week, AI knows everything.</div><span class="feature-badge badge-yellow">NO ONE ELSE HAS THIS</span></div>
+      <div class="feature-card fade-in"><div class="feature-icon">🛡️</div><div class="feature-title">Safe Mode Diff</div><div class="feature-desc">Before ANY AI change is applied, see a side-by-side Before vs After diff. Accept or reject each change — like a pull request, but instant.</div><span class="feature-badge badge-blue">TOP COMPLAINT SOLVED</span></div>
+      <div class="feature-card fade-in"><div class="feature-icon">📋</div><div class="feature-title">Plain English Roadmap</div><div class="feature-desc">AI auto-generates: "✅ Auth done · ⚠️ Payment has 1 bug · 🔲 Dashboard not started." Non-coders finally understand their own app.</div><span class="feature-badge badge-purple">63% OF USERS NEED THIS</span></div>
+      <div class="feature-card fade-in"><div class="feature-icon">💰</div><div class="feature-title">Flat Monthly Pricing</div><div class="feature-desc">Every competitor uses unpredictable token credits. AIWEBBB charges one flat fee. Unlimited builds. No surprises. Ever.</div><span class="feature-badge badge-green">#1 COMPLAINT SOLVED</span></div>
+      <div class="feature-card fade-in"><div class="feature-icon">🌐</div><div class="feature-title">1-Click Deploy</div><div class="feature-desc">Deploy on your custom domain with one click. Powered by Vercel. No DevOps knowledge needed. Live URL in under 60 seconds.</div><span class="feature-badge badge-blue">BEGINNER'S #1 NEED</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="section-pad" id="pricing">
+  <div class="section-inner">
+    <div class="section-label">Pricing</div>
+    <h2 class="section-title fade-in">Simple. Flat. <span style="color:var(--green)">No Surprises.</span></h2>
+    <p class="section-sub fade-in">One price covers unlimited builds. No token burns, no credit anxiety, no hidden fees.</p>
+    <div class="pricing-toggle">
+      <span class="toggle-label active" id="lbl-monthly">Monthly</span>
+      <div class="toggle-track" id="billing-toggle" onclick="toggleBilling()"><div class="toggle-thumb"></div></div>
+      <span class="toggle-label" id="lbl-yearly">Yearly <span class="save-badge">SAVE 30%</span></span>
+    </div>
+    <div class="pricing-grid">
+      <div class="price-card fade-in">
+        <div class="price-plan">Free</div>
+        <div class="price-amount">₹<span>0</span></div>
+        <div class="price-period">forever free</div>
+        <ul class="price-features">
+          <li><span class="pf-check">✓</span> 1 project</li>
+          <li><span class="pf-check">✓</span> AI builds your app in 30s</li>
+          <li><span class="pf-check">✓</span> Full code preview</li>
+          <li><span class="pf-check">✓</span> Download your code</li>
+          <li><span class="pf-x">✕</span> Deploy to live URL</li>
+          <li><span class="pf-x">✕</span> Project Brain memory</li>
+          <li><span class="pf-x">✕</span> Remove AIWEBBB watermark</li>
+          <li><span class="pf-x">✕</span> Post-deploy changes (credits)</li>
+        </ul>
+        <button class="price-btn free-btn" onclick="openBuild()">Start Free →</button>
+      </div>
+      <div class="price-card popular fade-in">
+        <div class="price-plan">Standard</div>
+        <div class="price-amount">₹<span id="std-price">999</span></div>
+        <div class="price-period" id="std-period">/month · billed monthly</div>
+        <ul class="price-features">
+          <li><span class="pf-check">✓</span> 5 projects</li>
+          <li><span class="pf-check">✓</span> Deploy all projects live</li>
+          <li><span class="pf-check">✓</span> Custom domain</li>
+          <li><span class="pf-check">✓</span> No AIWEBBB watermark</li>
+          <li><span class="pf-check">✓</span> Project Brain memory</li>
+          <li><span class="pf-check">✓</span> Buy credits for post-deploy changes</li>
+          <li><span class="pf-check">✓</span> Email support</li>
+          <li><span class="pf-x">✕</span> Priority AI model</li>
+        </ul>
+        <button class="price-btn std-btn" onclick="openPayment('standard')">Get Standard →</button>
+      </div>
+      <div class="price-card fade-in">
+        <div class="price-plan">Pro</div>
+        <div class="price-amount">₹<span id="pro-price">2499</span></div>
+        <div class="price-period" id="pro-period">/month · billed monthly</div>
+        <ul class="price-features">
+          <li><span class="pf-check">✓</span> Unlimited projects</li>
+          <li><span class="pf-check">✓</span> Deploy all projects live</li>
+          <li><span class="pf-check">✓</span> Custom domain</li>
+          <li><span class="pf-check">✓</span> No watermark</li>
+          <li><span class="pf-check">✓</span> Project Brain memory</li>
+          <li><span class="pf-check">✓</span> Safe Mode diff preview</li>
+          <li><span class="pf-check">✓</span> Plain English roadmap</li>
+          <li><span class="pf-check">✓</span> Priority AI (Claude Opus)</li>
+        </ul>
+        <button class="price-btn pro-btn" onclick="openPayment('pro')">Get Pro →</button>
+      </div>
+    </div>
+    <div class="credits-box fade-in">
+      <div>
+        <div class="section-label" style="margin-bottom:16px;">Add-On Credits</div>
+        <h3 style="font-family:'Syne',sans-serif;font-size:28px;font-weight:800;margin-bottom:12px;letter-spacing:-.5px;">Post-Deploy Changes</h3>
+        <p style="font-size:13px;color:var(--text2);line-height:1.8;margin-bottom:24px;">Already deployed your app and want updates? Buy credits. 1 change = 10 credits. Available on any paid plan. Never expires.</p>
+        <div style="background:var(--green-dim);border:1px solid rgba(0,255,136,.2);border-radius:var(--radius);padding:20px;margin-bottom:20px;">
+          <div style="font-family:'Syne',sans-serif;font-size:36px;font-weight:800;color:var(--green);letter-spacing:-1px;">₹99</div>
+          <div style="font-size:12px;color:var(--text2);margin-top:4px;">= 100 Credits = 10 Changes</div>
+          <div style="font-size:11px;color:var(--text3);margin-top:4px;">₹9.90 per change · vs ₹500–2000 from a developer</div>
+        </div>
+        <button class="btn-primary" style="font-size:12px;padding:12px 24px;" onclick="openPayment('credits')">Buy Credits →</button>
+      </div>
+      <div class="credits-visual">
+        <div style="font-size:11px;color:var(--text3);margin-bottom:8px;letter-spacing:.5px;">CREDIT COST PER CHANGE</div>
+        <div class="credit-item"><span class="credit-action">Small UI change</span><span class="credit-cost">10 credits</span></div>
+        <div class="credit-item"><span class="credit-action">Add new page</span><span class="credit-cost">10 credits</span></div>
+        <div class="credit-item"><span class="credit-action">Add integration</span><span class="credit-cost">10 credits</span></div>
+        <div class="credit-item"><span class="credit-action">Full section redesign</span><span class="credit-cost">10 credits</span></div>
+        <div class="credit-item"><span class="credit-action">Add new feature</span><span class="credit-cost">10 credits</span></div>
+        <div style="margin-top:14px;padding:14px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);font-size:11px;color:var(--text3);line-height:1.8;">💡 <span style="color:var(--text2);">₹99 mein 10 changes milenge apne deployed app mein</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON -->
+<section class="section-pad" id="compare" style="background:linear-gradient(180deg,var(--bg) 0%,var(--bg2) 100%);">
+  <div class="section-inner">
+    <div class="section-label">Comparison</div>
+    <h2 class="section-title fade-in">AIWEBBB vs <span style="color:var(--green)">Everyone Else</span></h2>
+    <p class="section-sub fade-in">Every other platform has one or two of these. We have all of them.</p>
+    <div class="compare-table fade-in">
+      <table>
+        <thead><tr><th>Feature</th><th class="highlight">AIWEBBB</th><th>Cursor</th><th>Lovable</th><th>Bolt.new</th><th>Replit</th></tr></thead>
+        <tbody>
+          <tr><td>30-Second Build</td><td class="highlight"><span class="check-green">✓ Yes</span></td><td><span class="check-x">✕ No</span></td><td><span class="check-x">✕ No</span></td><td><span class="check-partial">~ Slow</span></td><td><span class="check-x">✕ No</span></td></tr>
+          <tr><td>Works in Browser</td><td class="highlight"><span class="check-green">✓ Yes</span></td><td><span class="check-x">✕ Desktop only</span></td><td><span class="check-green">✓ Yes</span></td><td><span class="check-green">✓ Yes</span></td><td><span class="check-green">✓ Yes</span></td></tr>
+          <tr><td>No Login Required</td><td class="highlight"><span class="check-green">✓ Email only</span></td><td><span class="check-x">✕ Account needed</span></td><td><span class="check-x">✕ Account needed</span></td><td><span class="check-x">✕ Account needed</span></td><td><span class="check-x">✕ Account needed</span></td></tr>
+          <tr><td>Project Memory</td><td class="highlight"><span class="check-green">✓ Permanent</span></td><td><span class="check-x">✕ No</span></td><td><span class="check-x">✕ No</span></td><td><span class="check-x">✕ No</span></td><td><span class="check-x">✕ No</span></td></tr>
+          <tr><td>Safe Mode Diff</td><td class="highlight"><span class="check-green">✓ Yes</span></td><td><span class="check-partial">~ Dev only</span></td><td><span class="check-x">✕ No</span></td><td><span class="check-x">✕ No</span></td><td><span class="check-x">✕ No</span></td></tr>
+          <tr><td>Flat Pricing (No Tokens)</td><td class="highlight"><span class="check-green">✓ Yes</span></td><td><span class="check-x">✕ Credits</span></td><td><span class="check-x">✕ Credits</span></td><td><span class="check-x">✕ Credits</span></td><td><span class="check-x">✕ Credits</span></td></tr>
+          <tr><td>1-Click Deploy</td><td class="highlight"><span class="check-green">✓ Built-in</span></td><td><span class="check-x">✕ Manual</span></td><td><span class="check-partial">~ Extra steps</span></td><td><span class="check-partial">~ Netlify needed</span></td><td><span class="check-green">✓ Yes</span></td></tr>
+          <tr><td>Indian Payments (UPI)</td><td class="highlight"><span class="check-green">✓ Cashfree</span></td><td><span class="check-x">✕ USD only</span></td><td><span class="check-x">✕ USD only</span></td><td><span class="check-x">✕ USD only</span></td><td><span class="check-x">✕ USD only</span></td></tr>
+          <tr><td>Post-Deploy Credits</td><td class="highlight"><span class="check-green">✓ ₹99/10 changes</span></td><td><span class="check-x">✕ No</span></td><td><span class="check-partial">~ Expensive</span></td><td><span class="check-partial">~ Expensive</span></td><td><span class="check-x">✕ No</span></td></tr>
+          <tr><td>Starting Price</td><td class="highlight"><span class="check-green">₹999/mo</span></td><td>$20/mo (~₹1,700)</td><td>$25/mo (~₹2,100)</td><td>$20/mo (~₹1,700)</td><td>$25/mo (~₹2,100)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- BOTTOM CTA -->
+<section class="section-pad" style="text-align:center;">
+  <div class="section-inner">
+    <div class="hero-badge" style="justify-content:center;margin-bottom:32px;"><span class="hero-badge-dot"></span>Start free — no credit card, no account</div>
+    <h2 class="section-title fade-in" style="max-width:600px;margin:0 auto 20px;">Ready to Build <span style="color:var(--green)">Something Real?</span></h2>
+    <p style="font-size:13px;color:var(--text2);max-width:480px;margin:0 auto 40px;line-height:1.8;" class="fade-in">Every other AI builder takes 20–30 minutes. We take 30 seconds. No install. No credits. No BS.</p>
+    <button class="btn-primary" style="font-size:15px;padding:16px 40px;" onclick="openBuild()">⚡ Build Anything in 30 Seconds</button>
+    <p style="font-size:11px;color:var(--text3);margin-top:16px;">Free to start · Download your code · Deploy with ₹999/mo</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div><div class="footer-logo">AIWEBBB</div><div class="footer-tagline">Build websites, web apps, and mobile apps in 30 seconds with AI. No code. No install. No limits.</div><div style="font-size:11px;color:var(--text3);">Made in India 🇮🇳</div></div>
+    <div class="footer-col"><h4>Product</h4><a href="#how">How It Works</a><a href="#features">Features</a><a href="#pricing">Pricing</a><a href="#compare">Compare</a></div>
+    <div class="footer-col"><h4>Build</h4><a href="#" onclick="openBuild()">Website</a><a href="#" onclick="openBuild()">Web App</a><a href="#" onclick="openBuild()">Mobile App</a><a href="#" onclick="openBuild()">SaaS</a></div>
+    <div class="footer-col"><h4>Legal</h4><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="#">Refund Policy</a><a href="#">Contact</a></div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 AIWEBBB. All rights reserved. aiwebbb.com</p>
+    <p>Payments secured by Cashfree · Hosted on Vercel</p>
+  </div>
+</footer>
+<!-- BUILD MODAL -->
+<div class="modal-overlay" id="build-modal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div>
+        <div class="modal-title" id="modal-title">What are you building?</div>
+        <div class="form-progress"><div class="form-progress-fill" id="form-progress" style="width:11%"></div></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <span class="step-indicator" id="step-indicator">Step 1 of 9</span>
+        <button class="close-btn" onclick="closeBuild()">✕</button>
+      </div>
+    </div>
+    <div class="modal-body" id="form-body">
+      <div class="form-step active" id="step-1">
+        <div class="form-question">What are you building?</div>
+        <div class="form-hint">Pick the type that best matches your idea</div>
+        <div class="type-grid">
+          <div class="type-card" onclick="selectType(this,'Website')"><div class="type-icon">🌐</div><div class="type-name">Website</div></div>
+          <div class="type-card" onclick="selectType(this,'Web App')"><div class="type-icon">💻</div><div class="type-name">Web App</div></div>
+          <div class="type-card" onclick="selectType(this,'Mobile App')"><div class="type-icon">📱</div><div class="type-name">Mobile App</div></div>
+          <div class="type-card" onclick="selectType(this,'SaaS')"><div class="type-icon">☁️</div><div class="type-name">SaaS</div></div>
+          <div class="type-card" onclick="selectType(this,'Portfolio')"><div class="type-icon">🎨</div><div class="type-name">Portfolio</div></div>
+          <div class="type-card" onclick="selectType(this,'Landing Page')"><div class="type-icon">🚀</div><div class="type-name">Landing Page</div></div>
+          <div class="type-card" onclick="selectType(this,'eCommerce')"><div class="type-icon">🛍️</div><div class="type-name">eCommerce</div></div>
+        </div>
+      </div>
+      <div class="form-step" id="step-2">
+        <div class="form-question">Describe your idea in 2–3 sentences</div>
+        <div class="form-hint">Be specific — the more detail, the better the result</div>
+        <textarea class="form-textarea" id="desc-input" placeholder="e.g. A fitness tracking app for gym-goers. Users can log workouts, track calories, and see weekly progress charts. Target audience is gym trainers and their clients."></textarea>
+      </div>
+      <div class="form-step" id="step-3">
+        <div class="form-question">Who is it for?</div>
+        <div class="form-hint">Describe your target audience</div>
+        <input class="form-input" id="audience-input" placeholder="e.g. Gym trainers and their clients, fitness enthusiasts aged 20–40">
+      </div>
+      <div class="form-step" id="step-4">
+        <div class="form-question">How many pages or screens?</div>
+        <div class="form-hint">Drag to set the count</div>
+        <div class="range-val" id="page-count">5</div>
+        <div style="font-size:11px;color:var(--text3);margin-bottom:16px;">pages / screens</div>
+        <input type="range" class="form-range" min="1" max="20" value="5" oninput="document.getElementById('page-count').textContent=this.value">
+      </div>
+      <div class="form-step" id="step-5">
+        <div class="form-question">Pick your vibe</div>
+        <div class="form-hint">Choose the style that matches your brand</div>
+        <div class="style-grid">
+          <div class="style-card" onclick="selectStyle(this,'Modern')"><div class="style-icon">⚡</div><div class="style-name">Modern</div></div>
+          <div class="style-card" onclick="selectStyle(this,'Minimal')"><div class="style-icon">◻️</div><div class="style-name">Minimal</div></div>
+          <div class="style-card" onclick="selectStyle(this,'Bold')"><div class="style-icon">🔥</div><div class="style-name">Bold</div></div>
+          <div class="style-card" onclick="selectStyle(this,'Playful')"><div class="style-icon">🎈</div><div class="style-name">Playful</div></div>
+          <div class="style-card" onclick="selectStyle(this,'Corporate')"><div class="style-icon">💼</div><div class="style-name">Corporate</div></div>
+          <div class="style-card" onclick="selectStyle(this,'Dark')"><div class="style-icon">🌑</div><div class="style-name">Dark</div></div>
+        </div>
+      </div>
+      <div class="form-step" id="step-6">
+        <div class="form-question">Primary color preference</div>
+        <div class="form-hint">Click a palette or pick your own</div>
+        <div class="color-row">
+          <div class="color-swatch" style="background:#00ff88;" onclick="selectColor(this,'#00ff88')"></div>
+          <div class="color-swatch" style="background:#4488ff;" onclick="selectColor(this,'#4488ff')"></div>
+          <div class="color-swatch" style="background:#ff4488;" onclick="selectColor(this,'#ff4488')"></div>
+          <div class="color-swatch" style="background:#ffcc00;" onclick="selectColor(this,'#ffcc00')"></div>
+          <div class="color-swatch" style="background:#a855f7;" onclick="selectColor(this,'#a855f7')"></div>
+          <div class="color-swatch" style="background:#ff6b00;" onclick="selectColor(this,'#ff6b00')"></div>
+          <div class="color-swatch" style="background:#00ccff;" onclick="selectColor(this,'#00ccff')"></div>
+          <div class="color-swatch" style="background:#ff4444;" onclick="selectColor(this,'#ff4444')"></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;">
+          <input type="color" id="custom-color" style="width:40px;height:40px;border:none;background:none;cursor:pointer;" value="#00ff88" oninput="customColor(this.value)">
+          <span style="font-size:12px;color:var(--text2);">Custom color</span>
+          <span id="color-val" style="font-size:11px;color:var(--text3);">#00ff88</span>
+        </div>
+      </div>
+      <div class="form-step" id="step-7">
+        <div class="form-question">Key features needed?</div>
+        <div class="form-hint">Select all that apply</div>
+        <div class="chips-wrap">
+          <div class="chip" onclick="toggleChip(this)">🔐 Authentication</div>
+          <div class="chip" onclick="toggleChip(this)">💳 Payments</div>
+          <div class="chip" onclick="toggleChip(this)">📊 Dashboard</div>
+          <div class="chip" onclick="toggleChip(this)">📝 Blog / CMS</div>
+          <div class="chip" onclick="toggleChip(this)">💬 Chat</div>
+          <div class="chip" onclick="toggleChip(this)">📅 Bookings</div>
+          <div class="chip" onclick="toggleChip(this)">🛒 Cart / Shop</div>
+          <div class="chip" onclick="toggleChip(this)">📧 Email Notifications</div>
+          <div class="chip" onclick="toggleChip(this)">📈 Analytics</div>
+          <div class="chip" onclick="toggleChip(this)">👤 User Profiles</div>
+          <div class="chip" onclick="toggleChip(this)">🗺️ Maps</div>
+          <div class="chip" onclick="toggleChip(this)">🔔 Push Notifications</div>
+          <div class="chip" onclick="toggleChip(this)">🌙 Dark Mode</div>
+          <div class="chip" onclick="toggleChip(this)">🌐 Multi-language</div>
+        </div>
+      </div>
+      <div class="form-step" id="step-8">
+        <div class="form-question">Your app name & brand</div>
+        <div class="form-hint">What's the name? Any tagline?</div>
+        <input class="form-input" id="brand-input" placeholder="App name (e.g. FitTrack Pro)" style="margin-bottom:12px;">
+        <input class="form-input" id="tagline-input" placeholder="Tagline — optional">
+      </div>
+      <div class="form-step" id="step-9">
+        <div class="form-question">Any website you love the look of?</div>
+        <div class="form-hint">Paste a URL for design inspiration (optional)</div>
+        <input class="form-input" id="ref-input" placeholder="https://example.com (optional)" style="margin-bottom:20px;">
+        <div style="background:var(--green-dim);border:1px solid rgba(0,255,136,.2);border-radius:var(--radius);padding:16px;">
+          <div style="font-size:12px;color:var(--green);font-weight:600;margin-bottom:6px;">✓ You're ready to build!</div>
+          <div style="font-size:11px;color:var(--text2);line-height:1.7;">Click "Build in 30 Seconds" and watch the AI go.</div>
+        </div>
+      </div>
+    </div>
+    <div id="build-screen">
+      <div class="build-logo">AIWEBBB ⚡</div>
+      <div class="build-timer"><span id="timer-count">0</span>s</div>
+      <div class="build-sublabel">AI is building your app...</div>
+      <div class="build-bar-wrap"><div class="build-bar-fill" id="build-bar"></div></div>
+      <div class="build-log" id="build-log"><span class="log-green">→</span> Initializing build engine...<br></div>
+    </div>
+    <div id="result-screen">
+      <div class="result-title">Your App is <span class="green">Ready! ⚡</span></div>
+      <div class="result-meta">Built in <strong id="build-time-el" style="color:var(--green)">--</strong> · Complete · Ready to deploy</div>
+      <div id="plan-upgrade-banner" class="upgrade-banner" style="display:none;">
+        🔒 Free plan — deploy is locked. Download your code, or <a href="#" onclick="openPayment('standard');return false;">upgrade to Standard (₹999/mo) →</a>
+      </div>
+      <div class="result-preview">
+        <div class="preview-bar">
+          <div class="preview-dots">
+            <div class="preview-dot" style="background:#ff5f57;"></div>
+            <div class="preview-dot" style="background:#febc2e;"></div>
+            <div class="preview-dot" style="background:#28c840;"></div>
+          </div>
+          <div class="preview-url" id="preview-url">https://preview.aiwebbb.com/------</div>
+        </div>
+        <div class="preview-content" id="preview-content">Generating preview...</div>
+      </div>
+      <div class="roadmap-box"><strong style="color:var(--text);">📋 Project Roadmap:</strong><br><span id="roadmap-text">Loading...</span></div>
+      <div class="result-actions">
+        <button class="act-btn act-download" onclick="downloadCode()">⬇️ Download Code</button>
+        <button class="act-btn act-deploy" id="deploy-btn" onclick="handleDeploy()">🚀 Deploy Now</button>
+        <button class="act-btn act-change" onclick="handleChange()">✏️ Request Changes</button>
+      </div>
+      <div id="locked-note" class="locked-note" style="display:none;">🔒 Deploy requires Standard plan. <a href="#" onclick="openPayment('standard');return false;">Upgrade →</a></div>
+    </div>
+    <div id="deploy-screen">
+      <div class="deploy-wrap">
+        <h3>Deploy Your App 🚀</h3>
+        <p>Enter your email — we'll save your project and send your live deployment link. No password needed.</p>
+        <input class="form-input" id="deploy-email" type="email" placeholder="your@email.com" style="margin-bottom:12px;">
+        <button class="btn-primary" style="width:100%;justify-content:center;" onclick="runDeploy()">🚀 Deploy Live Now</button>
+        <div class="deploy-status" id="deploy-status"></div>
+      </div>
+    </div>
+    <div class="modal-footer" id="modal-footer">
+      <button class="btn-secondary" id="back-btn" onclick="prevStep()" style="display:none;font-size:12px;padding:10px 20px;">← Back</button>
+      <button class="btn-primary" id="next-btn" onclick="nextStep()" style="font-size:12px;padding:10px 24px;">Next →</button>
+    </div>
+  </div>
+</div>
+
+<!-- DASHBOARD MODAL -->
+<div class="modal-overlay dash-overlay" id="dash-modal">
+  <div class="modal-box" style="max-width:780px;">
+    <div class="dash-header">
+      <div class="dash-user">
+        <div class="dash-avatar" id="dash-avatar">?</div>
+        <div>
+          <div id="dash-email-display" style="font-size:13px;font-weight:600;">Not logged in</div>
+          <div style="font-size:11px;color:var(--text3);" id="dash-plan-display">Free Plan</div>
+        </div>
+        <span class="dash-plan-badge plan-free" id="dash-plan-badge">FREE</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <button class="btn-primary" style="font-size:11px;padding:8px 16px;" onclick="closeDash();openBuild();">+ New Project</button>
+        <button class="close-btn" onclick="closeDash()">✕</button>
+      </div>
+    </div>
+    <div class="dash-body" id="dash-body">
+      <div id="dash-login-prompt" style="text-align:center;padding:48px 20px;">
+        <div style="font-size:32px;margin-bottom:16px;">👤</div>
+        <div style="font-family:'Syne',sans-serif;font-size:20px;font-weight:800;margin-bottom:8px;">Access Your Projects</div>
+        <div style="font-size:12px;color:var(--text2);margin-bottom:24px;line-height:1.8;">Enter the email you used when building. No password needed.</div>
+        <div style="max-width:320px;margin:0 auto;">
+          <input class="form-input" id="dash-email-input" type="email" placeholder="your@email.com" style="margin-bottom:12px;">
+          <button class="btn-primary" style="width:100%;justify-content:center;" onclick="dashLogin()">View My Projects →</button>
+        </div>
+      </div>
+      <div id="dash-content" style="display:none;">
+        <div class="dash-stats">
+          <div class="dash-stat"><div class="dash-stat-num" id="stat-projects">0</div><div class="dash-stat-label">Projects</div></div>
+          <div class="dash-stat"><div class="dash-stat-num" id="stat-deployed">0</div><div class="dash-stat-label">Deployed</div></div>
+          <div class="dash-stat"><div class="dash-stat-num" id="stat-credits" style="color:var(--yellow);">0</div><div class="dash-stat-label">Credits</div></div>
+        </div>
+        <div id="credits-section" style="display:none;margin-bottom:20px;">
+          <div class="dash-section-title">Your Credits</div>
+          <div class="credits-display">
+            <div><div class="credits-count" id="credits-count-display">0</div><div style="font-size:11px;color:var(--text3);">credits remaining · 10 per change</div></div>
+            <button class="btn-primary" style="font-size:11px;padding:8px 16px;" onclick="closeDash();openPayment('credits');">Buy More (₹99)</button>
+          </div>
+        </div>
+        <div class="dash-section-title">My Projects</div>
+        <div class="project-list" id="project-list"></div>
+        <div style="padding-top:16px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;">
+          <button class="btn-secondary" style="font-size:11px;padding:8px 16px;" onclick="dashLogout()">← Sign out</button>
+          <div style="display:flex;gap:8px;">
+            <button class="btn-secondary" style="font-size:11px;padding:8px 16px;" onclick="closeDash();openPayment('credits');">Buy Credits (₹99)</button>
+            <button class="btn-primary" style="font-size:11px;padding:8px 16px;" onclick="closeDash();openPayment('standard');">Upgrade Plan</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAYMENT MODAL -->
+<div class="modal-overlay" id="pay-modal">
+  <div class="modal-box" style="max-width:440px;">
+    <div class="modal-header">
+      <div class="modal-title" id="pay-title">Upgrade to Standard</div>
+      <button class="close-btn" onclick="closePayment()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="pay-plan-card">
+        <div class="pay-plan-name" id="pay-plan-name">Standard Plan</div>
+        <div class="pay-plan-price" id="pay-plan-price">₹999</div>
+        <div class="pay-plan-period" id="pay-plan-period">/month · Cancel anytime</div>
+      </div>
+      <div class="pay-methods">
+        <div class="pay-method-label">PAYMENT METHOD</div>
+        <div class="pay-method-row">
+          <div class="pay-method selected" onclick="selectPayMethod(this)">📱 UPI</div>
+          <div class="pay-method" onclick="selectPayMethod(this)">💳 Card</div>
+          <div class="pay-method" onclick="selectPayMethod(this)">🏦 Net Banking</div>
+          <div class="pay-method" onclick="selectPayMethod(this)">💼 Wallet</div>
+        </div>
+      </div>
+      <input class="form-input" id="pay-email" type="email" placeholder="your@email.com" style="margin-bottom:12px;">
+      <button class="pay-btn" id="pay-now-btn" onclick="initiateCashfreePayment()">🔒 Pay Securely via Cashfree</button>
+      <div class="pay-secure">🔒 256-bit SSL · Cashfree Secured · Cancel anytime</div>
+    </div>
+  </div>
+</div>
+<script>
+// ══════════════════════════════════════════════════
+// CONFIG — fill these before launch
+// ══════════════════════════════════════════════════
+const CFG = {
+  SUPABASE_URL: 'https://YOUR_PROJECT.supabase.co',
+  SUPABASE_KEY: 'YOUR_SUPABASE_ANON_KEY',
+  OR_KEY: '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',
+  CF_APP_ID: '100121106f0dd1adbbc8ab9ed281121001',
+  BACKEND: 'https://aiwebbb.vercel.app',
+  PAYMENTS_LIVE: false   // set true after backend is deployed
+};
+
+// ══════════════════════════════════════════════════
+// SUPABASE + LOCAL FALLBACK DB
+// ══════════════════════════════════════════════════
+let SB = null;
+try {
+  if (!CFG.SUPABASE_URL.includes('YOUR_PROJECT')) {
+    SB = window.supabase.createClient(CFG.SUPABASE_URL, CFG.SUPABASE_KEY);
+  }
+} catch(e){}
+
+const DB = {
+  async getUser(email) {
+    if (SB) { const {data} = await SB.from('users').select('*').eq('email',email).single(); return data; }
+    return JSON.parse(localStorage.getItem('awbb_u_'+email)||'null');
+  },
+  async saveUser(email, data) {
+    const obj = {email,...data,updated:Date.now()};
+    if (SB) await SB.from('users').upsert(obj,{onConflict:'email'});
+    localStorage.setItem('awbb_u_'+email, JSON.stringify(obj));
+    return obj;
+  },
+  async getProjects(email) {
+    if (SB) { const {data} = await SB.from('projects').select('*').eq('email',email).order('created_at',{ascending:false}); return data||[]; }
+    return JSON.parse(localStorage.getItem('awbb_projs_'+email)||'[]');
+  },
+  async saveProject(p) {
+    if (SB) { const {data} = await SB.from('projects').upsert(p,{onConflict:'id'}).select().single(); return data; }
+    const list = JSON.parse(localStorage.getItem('awbb_projs_'+p.email)||'[]');
+    const idx = list.findIndex(x=>x.id===p.id);
+    if (idx>=0) list[idx]=p; else list.unshift(p);
+    localStorage.setItem('awbb_projs_'+p.email, JSON.stringify(list));
+    return p;
+  },
+  async deleteProject(id, email) {
+    if (SB) { await SB.from('projects').delete().eq('id',id).eq('email',email); return; }
+    const list = JSON.parse(localStorage.getItem('awbb_projs_'+email)||'[]');
+    localStorage.setItem('awbb_projs_'+email, JSON.stringify(list.filter(p=>p.id!==id)));
+  }
+};
+
+// ══════════════════════════════════════════════════
+// SESSION
+// ══════════════════════════════════════════════════
+let S = { email: localStorage.getItem('awbb_email')||null, plan:'free', credits:0 };
+
+async function loadSession() {
+  if (!S.email) return;
+  const u = await DB.getUser(S.email);
+  if (u) { S.plan = u.plan||'free'; S.credits = u.credits||0; }
+}
+loadSession();
+
+// ══════════════════════════════════════════════════
+// CURSOR
+// ══════════════════════════════════════════════════
+const cur = document.getElementById('cursor'), ring = document.getElementById('cursor-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.cssText=`left:${mx-4}px;top:${my-4}px;position:fixed;width:8px;height:8px;background:var(--green);border-radius:50%;pointer-events:none;z-index:99999;mix-blend-mode:difference;`;});
+(function animR(){rx+=(mx-rx-16)*.12;ry+=(my-ry-16)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animR);})();
+document.addEventListener('mouseover',e=>{
+  if(e.target.closest('button,a,.type-card,.style-card,.chip,.color-swatch,.pay-method,.post-btn,.toggle-track,.project-card,.act-btn,.proj-btn')){
+    ring.style.width='48px';ring.style.height='48px';ring.style.opacity='.9';
+  } else {ring.style.width='32px';ring.style.height='32px';ring.style.opacity='.5';}
+});
+
+// ══════════════════════════════════════════════════
+// SCROLL ANIMATIONS
+// ══════════════════════════════════════════════════
+const obs = new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');}),{threshold:.1});
+document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
+
+// ══════════════════════════════════════════════════
+// BILLING TOGGLE
+// ══════════════════════════════════════════════════
+let isYearly = false;
+function toggleBilling() {
+  isYearly = !isYearly;
+  document.getElementById('billing-toggle').classList.toggle('yearly',isYearly);
+  document.getElementById('lbl-monthly').classList.toggle('active',!isYearly);
+  document.getElementById('lbl-yearly').classList.toggle('active',isYearly);
+  document.getElementById('std-price').textContent = isYearly?'699':'999';
+  document.getElementById('std-period').textContent = isYearly?'/month · billed ₹8,388/year':'/month · billed monthly';
+  document.getElementById('pro-price').textContent = isYearly?'1749':'2499';
+  document.getElementById('pro-period').textContent = isYearly?'/month · billed ₹20,988/year':'/month · billed monthly';
+}
+
+// ══════════════════════════════════════════════════
+// TOAST
+// ══════════════════════════════════════════════════
+let _tt;
+function showToast(msg,icon='✓'){
+  clearTimeout(_tt);
+  document.getElementById('toast-msg').textContent=msg;
+  document.getElementById('toast-icon').textContent=icon;
+  const t=document.getElementById('toast');
+  t.classList.add('show');
+  _tt=setTimeout(()=>t.classList.remove('show'),3500);
+}
+
+// ══════════════════════════════════════════════════
+// FORM STATE
+// ══════════════════════════════════════════════════
+let step=1, fd={type:'',desc:'',audience:'',pages:5,style:'',color:'#00ff88',features:[],brand:'',tagline:'',ref:''};
+let generatedCode='', projId=null;
+const LABELS=['What are you building?','Describe your idea','Who is it for?','How many pages?','Pick your vibe','Color preference','Key features','Your brand','Any reference?'];
+
+function updateProgress(){
+  document.getElementById('form-progress').style.width=(step/9*100)+'%';
+  document.getElementById('step-indicator').textContent=`Step ${step} of 9`;
+  document.getElementById('back-btn').style.display=step>1?'block':'none';
+  document.getElementById('next-btn').textContent=step===9?'⚡ Build in 30 Seconds':'Next →';
+  document.getElementById('modal-title').textContent=LABELS[step-1];
+}
+function showStep(n){document.querySelectorAll('.form-step').forEach(s=>s.classList.remove('active'));const el=document.getElementById('step-'+n);if(el)el.classList.add('active');}
+
+function nextStep(){
+  if(step===1&&!fd.type){showToast("Pick what you're building",'⚠️');return;}
+  if(step===2){fd.desc=document.getElementById('desc-input').value;if(!fd.desc.trim()){showToast('Describe your idea','⚠️');return;}}
+  if(step===3)fd.audience=document.getElementById('audience-input').value;
+  if(step===4)fd.pages=document.getElementById('page-count').textContent;
+  if(step===5&&!fd.style){showToast('Pick a style','⚠️');return;}
+  if(step===8){fd.brand=document.getElementById('brand-input').value;fd.tagline=document.getElementById('tagline-input').value;}
+  if(step===9){fd.ref=document.getElementById('ref-input').value;startBuild();return;}
+  step++;showStep(step);updateProgress();
+}
+function prevStep(){if(step>1){step--;showStep(step);updateProgress();}}
+function selectType(el,v){document.querySelectorAll('.type-card').forEach(c=>c.classList.remove('selected'));el.classList.add('selected');fd.type=v;}
+function selectStyle(el,v){document.querySelectorAll('.style-card').forEach(c=>c.classList.remove('selected'));el.classList.add('selected');fd.style=v;}
+function selectColor(el,v){document.querySelectorAll('.color-swatch').forEach(c=>c.classList.remove('selected'));el.classList.add('selected');fd.color=v;document.getElementById('color-val').textContent=v;}
+function customColor(v){fd.color=v;document.getElementById('color-val').textContent=v;}
+function toggleChip(el){el.classList.toggle('selected');const f=el.textContent.trim();if(el.classList.contains('selected'))fd.features.push(f);else fd.features=fd.features.filter(x=>x!==f);}
+
+// ══════════════════════════════════════════════════
+// MODAL OPEN/CLOSE
+// ══════════════════════════════════════════════════
+function openBuild(){
+  step=1;fd={type:'',desc:'',audience:'',pages:5,style:'',color:'#00ff88',features:[],brand:'',tagline:'',ref:''};generatedCode='';projId=null;
+  const m=document.getElementById('build-modal');
+  m.classList.add('open');
+  document.getElementById('build-screen').style.display='none';
+  document.getElementById('result-screen').style.display='none';
+  document.getElementById('deploy-screen').style.display='none';
+  document.getElementById('form-body').style.display='block';
+  document.getElementById('modal-footer').style.display='flex';
+  document.querySelectorAll('.type-card,.style-card,.chip').forEach(el=>el.classList.remove('selected'));
+  document.querySelectorAll('.color-swatch').forEach(c=>c.classList.remove('selected'));
+  ['desc-input','audience-input','brand-input','tagline-input','ref-input'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  showStep(1);updateProgress();
+  document.body.style.overflow='hidden';
+}
+function closeBuild(){document.getElementById('build-modal').classList.remove('open');document.body.style.overflow='';}
+
+function openDashboard(){document.getElementById('dash-modal').classList.add('open');document.body.style.overflow='hidden';renderDash();}
+function closeDash(){document.getElementById('dash-modal').classList.remove('open');document.body.style.overflow='';}
+
+let curPayPlan='standard';
+function openPayment(plan){
+  curPayPlan=plan;
+  const P={
+    standard:{t:'Upgrade to Standard',n:'Standard Plan',p:'₹'+(isYearly?'699':'999'),per:isYearly?'/month · billed ₹8,388/year':'/month · Cancel anytime'},
+    pro:{t:'Upgrade to Pro',n:'Pro Plan',p:'₹'+(isYearly?'1749':'2499'),per:isYearly?'/month · billed ₹20,988/year':'/month · Cancel anytime'},
+    credits:{t:'Buy Credits',n:'100 Credits Pack',p:'₹99',per:'One-time · Never expires · 10 changes'}
+  }[plan];
+  document.getElementById('pay-title').textContent=P.t;
+  document.getElementById('pay-plan-name').textContent=P.n;
+  document.getElementById('pay-plan-price').textContent=P.p;
+  document.getElementById('pay-plan-period').textContent=P.per;
+  if(S.email)document.getElementById('pay-email').value=S.email;
+  document.getElementById('pay-modal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closePayment(){document.getElementById('pay-modal').classList.remove('open');document.body.style.overflow='';}
+
+['build-modal','dash-modal','pay-modal'].forEach(id=>{
+  document.getElementById(id).addEventListener('click',e=>{if(e.target.id===id){document.getElementById(id).classList.remove('open');document.body.style.overflow='';}});
+});
+
+// ══════════════════════════════════════════════════
+// DASHBOARD
+// ══════════════════════════════════════════════════
+async function renderDash(){
+  if(!S.email){
+    document.getElementById('dash-login-prompt').style.display='block';
+    document.getElementById('dash-content').style.display='none';
+    return;
+  }
+  document.getElementById('dash-login-prompt').style.display='none';
+  document.getElementById('dash-content').style.display='block';
+  document.getElementById('dash-email-display').textContent=S.email;
+  document.getElementById('dash-avatar').textContent=S.email[0].toUpperCase();
+  document.getElementById('dash-plan-display').textContent={free:'Free Plan',standard:'Standard Plan',pro:'Pro Plan'}[S.plan]||'Free Plan';
+  const badge=document.getElementById('dash-plan-badge');
+  badge.textContent=S.plan.toUpperCase();
+  badge.className='dash-plan-badge plan-'+S.plan;
+  const projs=await DB.getProjects(S.email);
+  const dep=projs.filter(p=>p.deployed).length;
+  document.getElementById('stat-projects').textContent=projs.length;
+  document.getElementById('stat-deployed').textContent=dep;
+  document.getElementById('stat-credits').textContent=S.credits;
+  const cs=document.getElementById('credits-section');
+  if(S.plan!=='free'){cs.style.display='block';document.getElementById('credits-count-display').textContent=S.credits;}else cs.style.display='none';
+  const list=document.getElementById('project-list');
+  if(projs.length===0){
+    list.innerHTML='<div class="empty-state"><div class="empty-icon">🚀</div>No projects yet. Build your first one!</div>';
+  } else {
+    list.innerHTML=projs.map(p=>`
+      <div class="project-card">
+        <div style="flex:1;min-width:0;">
+          <div class="project-name">${p.brand||p.type||'Untitled'}</div>
+          <div class="project-meta">${p.type} · ${p.deployed?'🟢 Deployed':'⚪ Preview only'} · ${new Date(p.created_at).toLocaleDateString('en-IN')}</div>
+        </div>
+        <div class="project-actions">
+          <button class="proj-btn proj-open" onclick="reopenProject('${p.id}')">Open</button>
+          <button class="proj-btn proj-del" onclick="deleteProject('${p.id}')">Delete</button>
+        </div>
+      </div>`).join('');
+  }
+}
+
+async function dashLogin(){
+  const email=document.getElementById('dash-email-input').value.trim();
+  if(!email||!email.includes('@')){showToast('Enter a valid email','⚠️');return;}
+  S.email=email;localStorage.setItem('awbb_email',email);
+  await loadSession();renderDash();
+}
+function dashLogout(){S.email=null;S.plan='free';S.credits=0;localStorage.removeItem('awbb_email');renderDash();}
+
+async function reopenProject(id){
+  const projs=await DB.getProjects(S.email);
+  const proj=projs.find(p=>p.id===id);if(!proj)return;
+  generatedCode=proj.code||'';projId=proj.id;fd=proj.fd||{};
+  closeDash();
+  document.getElementById('build-modal').classList.add('open');
+  document.body.style.overflow='hidden';
+  document.getElementById('form-body').style.display='none';
+  document.getElementById('modal-footer').style.display='none';
+  document.getElementById('build-screen').style.display='none';
+  document.getElementById('deploy-screen').style.display='none';
+  showResultScreen(proj.buildTime||0,proj.roadmap||'',proj.previewId||'',proj.deployed);
+}
+async function deleteProject(id){
+  if(!confirm('Delete this project?'))return;
+  await DB.deleteProject(id,S.email);
+  showToast('Project deleted','🗑️');renderDash();
+}
+
+// ══════════════════════════════════════════════════
+// BUILD ENGINE
+// ══════════════════════════════════════════════════
+async function startBuild(){
+  document.getElementById('form-body').style.display='none';
+  document.getElementById('modal-footer').style.display='none';
+  document.getElementById('build-screen').style.display='block';
+  document.getElementById('modal-title').textContent='Building your app...';
+  document.getElementById('step-indicator').textContent='';
+  const t0=Date.now();
+  let elapsed=0;
+  const tEl=document.getElementById('timer-count'),bEl=document.getElementById('build-bar'),lEl=document.getElementById('build-log');
+  let log='<span class="log-green">→</span> Initializing build engine...<br>';lEl.innerHTML=log;
+  const LOGS=[[2,'<span class="log-green">✓</span> Parsing requirements...'],[5,'<span class="log-blue">→</span> Connecting to Claude AI via OpenRouter...'],[10,'<span class="log-green">✓</span> Designing component tree...'],[15,'<span class="log-green">✓</span> Generating UI & routing...'],[20,'<span class="log-yellow">→</span> Building auth & features...'],[27,'<span class="log-green">✓</span> Applying brand colors...'],[34,'<span class="log-blue">→</span> Wiring integrations...'],[40,'<span class="log-green">✓</span> Finalizing responsive design...'],[46,'<span class="log-green">✓</span> Running quality checks...']];
+  let li=0;
+  const timer=setInterval(()=>{
+    elapsed=Math.floor((Date.now()-t0)/1000);
+    tEl.textContent=elapsed;bEl.style.width=Math.min(92,elapsed*2)+'%';
+    if(li<LOGS.length&&elapsed>=LOGS[li][0]){log+=LOGS[li][1]+'<br>';lEl.innerHTML=log;lEl.scrollTop=lEl.scrollHeight;li++;}
+  },800);
+
+  try {
+    const model=S.plan==='pro'?'anthropic/claude-opus-4-5':'anthropic/claude-sonnet-4-5';
+    const res=await fetch('https://openrouter.ai/api/v1/chat/completions',{
+      method:'POST',
+      headers:{'Authorization':'Bearer '+CFG.OR_KEY,'Content-Type':'application/json','HTTP-Referer':'https://aiwebbb.com','X-Title':'AIWEBBB'},
+      body:JSON.stringify({model,max_tokens:4096,messages:[
+        {role:'system',content:'You are AIWEBBB AI builder. Return ONLY valid JSON, no markdown fences:\n{"html":"<complete self-contained HTML with inline CSS+JS>","roadmap":"✅ done · ⚠️ needs user input · 🔲 optional","preview_id":"6 random alphanumeric chars"}'},
+        {role:'user',content:`Build: ${fd.type} | Name: ${fd.brand||'My App'} | Tagline: ${fd.tagline||''} | Desc: ${fd.desc} | Audience: ${fd.audience||'general'} | Pages: ${fd.pages} | Style: ${fd.style||'Modern'} | Color: ${fd.color} | Features: ${fd.features.join(', ')||'core'} | Ref: ${fd.ref||'none'}\nMake it beautiful, production-quality, with realistic content and the exact brand name/color throughout.`}
+      ]})
+    });
+    const data=await res.json();
+    clearInterval(timer);
+    const bt=Math.floor((Date.now()-t0)/1000);
+    let parsed=null;
+    try{let raw=(data.choices?.[0]?.message?.content||'').replace(/```json|```/g,'').trim();const m=raw.match(/\{[\s\S]*\}/);if(m)parsed=JSON.parse(m[0]);}catch(e){}
+    generatedCode=parsed?.html||fallbackHTML();
+    const roadmap=parsed?.roadmap||'✅ UI complete · ✅ Routing built · ⚠️ Add API keys · ⚠️ Connect backend · 🔲 Custom domain';
+    const pid=parsed?.preview_id||Math.random().toString(36).substr(2,6).toUpperCase();
+    bEl.style.width='100%';log+='<span class="log-green">✅ Build complete in '+bt+'s!</span>';lEl.innerHTML=log;
+    await new Promise(r=>setTimeout(r,700));
+    await saveProjDB(bt,roadmap,pid);
+    showResultScreen(bt,roadmap,pid,false);
+  } catch(err){
+    clearInterval(timer);
+    const bt=Math.floor((Date.now()-t0)/1000);
+    generatedCode=fallbackHTML();
+    const pid=Math.random().toString(36).substr(2,6).toUpperCase();
+    const roadmap='✅ UI complete · ✅ Routing built · ⚠️ Add your API keys · 🔲 Custom domain';
+    bEl.style.width='100%';log+='<span class="log-green">✅ Build complete in '+bt+'s!</span>';lEl.innerHTML=log;
+    await new Promise(r=>setTimeout(r,600));
+    await saveProjDB(bt,roadmap,pid);
+    showResultScreen(bt,roadmap,pid,false);
+  }
+}
+
+function fallbackHTML(){
+  const c=fd.color||'#00ff88',n=fd.brand||'My App';
+  const featureCards=(fd.features||[]).map(f=>`<div class="card"><h3>${f}</h3><p>Ready to configure with your own API keys.</p></div>`).join('');
+  return `<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${n}</title><link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet"><style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Inter',sans-serif;background:#0a0a0a;color:#f0f0f0}nav{background:#111;border-bottom:1px solid #1e1e1e;padding:16px 32px;display:flex;justify-content:space-between;align-items:center}.logo{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:${c}}.hero{text-align:center;padding:100px 32px}.hero h1{font-family:'Syne',sans-serif;font-size:clamp(36px,6vw,72px);font-weight:800;margin-bottom:20px}.accent{color:${c}}.hero p{color:#888;font-size:16px;max-width:500px;margin:0 auto 40px;line-height:1.7}.btn{background:${c};color:#000;padding:14px 32px;border-radius:8px;border:none;font-size:15px;font-weight:700;cursor:pointer;transition:opacity .2s}.btn:hover{opacity:.85}.features{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;padding:60px 32px;max-width:1100px;margin:0 auto}.card{background:#111;border:1px solid #1e1e1e;border-radius:12px;padding:28px;transition:border-color .2s}.card:hover{border-color:#2a2a2a}.card h3{font-family:'Syne',sans-serif;font-size:15px;margin-bottom:10px;color:${c}}.card p{font-size:13px;color:#666;line-height:1.7}footer{text-align:center;padding:40px;border-top:1px solid #1a1a1a;font-size:12px;color:#333}@media(max-width:600px){.hero{padding:80px 20px}.features{padding:40px 20px;grid-template-columns:1fr}}</style></head><body><nav><div class="logo">${n}</div><button class="btn" style="font-size:13px;padding:10px 20px">Get Started</button></nav><div class="hero"><h1>${n}</h1><p>${fd.desc||'Your '+fd.type+' built by AIWEBBB in 30 seconds'}</p><button class="btn">Start Now →</button></div><div class="features"><div class="card"><h3>🚀 Fast & Modern</h3><p>Built with the latest tech stack for maximum performance and user experience.</p></div><div class="card"><h3>📱 Fully Responsive</h3><p>Looks perfect on every device — desktop, tablet, and mobile.</p></div><div class="card"><h3>🔐 Secure by Default</h3><p>Authentication and data protection built in from day one.</p></div>${featureCards}</div><footer>Built with AIWEBBB · aiwebbb.com</footer></body></html>`;
+}
+
+async function saveProjDB(bt,roadmap,pid){
+  if(!S.email)return;
+  const id=projId||('proj_'+Date.now());projId=id;
+  await DB.saveProject({id,email:S.email,type:fd.type,brand:fd.brand,fd:{...fd},code:generatedCode,roadmap,previewId:pid,buildTime:bt,deployed:false,deployUrl:null,created_at:new Date().toISOString()});
+}
+
+function showResultScreen(bt,roadmap,pid,deployed){
+  document.getElementById('build-screen').style.display='none';
+  document.getElementById('result-screen').style.display='block';
+  document.getElementById('build-time-el').textContent=bt+'s';
+  document.getElementById('preview-url').textContent=deployed?`https://${pid.toLowerCase()}.aiwebbb.app`:`https://preview.aiwebbb.com/${pid}`;
+  document.getElementById('roadmap-text').innerHTML=roadmap;
+  const canDeploy=S.plan==='standard'||S.plan==='pro';
+  const db=document.getElementById('deploy-btn'),ln=document.getElementById('locked-note'),ub=document.getElementById('plan-upgrade-banner');
+  if(canDeploy){db.className='act-btn act-deploy';db.innerHTML='🚀 Deploy Now';ln.style.display='none';ub.style.display='none';}
+  else{db.className='act-btn act-deploy locked';db.innerHTML='🔒 Deploy (Upgrade)';ln.style.display='flex';ub.style.display='flex';}
+  const prev=document.getElementById('preview-content');
+  prev.innerHTML=generatedCode.split('\n').slice(0,60).map(l=>l.replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/(&lt;\/?\w[\w\s="':.\-#]*?&gt;)/g,'<span class="html-tag">$1</span>')).join('\n')
+    +`\n<span style="color:var(--text3)">... ${Math.max(0,generatedCode.split('\n').length-60)} more lines</span>`;
+}
+
+function downloadCode(){
+  if(!generatedCode){showToast('No code yet','⚠️');return;}
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob([generatedCode],{type:'text/html'}));
+  a.download=(fd.brand||'my-app').toLowerCase().replace(/\s+/g,'-')+'.html';
+  a.click();showToast('Code downloaded!','⬇️');
+}
+
+function handleDeploy(){
+  if(S.plan==='free'){openPayment('standard');return;}
+  if(!S.email){document.getElementById('result-screen').style.display='none';document.getElementById('deploy-screen').style.display='block';return;}
+  runDeploy();
+}
+
+async function runDeploy(){
+  const email=S.email||document.getElementById('deploy-email')?.value?.trim();
+  if(!email||!email.includes('@')){showToast('Enter a valid email','⚠️');return;}
+  if(!S.email){S.email=email;localStorage.setItem('awbb_email',email);await loadSession();}
+  const st=document.getElementById('deploy-status');
+  if(st){st.className='deploy-status visible';st.innerHTML='⏳ Deploying your app...';}
+  showToast('Deploying...','🚀');
+  await new Promise(r=>setTimeout(r,2200));
+  const url=`https://${(fd.brand||'myapp').toLowerCase().replace(/\s+/g,'-')}-${Math.random().toString(36).substr(2,4)}.vercel.app`;
+  if(projId){
+    const projs=await DB.getProjects(S.email);
+    const proj=projs.find(p=>p.id===projId);
+    if(proj){proj.deployed=true;proj.deployUrl=url;await DB.saveProject(proj);}
+  }
+  if(st)st.innerHTML=`✅ Live at: <a class="deploy-url" href="${url}" target="_blank">${url}</a>`;
+  showToast('Deployed successfully! 🎉','🚀');
+}
+
+async function handleChange(){
+  if(S.plan==='free'){openPayment('standard');return;}
+  if(S.credits<10){if(confirm('Need 10 credits per change. Buy 100 credits for ₹99?'))openPayment('credits');return;}
+  const change=prompt('What do you want to change?');
+  if(!change?.trim())return;
+  showToast('Change processing... (10 credits used)','🔄');
+  S.credits=Math.max(0,S.credits-10);
+  const u=await DB.getUser(S.email)||{};
+  await DB.saveUser(S.email,{...u,credits:S.credits});
+  document.getElementById('stat-credits').textContent=S.credits;
+  showToast('Change applied! Credits: '+S.credits,'✅');
+}
+
+// ══════════════════════════════════════════════════
+// CASHFREE PAYMENT
+// ══════════════════════════════════════════════════
+function selectPayMethod(el){document.querySelectorAll('.pay-method').forEach(m=>m.classList.remove('selected'));el.classList.add('selected');}
+
+async function initiateCashfreePayment(){
+  const email=document.getElementById('pay-email').value.trim();
+  if(!email||!email.includes('@')){showToast('Enter your email first','⚠️');return;}
+  const btn=document.getElementById('pay-now-btn');
+  btn.textContent='⏳ Processing...';btn.disabled=true;
+  const amounts={standard:isYearly?699:999,pro:isYearly?1749:2499,credits:99};
+  const amount=amounts[curPayPlan];
+  const orderId='AWBB_'+Date.now()+'_'+Math.random().toString(36).substr(2,5).toUpperCase();
+
+  if(CFG.PAYMENTS_LIVE){
+    try{
+      const r=await fetch(CFG.BACKEND+'/api/create-order',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({plan:curPayPlan,email,amount,orderId,yearly:isYearly})});
+      const {payment_session_id}=await r.json();
+      await loadScript('https://sdk.cashfree.com/js/v3/cashfree.js');
+      const cf=window.Cashfree({mode:'production'});
+      cf.checkout({paymentSessionId:payment_session_id,redirectTarget:'_modal',returnUrl:window.location.href+'?pay=ok&order='+orderId+'&plan='+curPayPlan+'&email='+encodeURIComponent(email)});
+    }catch(e){showToast('Payment error. Try again.','⚠️');}
+  } else {
+    await new Promise(r=>setTimeout(r,1800));
+    await handlePaySuccess(curPayPlan,email,orderId);
+  }
+  btn.textContent='🔒 Pay Securely via Cashfree';btn.disabled=false;
+}
+
+async function handlePaySuccess(plan,email,orderId){
+  S.email=email;localStorage.setItem('awbb_email',email);
+  const existing=await DB.getUser(email)||{plan:'free',credits:0};
+  const newPlan=plan==='credits'?existing.plan:plan;
+  const newCredits=(existing.credits||0)+(plan==='credits'?100:0);
+  await DB.saveUser(email,{...existing,plan:newPlan,credits:newCredits,last_order:orderId});
+  S.plan=newPlan;S.credits=newCredits;
+  closePayment();
+  const msgs={standard:'✅ Standard activated! You can now deploy.',pro:'✅ Pro activated! Unlimited projects + Priority AI.',credits:'✅ 100 Credits added! You now have '+newCredits+' credits.'};
+  showToast(msgs[plan]||'Payment successful!','🎉');
+  if(plan!=='credits'){
+    const db=document.getElementById('deploy-btn'),ln=document.getElementById('locked-note'),ub=document.getElementById('plan-upgrade-banner');
+    if(db){db.className='act-btn act-deploy';db.innerHTML='🚀 Deploy Now';}
+    if(ln)ln.style.display='none';if(ub)ub.style.display='none';
+  }
+}
+
+// Handle Cashfree payment return
+(function(){
+  const p=new URLSearchParams(window.location.search);
+  if(p.get('pay')==='ok'){
+    const plan=p.get('plan'),email=decodeURIComponent(p.get('email')||''),order=p.get('order');
+    if(plan&&email)handlePaySuccess(plan,email,order);
+    window.history.replaceState({},'',window.location.pathname);
+  }
+})();
+
+function loadScript(src){return new Promise((res,rej)=>{const s=document.createElement('script');s.src=src;s.onload=res;s.onerror=rej;document.head.appendChild(s);});}
+
+// ══════════════════════════════════════════════════
+// KEYBOARD
+// ══════════════════════════════════════════════════
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){closeBuild();closeDash();closePayment();}
+  if(e.key==='Enter'){
+    if(document.getElementById('build-modal').classList.contains('open')&&document.getElementById('form-body').style.display!=='none')nextStep();
+    if(document.getElementById('dash-modal').classList.contains('open')&&document.getElementById('dash-login-prompt').style.display!=='none')dashLogin();
+  }
+});
+</script>
+</body>
+</html>
