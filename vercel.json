@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/:slug([A-Z0-9]{10})",
+      "destination": "https://aiwebbb-api.vercel.app/api/serve-project?slug=:slug"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
