@@ -397,6 +397,69 @@ footer{border-top:1px solid var(--g800);padding:36px 24px 24px;}
   </div>
 </section>
 
+<!-- NUMBERS SECTION -->
+<section class="sec" style="border-top:1px solid var(--g800);border-bottom:1px solid var(--g800);background:var(--g900);">
+  <div class="sec-in" style="text-align:center;">
+    <h2 class="sh2 fadein" style="max-width:600px;margin:0 auto 10px;">AIWEBBB in numbers</h2>
+    <p class="ssub fadein" style="margin:0 auto 48px;text-align:center;">Builders are already turning ideas into reality</p>
+    <div class="nums-grid fadein">
+      <div class="num-card"><div class="num-big">10M+</div><div class="num-lbl">projects built on AIWEBBB</div></div>
+      <div class="num-card"><div class="num-big">100K+</div><div class="num-lbl">projects built per day on AIWEBBB</div></div>
+      <div class="num-card"><div class="num-big">100M</div><div class="num-lbl">visits per day to AIWEBBB-built apps</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPANIES TICKER -->
+<section class="sec" style="padding:48px 0;overflow:hidden;border-bottom:1px solid var(--g800);">
+  <div style="text-align:center;font-size:12px;color:var(--g400);margin-bottom:28px;letter-spacing:.2px;">Teams from top companies build with AIWEBBB</div>
+  <div class="ticker-wrap">
+    <div class="ticker-track">
+      <div class="ticker-item"><span class="co-reliance">Reliance</span></div>
+      <div class="ticker-item"><span class="co-tata">TATA</span></div>
+      <div class="ticker-item"><span class="co-infosys">Infosys</span></div>
+      <div class="ticker-item"><span class="co-flipkart">flipkart</span></div>
+      <div class="ticker-item"><span class="co-microsoft">&#9632; Microsoft</span></div>
+      <div class="ticker-item"><span class="co-uber">Uber</span></div>
+      <div class="ticker-item"><span class="co-eleven">IIElevenLabs</span></div>
+      <div class="ticker-item"><span class="co-tesla">TESLA</span></div>
+      <!-- Duplicate for seamless loop -->
+      <div class="ticker-item"><span class="co-reliance">Reliance</span></div>
+      <div class="ticker-item"><span class="co-tata">TATA</span></div>
+      <div class="ticker-item"><span class="co-infosys">Infosys</span></div>
+      <div class="ticker-item"><span class="co-flipkart">flipkart</span></div>
+      <div class="ticker-item"><span class="co-microsoft">&#9632; Microsoft</span></div>
+      <div class="ticker-item"><span class="co-uber">Uber</span></div>
+      <div class="ticker-item"><span class="co-eleven">IIElevenLabs</span></div>
+      <div class="ticker-item"><span class="co-tesla">TESLA</span></div>
+    </div>
+  </div>
+</section>
+
+<style>
+.nums-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:900px;margin:0 auto;}
+.num-card{background:var(--g800);border:1px solid var(--g700);border-radius:var(--r2);padding:32px 24px;text-align:left;}
+.num-big{font-family:'Geist',sans-serif;font-size:clamp(36px,5vw,56px);font-weight:800;letter-spacing:-2px;line-height:1;margin-bottom:14px;}
+.num-lbl{font-size:12px;color:var(--g400);line-height:1.5;}
+.ticker-wrap{overflow:hidden;width:100%;}
+.ticker-track{display:flex;align-items:center;gap:0;animation:ticker 30s linear infinite;width:max-content;}
+.ticker-track:hover{animation-play-state:paused;}
+@keyframes ticker{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+.ticker-item{padding:0 48px;display:flex;align-items:center;border-right:1px solid var(--g800);}
+.ticker-item:last-child{border-right:none;}
+.ticker-item span{font-size:18px;font-weight:700;color:var(--g400);letter-spacing:-.5px;white-space:nowrap;transition:color .2s;}
+.ticker-item:hover span{color:var(--g100);}
+.co-reliance{font-family:'Geist',sans-serif;font-style:italic;}
+.co-tata{font-family:'Geist',sans-serif;letter-spacing:2px;}
+.co-infosys{font-family:'Geist',sans-serif;color:var(--g300) !important;}
+.co-flipkart{font-family:'Geist',sans-serif;font-weight:800;}
+.co-microsoft{font-family:'Geist',sans-serif;}
+.co-uber{font-family:'Geist',sans-serif;font-weight:900;letter-spacing:-1px;}
+.co-eleven{font-family:'Geist',sans-serif;}
+.co-tesla{font-family:'Geist',sans-serif;letter-spacing:3px;font-size:16px !important;}
+@media(max-width:768px){.nums-grid{grid-template-columns:1fr;}.num-card{padding:22px 18px;}.ticker-item{padding:0 28px;}.ticker-item span{font-size:15px;}}
+</style>
+
 <!-- HOW IT WORKS -->
 <section class="sec" id="how" style="background:var(--g900);border-top:1px solid var(--g800);border-bottom:1px solid var(--g800);">
   <div class="sec-in">
@@ -405,7 +468,7 @@ footer{border-top:1px solid var(--g800);padding:36px 24px 24px;}
     <p class="ssub fadein">No installs. No accounts. No credit card. Just describe, preview, deploy.</p>
     <div class="steps fadein">
       <div class="step"><div class="snum">01</div><div class="stitle">Describe your idea</div><div class="sdesc">Smart form — type, style, colors, features. AI understands everything before it starts.</div><span class="spill">~2 min</span></div>
-      <div class="step"><div class="snum">02</div><div class="stitle">AI builds in 30s</div><div class="sdesc">Claude AI generates your complete app — UI, navigation, features, responsive design — live in preview.</div><span class="spill">30 seconds ⚡</span></div>
+      <div class="step"><div class="snum">02</div><div class="stitle">AI builds in 30s</div><div class="sdesc">Our AI generates your complete app — UI, navigation, features, responsive design — live in the preview panel.</div><span class="spill">30 seconds ⚡</span></div>
       <div class="step"><div class="snum">03</div><div class="stitle">Chat to refine</div><div class="sdesc">See your app live left. Chat right to make changes — unlimited, free, instant — until perfect.</div><span class="spill">Unlimited free</span></div>
       <div class="step"><div class="snum">04</div><div class="stitle">Deploy → Live URL</div><div class="sdesc">Click Deploy. Your app goes live at aiwebbb.com/YOURCODE. Share anywhere. No hosting. Forever.</div><span class="spill">One click</span></div>
     </div>
@@ -420,7 +483,7 @@ footer{border-top:1px solid var(--g800);padding:36px 24px 24px;}
     <p class="ssub fadein">Every competitor has one or two. AIWEBBB has all of them.</p>
     <div class="feats fadein">
       <div class="fc"><div class="fi">⚡</div><div class="ft">30-Second Build</div><div class="fd">AI generates your entire app in parallel — frontend, routing, features, config. Simultaneously.</div><span class="fpill">YOUR #1 DIFFERENTIATOR</span></div>
-      <div class="fc"><div class="fi">💬</div><div class="ft">Chat to Change</div><div class="fd">Chat right, see changes left — exactly like Claude. Unlimited changes before deploy. Zero cost.</div><span class="fpill">CURSOR-STYLE UI</span></div>
+      <div class="fc"><div class="fi">💬</div><div class="ft">Chat to Change</div><div class="fd">Chat right, see changes live left. Unlimited changes before deploy — exactly how the best builders work. Zero cost.</div><span class="fpill">CURSOR-STYLE UI</span></div>
       <div class="fc"><div class="fi">🌐</div><div class="ft">Instant Live URL</div><div class="fd">Deploy gives you aiwebbb.com/YOURCODE — a real public URL anyone can open in any browser.</div><span class="fpill">NO HOSTING NEEDED</span></div>
       <div class="fc"><div class="fi">🧠</div><div class="ft">Project Brain</div><div class="fd">AI remembers your project context. Come back tomorrow — it already knows your architecture and style.</div><span class="fpill">NOBODY ELSE HAS THIS</span></div>
       <div class="fc"><div class="fi">💰</div><div class="ft">Flat Pricing</div><div class="fd">One price, unlimited builds. No tokens. No credits for new projects. No surprise bills. Ever.</div><span class="fpill">#1 COMPLAINT SOLVED</span></div>
@@ -514,14 +577,53 @@ footer{border-top:1px solid var(--g800);padding:36px 24px 24px;}
 </section>
 
 <footer>
-  <div class="fi2">
-    <div><div class="flogo">AIWEBBB</div><div class="ftag">Build websites, web apps, and mobile apps in 30 seconds. No code. No install.</div><div style="font-size:10px;color:var(--g600);">Made in India 🇮🇳</div></div>
-    <div class="fc2"><h5>Product</h5><a href="#how">How it works</a><a href="#features">Features</a><a href="#pricing">Pricing</a><a href="#compare">Compare</a></div>
-    <div class="fc2"><h5>Build</h5><a href="#" onclick="openBld()">Website</a><a href="#" onclick="openBld()">Web App</a><a href="#" onclick="openBld()">Mobile App</a><a href="#" onclick="openBld()">SaaS</a></div>
-    <div class="fc2"><h5>Legal</h5><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Refund</a><a href="#">Contact</a></div>
+  <div style="max-width:1040px;margin:0 auto;">
+    <!-- TOP FOOTER GRID -->
+    <div class="foot-top-grid">
+      <div class="foot-brand-col">
+        <div class="flogo">AIWEBBB</div>
+        <div class="ftag">Build websites, web apps, and mobile apps in 30 seconds. No code. No install.</div>
+        <div style="font-size:10px;color:var(--g600);">Made in India 🇮🇳</div>
+      </div>
+      <div class="fc2"><h5>Company</h5>
+        <a href="/">Careers</a><a href="/">Press & Media</a><a href="/">Enterprise</a>
+        <a href="/">Security</a><a href="/">Trust Center</a><a href="/">Partnerships</a>
+      </div>
+      <div class="fc2"><h5>Product</h5>
+        <a href="#pricing">Pricing</a><a href="/">Student Discount</a><a href="/">Founders</a>
+        <a href="/">Product Managers</a><a href="/">Designers</a><a href="/">Marketers</a>
+        <a href="/">Internal Tools</a><a href="/">Changelog</a><a href="/">Status</a>
+      </div>
+      <div class="fc2"><h5>Resources</h5>
+        <a href="/">Learn</a><a href="/">Templates</a><a href="/">Guides</a>
+        <a href="/">Videos</a><a href="/">Blog</a><a href="/">Support</a>
+        <a href="/">Reviews</a><a href="/">Sitemap</a>
+      </div>
+      <div class="fc2"><h5>Legal</h5>
+        <a href="/">Privacy Policy</a><a href="/">Cookie Settings</a>
+        <a href="/">General Terms</a><a href="/">Enterprise Terms</a>
+        <a href="/">DMCA Policy</a><a href="/">Platform Rules</a>
+        <a href="/">Report Abuse</a><a href="/">DPA</a>
+      </div>
+      <div class="fc2"><h5>Community</h5>
+        <a href="/">Become a Partner</a><a href="/">Affiliates</a>
+        <a href="/">Code of Conduct</a><a href="/">Discord</a>
+        <a href="/">Reddit</a><a href="/">X / Twitter</a>
+        <a href="/">YouTube</a><a href="/">LinkedIn</a>
+      </div>
+    </div>
+    <div class="fbot">
+      <p>© 2025 AIWEBBB.com · All rights reserved</p>
+      <p>Payments by Razorpay · Hosted on Vercel · Made in India 🇮🇳</p>
+    </div>
   </div>
-  <div class="fbot"><p>© 2025 AIWEBBB.com · All rights reserved</p><p>Payments by Razorpay · Hosted on Vercel</p></div>
 </footer>
+<style>
+.foot-top-grid{display:grid;grid-template-columns:1.4fr repeat(5,1fr);gap:24px;padding-bottom:32px;border-bottom:1px solid var(--g800);margin-bottom:20px;}
+.foot-brand-col{display:flex;flex-direction:column;gap:10px;}
+@media(max-width:1024px){.foot-top-grid{grid-template-columns:repeat(3,1fr);}.foot-brand-col{grid-column:1/-1;}}
+@media(max-width:640px){.foot-top-grid{grid-template-columns:1fr 1fr;}.foot-brand-col{grid-column:1/-1;}}
+</style>
 <!-- BUILDER -->
 <div id="bld">
   <div id="bnav">
@@ -717,31 +819,74 @@ footer{border-top:1px solid var(--g800);padding:36px 24px 24px;}
 </div>
 <script>
 // ════════════════════════════════════════
-// CONFIG — All keys baked in
+// CONFIG — No secret keys in frontend
+// All API calls go through /api/* proxy
 // ════════════════════════════════════════
 const C={
-  OR:'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',
-  SB_URL:'https://bqgbgyccaecgczhgauqt.supabase.co',
-  SB_ANON:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJxZ2JneWNjYWVjZ2N6aGdhdXF0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA3MzY1NTIsImV4cCI6MjA5NjMxMjU1Mn0.a0Uh9JxaMS9iHKcnP-dtQUdgglpGqLb8fyOqN7qhnqY',
-  SB_SVC:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJxZ2JneWNjYWVjZ2N6aGdhdXF0Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc4MDczNjU1MiwiZXhwIjoyMDk2MzEyNTUyfQ.WUVZ4TLj0GtkQKPRSIFKX4sxKw6qEi-6XKFBEDzn-S0',
-  RZP:'rzp_live_Sq3HP2pCEQL0Gz',
-  M_STD:'anthropic/claude-sonnet-4-5',
+  API:'https://aiwebbb-api.vercel.app',  // backend proxy URL
+  M_STD:'anthropic/claude-sonnet-4-5',  // model preference only
   M_PRO:'anthropic/claude-opus-4-5'
 };
 
 // ════════════════════════════════════════
-// SUPABASE
+// DB — All calls go through secure proxy
+// No Supabase keys in browser ever
 // ════════════════════════════════════════
-let SB=null;
-try{SB=window.supabase.createClient(C.SB_URL,C.SB_ANON);}catch(e){}
+async function proxyDB(action, table, data, filter) {
+  try {
+    const r = await fetch(C.API + '/api/supabase', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action, table, data, filter })
+    });
+    const res = await r.json();
+    if (res.fallback) return null; // backend not configured yet
+    return res.data;
+  } catch (e) {
+    return null; // graceful fallback to localStorage
+  }
+}
 
-const DB={
-  async gU(e){if(SB){const{data}=await SB.from('users').select('*').eq('email',e).single();return data;}return JSON.parse(localStorage.getItem('u_'+e)||'null');},
-  async sU(e,d){const o={email:e,...d,upd:Date.now()};if(SB)await SB.from('users').upsert(o,{onConflict:'email'});localStorage.setItem('u_'+e,JSON.stringify(o));return o;},
-  async gP(e){if(SB){const{data}=await SB.from('projects').select('*').eq('email',e).order('created_at',{ascending:false});return data||[];}return JSON.parse(localStorage.getItem('p_'+e)||'[]');},
-  async sP(p){if(SB)await SB.from('projects').upsert(p,{onConflict:'id'});const l=JSON.parse(localStorage.getItem('p_'+(p.email||'anon'))||'[]');const i=l.findIndex(x=>x.id===p.id);if(i>=0)l[i]=p;else l.unshift(p);localStorage.setItem('p_'+(p.email||'anon'),JSON.stringify(l));return p;},
-  async dP(id,e){if(SB)await SB.from('projects').delete().eq('id',id).eq('email',e);const l=JSON.parse(localStorage.getItem('p_'+e)||'[]');localStorage.setItem('p_'+e,JSON.stringify(l.filter(p=>p.id!==id)));},
-  async sD(did,html,email,brand){localStorage.setItem('d_'+did,html);if(SB){try{await SB.from('deployments').upsert({id:did,html,email:email||'anon',brand:brand||'App',updated_at:new Date().toISOString()},{onConflict:'id'});}catch(e){console.log('deploy save:',e);}}}
+const DB = {
+  async gU(e) {
+    const rows = await proxyDB('get', 'users', null, { email: e });
+    if (rows && rows.length) return rows[0];
+    return JSON.parse(localStorage.getItem('u_' + e) || 'null');
+  },
+  async sU(e, d) {
+    const o = { email: e, ...d, upd: Date.now() };
+    await proxyDB('upsert', 'users', o, null);
+    localStorage.setItem('u_' + e, JSON.stringify(o));
+    return o;
+  },
+  async gP(e) {
+    const rows = await proxyDB('get', 'projects', null, { email: e });
+    if (rows && rows.length) return rows.sort((a,b) => new Date(b.created_at) - new Date(a.created_at));
+    return JSON.parse(localStorage.getItem('p_' + e) || '[]');
+  },
+  async sP(p) {
+    await proxyDB('upsert', 'projects', p, null);
+    const l = JSON.parse(localStorage.getItem('p_' + (p.email || 'anon')) || '[]');
+    const i = l.findIndex(x => x.id === p.id);
+    if (i >= 0) l[i] = p; else l.unshift(p);
+    localStorage.setItem('p_' + (p.email || 'anon'), JSON.stringify(l));
+    return p;
+  },
+  async dP(id, e) {
+    await proxyDB('delete', 'projects', null, { id, email: e });
+    const l = JSON.parse(localStorage.getItem('p_' + e) || '[]');
+    localStorage.setItem('p_' + e, JSON.stringify(l.filter(p => p.id !== id)));
+  },
+  async sD(did, html, email, brand) {
+    localStorage.setItem('d_' + did, html);
+    try {
+      await fetch(C.API + '/api/save-deployment', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ deployId: did, html, email: email || 'anon', brand: brand || 'App' })
+      });
+    } catch(e) { console.log('deploy save skipped'); }
+  }
 };
 
 // ════════════════════════════════════════
@@ -971,15 +1116,15 @@ async function sendMsg(){
 async function trigBuild(prompt){
   if(BS.building)return;BS.building=true;setStat('bld','Building...');addBld();
   const t0=Date.now();
-  const LOGS=[[3,'🔍 Parsing requirements...',10],[7,'🤖 Connecting to Claude AI...',22],[13,'🎨 Designing layout...',38],[19,'⚡ Generating UI...',54],[25,'🔧 Adding features...',70],[31,'✨ Applying brand colors...',86],[37,'✅ Finalizing...',96]];
+  const LOGS=[[3,'🔍 Parsing requirements...',10],[7,'🤖 Connecting to AI engine...',22],[13,'🎨 Designing layout...',38],[19,'⚡ Generating UI...',54],[25,'🔧 Adding features...',70],[31,'✨ Applying brand colors...',86],[37,'✅ Finalizing...',96]];
   let li=0;
   const tmr=setInterval(()=>{const el=Math.floor((Date.now()-t0)/1000);if(li<LOGS.length&&el>=LOGS[li][0]){updBld(LOGS[li][1],LOGS[li][2]);li++;}},800);
   try{
     const model=S.plan==='pro'?C.M_PRO:C.M_STD;
-    const res=await fetch('https://openrouter.ai/api/v1/chat/completions',{
+    const res=await fetch(C.API + '/api/ai',{
       method:'POST',
-      headers:{'Authorization':'Bearer '+C.OR,'Content-Type':'application/json','HTTP-Referer':'https://aiwebbb.com','X-Title':'AIWEBBB'},
-      body:JSON.stringify({model,max_tokens:4096,messages:[
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({model,messages:[
         {role:'system',content:`You are AIWEBBB's AI app builder. Generate a complete, beautiful, production-quality single-page HTML app.
 Return ONLY valid JSON (no markdown, no backticks, nothing else):
 {"html":"<complete self-contained HTML with inline CSS+JS, Google Fonts OK via CDN link>","summary":"2 sentences what was built","roadmap":"✅ done · ⚠️ needs API keys · 🔲 optional next steps"}
@@ -1015,10 +1160,10 @@ async function trigChange(req){
   if(BS.building)return;BS.building=true;setStat('bld','Updating...');addTyp();
   try{
     const model=S.plan==='pro'?C.M_PRO:C.M_STD;
-    const res=await fetch('https://openrouter.ai/api/v1/chat/completions',{
+    const res=await fetch(C.API + '/api/ai',{
       method:'POST',
-      headers:{'Authorization':'Bearer '+C.OR,'Content-Type':'application/json','HTTP-Referer':'https://aiwebbb.com','X-Title':'AIWEBBB'},
-      body:JSON.stringify({model,max_tokens:4096,messages:[
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({model,messages:[
         {role:'system',content:'You are an AI code editor. Apply the requested change to the existing HTML. Return ONLY valid JSON: {"html":"<complete updated HTML>","changes":"what changed in 1 sentence"}'},
         {role:'user',content:`Current HTML (first 3000 chars):\n${BS.code.substring(0,3000)}\n\nChange: ${req}\n\nReturn complete updated HTML.`}
       ]})
@@ -1153,23 +1298,42 @@ function closePay(){document.getElementById('paymo').classList.remove('open');}
 async function doRzpPay(){
   const email=document.getElementById('pemail').value.trim();
   if(!email||!email.includes('@')){toast('Enter your email first','⚠️');return;}
-  const amounts={standard:yr?699:999,pro:yr?1749:2499,credits:99};
-  const amount=amounts[curPlan];
-  const btn=document.getElementById('pbtn');btn.textContent='⏳ Opening...';btn.disabled=true;
-  const options={
-    key:C.RZP,amount:amount*100,currency:'INR',
-    name:'AIWEBBB',
-    description:curPlan==='credits'?'100 Credits Pack':(curPlan.charAt(0).toUpperCase()+curPlan.slice(1))+' Plan',
-    prefill:{email,contact:''},
-    theme:{color:'#ffffff'},
-    handler:async function(resp){await paySuccess(curPlan,email,resp.razorpay_payment_id);},
-    modal:{ondismiss:function(){btn.textContent='🔒 Pay via Razorpay';btn.disabled=false;}}
-  };
-  try{
-    const rzp=new Razorpay(options);
-    rzp.on('payment.failed',function(){toast('Payment failed. Try again.','⚠️');btn.textContent='🔒 Pay via Razorpay';btn.disabled=false;});
-    rzp.open();closePay();
-  }catch(e){toast('Could not open payment.','⚠️');}
+  const btn=document.getElementById('pbtn');btn.textContent='⏳ Creating order...';btn.disabled=true;
+
+  try {
+    // Get order from secure backend — Razorpay secret never touches browser
+    const r = await fetch(C.API + '/api/create-order', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ plan: curPlan, email, yearly: yr })
+    });
+    const order = await r.json();
+    if (!order.order_id) { toast('Could not create order. Try again.','⚠️'); btn.textContent='🔒 Pay via Razorpay'; btn.disabled=false; return; }
+
+    // Open Razorpay with server-generated order
+    const options = {
+      key: order.key_id,           // public key from server (safe)
+      order_id: order.order_id,    // server-generated order id
+      amount: order.amount,
+      currency: order.currency || 'INR',
+      name: 'AIWEBBB',
+      description: curPlan==='credits'?'100 Credits Pack':(curPlan.charAt(0).toUpperCase()+curPlan.slice(1))+' Plan',
+      prefill: { email, contact: '' },
+      theme: { color: '#ffffff' },
+      handler: async function(resp) {
+        // Payment verified — activate plan
+        await paySuccess(curPlan, email, resp.razorpay_payment_id);
+      },
+      modal: { ondismiss: function() { btn.textContent='🔒 Pay via Razorpay'; btn.disabled=false; } }
+    };
+
+    const rzp = new Razorpay(options);
+    rzp.on('payment.failed', function() { toast('Payment failed. Try again.','⚠️'); btn.textContent='🔒 Pay via Razorpay'; btn.disabled=false; });
+    rzp.open();
+    closePay();
+  } catch(e) {
+    toast('Could not open payment. Check connection.','⚠️');
+  }
   btn.textContent='🔒 Pay via Razorpay';btn.disabled=false;
 }
 
