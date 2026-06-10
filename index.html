@@ -176,6 +176,15 @@ footer{border-top:1px solid var(--g800);padding:36px 24px 24px;}
   .fi2{grid-template-columns:1fr 1fr;}footer{padding:28px 16px 18px;}
   .steps,.feats{grid-template-columns:1fr;}
   .step{border-right:none;border-bottom:1px solid var(--g800);}
+  #bbody{flex-direction:column;}
+  #ppane{height:42vh;min-height:180px;border-right:none;border-bottom:1px solid var(--g800);}
+  #cpanel{width:100%;height:58vh;}
+  #bnav .blogo{display:none;}
+  #bnav .bproj{max-width:90px;}
+  #qfw{padding:0 6px 6px;}
+  #qf{padding:9px;}
+  .qft{padding:3px 7px;font-size:9px;}
+  #ciw{padding:6px;}
 }
 </style>
 
@@ -467,10 +476,10 @@ footer{border-top:1px solid var(--g800);padding:36px 24px 24px;}
     <h2 class="sh2 fadein">Zero to live app in 4 steps</h2>
     <p class="ssub fadein">No installs. No accounts. No credit card. Just describe, preview, deploy.</p>
     <div class="steps fadein">
-      <div class="step"><div class="snum">01</div><div class="stitle">Describe your idea</div><div class="sdesc">Smart form — type, style, colors, features. AI understands everything before it starts.</div><span class="spill">~2 min</span></div>
-      <div class="step"><div class="snum">02</div><div class="stitle">AI builds in 30s</div><div class="sdesc">Our AI generates your complete app — UI, navigation, features, responsive design — live in the preview panel.</div><span class="spill">30 seconds ⚡</span></div>
-      <div class="step"><div class="snum">03</div><div class="stitle">Chat to refine</div><div class="sdesc">See your app live left. Chat right to make changes — unlimited, free, instant — until perfect.</div><span class="spill">Unlimited free</span></div>
-      <div class="step"><div class="snum">04</div><div class="stitle">Deploy → Live URL</div><div class="sdesc">Click Deploy. Your app goes live at aiwebbb.com/YOURCODE. Share anywhere. No hosting. Forever.</div><span class="spill">One click</span></div>
+      <div class="step"><div class="snum">01</div><div class="stitle">Describe your idea</div><div class="sdesc">Smart form — type, style, colors, features. AI understands everything before it starts.</div></div>
+      <div class="step"><div class="snum">02</div><div class="stitle">AI builds in 30s</div><div class="sdesc">Our AI generates your complete app — UI, navigation, features, responsive design — live in the preview panel.</div></div>
+      <div class="step"><div class="snum">03</div><div class="stitle">Chat to refine</div><div class="sdesc">See your app live left. Chat right to make changes — unlimited, free, instant — until perfect.</div></div>
+      <div class="step"><div class="snum">04</div><div class="stitle">Deploy → Live URL</div><div class="sdesc">Click Deploy. Your app goes live at aiwebbb.com/YOURCODE. Share anywhere. No hosting. Forever.</div></div>
     </div>
   </div>
 </section>
@@ -482,12 +491,12 @@ footer{border-top:1px solid var(--g800);padding:36px 24px 24px;}
     <h2 class="sh2 fadein">Features nobody else has</h2>
     <p class="ssub fadein">Every competitor has one or two. AIWEBBB has all of them.</p>
     <div class="feats fadein">
-      <div class="fc"><div class="fi">⚡</div><div class="ft">30-Second Build</div><div class="fd">AI generates your entire app in parallel — frontend, routing, features, config. Simultaneously.</div><span class="fpill">YOUR #1 DIFFERENTIATOR</span></div>
-      <div class="fc"><div class="fi">💬</div><div class="ft">Chat to Change</div><div class="fd">Chat right, see changes live left. Unlimited changes before deploy — exactly how the best builders work. Zero cost.</div><span class="fpill">CURSOR-STYLE UI</span></div>
-      <div class="fc"><div class="fi">🌐</div><div class="ft">Instant Live URL</div><div class="fd">Deploy gives you aiwebbb.com/YOURCODE — a real public URL anyone can open in any browser.</div><span class="fpill">NO HOSTING NEEDED</span></div>
-      <div class="fc"><div class="fi">🧠</div><div class="ft">Project Brain</div><div class="fd">AI remembers your project context. Come back tomorrow — it already knows your architecture and style.</div><span class="fpill">NOBODY ELSE HAS THIS</span></div>
-      <div class="fc"><div class="fi">💰</div><div class="ft">Flat Pricing</div><div class="fd">One price, unlimited builds. No tokens. No credits for new projects. No surprise bills. Ever.</div><span class="fpill">#1 COMPLAINT SOLVED</span></div>
-      <div class="fc"><div class="fi">🇮🇳</div><div class="ft">Indian Payments</div><div class="fd">Pay via UPI, cards, net banking in ₹. No USD conversion. Built for India. Powered by Razorpay.</div><span class="fpill">RAZORPAY POWERED</span></div>
+      <div class="fc"><div class="fi">⚡</div><div class="ft">30-Second Build</div><div class="fd">AI generates your entire app in parallel — frontend, routing, features, config. Simultaneously.</div></div>
+      <div class="fc"><div class="fi">💬</div><div class="ft">Chat to Change</div><div class="fd">Chat right, see changes live left. Unlimited changes before deploy — exactly how the best builders work. Zero cost.</div></div>
+      <div class="fc"><div class="fi">🌐</div><div class="ft">Instant Live URL</div><div class="fd">Deploy gives you aiwebbb.com/YOURCODE — a real public URL anyone can open in any browser.</div></div>
+      <div class="fc"><div class="fi">🧠</div><div class="ft">Project Brain</div><div class="fd">AI remembers your project context. Come back tomorrow — it already knows your architecture and style.</div></div>
+      <div class="fc"><div class="fi">💰</div><div class="ft">Flat Pricing</div><div class="fd">One price, unlimited builds. No tokens. No credits for new projects. No surprise bills. Ever.</div></div>
+      <div class="fc"><div class="fi">🇮🇳</div><div class="ft">Indian Payments</div><div class="fd">Pay via UPI, cards, net banking in ₹. No USD conversion. Built for India. Powered by Razorpay.</div></div>
     </div>
   </div>
 </section>
@@ -512,7 +521,7 @@ footer{border-top:1px solid var(--g800);padding:36px 24px 24px;}
         <ul class="pf"><li><span class="py">✓</span> 5 projects</li><li><span class="py">✓</span> Deploy all live</li><li><span class="py">✓</span> Custom domain guide</li><li><span class="py">✓</span> No watermark</li><li><span class="py">✓</span> Project Brain</li><li><span class="py">✓</span> Email support</li><li><span class="pn">—</span> Priority AI</li></ul>
         <button class="pbtn pb-w" onclick="pay('standard')">Get Standard →</button>
       </div>
-      <div class="pc"><div class="pplan">Pro</div><div class="pnum"><sub>₹</sub><span id="pp">2499</span></div><div class="pper" id="pper">/month</div>
+      <div class="pc"><div class="pplan">Pro</div><div class="pnum"><sub>₹</sub><span id="pp">19999</span></div><div class="pper" id="pper">/month</div>
         <ul class="pf"><li><span class="py">✓</span> Unlimited projects</li><li><span class="py">✓</span> Deploy all live</li><li><span class="py">✓</span> Custom domain guide</li><li><span class="py">✓</span> No watermark</li><li><span class="py">✓</span> Project Brain</li><li><span class="py">✓</span> Priority AI (Opus)</li><li><span class="py">✓</span> Priority support</li></ul>
         <button class="pbtn pb-g" onclick="pay('pro')">Get Pro →</button>
       </div>
@@ -931,8 +940,8 @@ function togBill(){
   document.getElementById('lyr').classList.toggle('on',yr);
   document.getElementById('sp').textContent=yr?'699':'999';
   document.getElementById('sper').textContent=yr?'/mo · ₹8,388/yr':'/month';
-  document.getElementById('pp').textContent=yr?'1749':'2499';
-  document.getElementById('pper').textContent=yr?'/mo · ₹20,988/yr':'/month';
+  document.getElementById('pp').textContent=yr?'13999':'19999';
+  document.getElementById('pper').textContent=yr?'/mo · ₹1,67,988/yr':'/month';
 }
 
 // ════════════════════════════════════════
@@ -1283,7 +1292,7 @@ function pay(plan){
   curPlan=plan;
   const P={
     standard:{t:'Upgrade to Standard',n:'Standard Plan',p:'₹'+(yr?'699':'999'),per:yr?'/mo · billed ₹8,388/yr':'/month · Cancel anytime'},
-    pro:{t:'Upgrade to Pro',n:'Pro Plan',p:'₹'+(yr?'1749':'2499'),per:yr?'/mo · billed ₹20,988/yr':'/month · Cancel anytime'},
+    pro:{t:'Upgrade to Pro',n:'Pro Plan',p:'₹'+(yr?'13999':'19999'),per:yr?'/mo · billed ₹1,67,988/yr':'/month · Cancel anytime'},
     credits:{t:'Buy Credits',n:'100 Credits Pack',p:'₹99',per:'One-time · 10 changes · Never expires'}
   }[plan];
   document.getElementById('ptitle').textContent=P.t;
