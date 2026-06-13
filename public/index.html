@@ -977,9 +977,10 @@ async function sendChat(){
 async function handleMsg(msg){
   // Email capture
   if(BS.pEmail){
-    if(msg.includes('@')&&msg.includes('.')){S.email=msg.trim();localStorage.setItem('awbb_em',S.email);BS.pEmail=false;await loadS();addAI('Got it! Deploying now…');execDeploy();return;}
-    else{addAI('Please enter a valid email address.','er');return;}
-  }
+    if(msg.toLowerCase().trim()==='skip'){BS.pEmail=false;const ta=document.getElementById('chat-ta');if(ta)ta.placeholder='Build me a SaaS dashboard…';addAI('No problem! Deploying anonymously…');execDeploy();return;}
+    if(msg.includes('@')&&msg.includes('.')){S.email=msg.trim();localStorage.setItem('awbb_em',S.email);BS.pEmail=false;await loadS();const ta=document.getElementById('chat-ta');if(ta)ta.placeholder='Build me a SaaS dashboard…';addAI('Got it! Deploying now…');execDeploy();return;}
+    addAI('Please enter a valid email — or type skip to deploy anonymously.','er');return;}
+
 
   // First message — check project limit then build
   if(!BS.code){
@@ -1145,17 +1146,7 @@ async function execDeploy(){
   toast('Deployed free! 🎉','🚀');
 }
 
-// Handle email skip
-const _origHandleMsg=handleMsg;
-async function handleMsg(msg){
-  if(BS.pEmail&&msg.toLowerCase().trim()==='skip'){
-    BS.pEmail=false;
-    const ta=document.getElementById('chat-ta');if(ta)ta.placeholder='Build me a SaaS dashboard…';
-    addAI('No problem! Deploying anonymously…');
-    execDeploy();return;
-  }
-  return _origHandleMsg(msg);
-}
+
 
 function copyURL(){navigator.clipboard.writeText(BS.durl).then(()=>toast('Copied!','📋'));}
 function dlCode(){if(!BS.code){toast('No code yet','⚠️');return;}const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([BS.code],{type:'text/html'}));a.download=(BS.brand||'my-app').toLowerCase().replace(/\s+/g,'-')+'.html';a.click();toast('Downloaded!','⬇');}
