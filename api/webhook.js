@@ -1,14 +1,7 @@
-// api/webhook.js — Razorpay payment webhook
-// Verifies HMAC-SHA256, then updates plan/credits in Supabase instantly.
-// Configure in Razorpay Dashboard → Webhooks → https://aiwebbb.com/api/webhook
-// Events: payment.captured
-
 import crypto from 'crypto';
 import { getSupabase } from './_supabase.js';
 
-export const config = {
-  api: { bodyParser: false }
-};
+export const config = { api: { bodyParser: false } };
 
 async function readRawBody(req) {
   return new Promise((resolve, reject) => {
@@ -19,38 +12,19 @@ async function readRawBody(req) {
   });
 }
 
-// Credits granted per plan/pack
-const CREDIT_AMOUNTS = {
-  credits_10:   10,
-  credits_100:  100,
-  credits_1000: 1000,
-  credits:      10   // legacy
-};
-
-// Monthly credits included in subscription
-const PLAN_MONTHLY_CREDITS = {
-  standard: 100,
-  pro:      500
-};
+const CREDIT_AMOUNTS = { credits_10: 10, credits_100: 100, credits_1000: 1000, credits: 10 };
+const PLAN_MONTHLY_CREDITS = { standard: 100, pro: 500 };
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).end();
 
-  const rawBody  = await readRawBody(req);
+  const rawBody   = await readRawBody(req);
   const signature = req.headers['x-razorpay-signature'];
   const secret    = process.env.RZP_WEBHOOK_SECRET;
 
-  if (!secret) {
-    console.error('RZP_WEBHOOK_SECRET not set');
-    return res.status(500).end();
-  }
+  if (!secret) return res.status(500).end();
 
-  // Verify HMAC-SHA256
-  const expected = crypto
-    .createHmac('sha256', secret)
-    .update(rawBody)
-    .digest('hex');
-
+  const expected = crypto.createHmac('sha256', secret).update(rawBody).digest('hex');
   if (expected !== signature) {
     console.warn('Webhook signature mismatch');
     return res.status(400).json({ error: 'Invalid signature' });
@@ -60,61 +34,35 @@ export default async function handler(req, res) {
   try { event = JSON.parse(rawBody); }
   catch { return res.status(400).json({ error: 'Invalid JSON' }); }
 
-  // Only process payment.captured
   if (event.event !== 'payment.captured') {
-    return res.status(200).json({ status: 'ignored', event: event.event });
+    return res.status(200).json({ status: 'ignored' });
   }
 
   const payment = event.payload?.payment?.entity;
   if (!payment) return res.status(400).json({ error: 'No payment entity' });
 
-  const notes  = payment.notes || {};
-  const email  = notes.email;
-  const plan   = notes.plan;
-  const yearly = notes.yearly === '1';
-  const payId  = payment.id;
-
-  if (!email || !plan) {
-    console.error('Webhook missing email or plan in notes:', notes);
-    return res.status(400).json({ error: 'Missing notes' });
-  }
+  const { email, plan, yearly } = payment.notes || {};
+  const payId = payment.id;
+  if (!email || !plan) return res.status(400).json({ error: 'Missing notes' });
 
   const sb = getSupabase();
   if (!sb) return res.status(500).json({ error: 'DB not configured' });
 
   try {
-    // Get or create user record
-    const { data: existing } = await sb
-      .from('users')
-      .select('*')
-      .eq('email', email)
-      .single();
-
+    const { data: existing } = await sb.from('users').select('*').eq('email', email).single();
     const prev = existing || { email, plan: 'free', credits: 0 };
-
     const isCredits  = plan.startsWith('credits');
     const newPlan    = isCredits ? prev.plan : plan;
-
-    // Calculate new credits:
-    // - For credit packs: add the pack amount to existing
-    // - For subscriptions: add monthly allocation to existing (top-up on renewal)
-    const addedCredits = isCredits
-      ? (CREDIT_AMOUNTS[plan] || 0)
-      : (PLAN_MONTHLY_CREDITS[plan] || 0);
-
+    const addedCredits = isCredits ? (CREDIT_AMOUNTS[plan] || 0) : (PLAN_MONTHLY_CREDITS[plan] || 0);
     const newCredits = (prev.credits || 0) + addedCredits;
 
     await sb.from('users').upsert({
-      email,
-      plan:       newPlan,
-      credits:    newCredits,
-      last_pay:   payId,
-      updated_at: new Date().toISOString()
+      email, plan: newPlan, credits: newCredits,
+      last_pay: payId, updated_at: new Date().toISOString()
     }, { onConflict: 'email' });
 
-    console.log(`✓ Webhook: ${email} → plan=${newPlan}, +${addedCredits} credits → total=${newCredits}, pid=${payId}`);
-    return res.status(200).json({ status: 'ok', plan: newPlan, credits: newCredits });
-
+    console.log(`✓ ${email} → plan=${newPlan}, credits=${newCredits}`);
+    return res.status(200).json({ status: 'ok' });
   } catch (err) {
     console.error('Webhook DB error:', err.message);
     return res.status(500).json({ error: err.message });
