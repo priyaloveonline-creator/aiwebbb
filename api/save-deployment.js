@@ -1,6 +1,3 @@
-// api/save-deployment.js — Save deployed HTML to Supabase
-// Called by frontend when user deploys a project.
-
 import { getSupabase, cors } from './_supabase.js';
 
 export default async function handler(req, res) {
