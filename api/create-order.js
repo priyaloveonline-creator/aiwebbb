@@ -1,5 +1,3 @@
-// api/create-order.js — Create a Razorpay order
-
 import { cors } from './_supabase.js';
 
 export default async function handler(req, res) {
@@ -10,22 +8,21 @@ export default async function handler(req, res) {
   const { plan, email, yearly } = req.body;
   if (!plan || !email) return res.status(400).json({ error: 'Missing plan or email' });
 
-  // Prices in paise (INR × 100)
   const prices = {
-    standard:     yearly ? 69900   : 99900,    // ₹699/mo or ₹999/mo
-    pro:          yearly ? 1399900 : 1999900,  // ₹13,999/mo or ₹19,999/mo
-    credits_10:   9900,                         // ₹99  — 10 credits
-    credits_100:  99900,                        // ₹999 — 100 credits
-    credits_1000: 999900,                       // ₹9,999 — 1000 credits
-    credits:      9900                          // legacy alias → 10 credits
+    standard:     yearly ? 69900   : 99900,
+    pro:          yearly ? 1399900 : 1999900,
+    credits_10:   9900,
+    credits_100:  99900,
+    credits_1000: 999900,
+    credits:      9900
   };
 
   const descriptions = {
     standard:     'Standard Plan — 5 projects + 100 credits/mo',
-    pro:          'Pro Plan — Unlimited projects + 500 credits/mo + Opus AI',
-    credits_10:   '10 Credits Pack — 10 post-deploy changes',
-    credits_100:  '100 Credits Pack — 100 post-deploy changes',
-    credits_1000: '1000 Credits Pack — 1000 post-deploy changes',
+    pro:          'Pro Plan — Unlimited + 500 credits/mo + Opus AI',
+    credits_10:   '10 Credits Pack',
+    credits_100:  '100 Credits Pack',
+    credits_1000: '1000 Credits Pack',
     credits:      '10 Credits Pack'
   };
 
@@ -41,29 +38,23 @@ export default async function handler(req, res) {
   try {
     const r = await fetch('https://api.razorpay.com/v1/orders', {
       method: 'POST',
-      headers: {
-        'Authorization': `Basic ${auth}`,
-        'Content-Type': 'application/json'
-      },
+      headers: { 'Authorization': `Basic ${auth}`, 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        amount,
-        currency: 'INR',
-        receipt:  `awbb_${Date.now()}`,
-        notes:    { plan, email, yearly: yearly ? '1' : '0' }
+        amount, currency: 'INR',
+        receipt: `awbb_${Date.now()}`,
+        notes: { plan, email, yearly: yearly ? '1' : '0' }
       })
     });
 
     const data = await r.json();
     if (!data.id) {
       console.error('Razorpay order error:', JSON.stringify(data));
-      return res.status(500).json({ error: 'Could not create Razorpay order' });
+      return res.status(500).json({ error: 'Could not create order' });
     }
 
     return res.status(200).json({
-      order_id:    data.id,
-      amount:      data.amount,
-      currency:    data.currency,
-      key_id,
+      order_id: data.id, amount: data.amount,
+      currency: data.currency, key_id,
       description: descriptions[plan] || plan
     });
   } catch (err) {
