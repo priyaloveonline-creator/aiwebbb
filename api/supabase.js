@@ -1,6 +1,3 @@
-// api/supabase.js — Secure Supabase proxy
-// All DB operations go through here. Browser never has keys.
-
 import { getSupabase, cors } from './_supabase.js';
 
 export default async function handler(req, res) {
