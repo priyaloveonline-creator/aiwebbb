@@ -1,33 +1,37 @@
+// api/create-order.js — Credit pack orders (new system)
+
 import { cors } from './_supabase.js';
+
+// Must match PACKS array in index.html exactly
+const PACKS = [
+  {name:'Starter',       credits:100,    inPaise:9900},
+  {name:'Builder',       credits:250,    inPaise:19900},
+  {name:'Creator',       credits:700,    inPaise:49900},
+  {name:'Creator Plus',  credits:1500,   inPaise:99900},
+  {name:'Growth',        credits:3500,   inPaise:199900},
+  {name:'Growth Plus',   credits:10000,  inPaise:499900},
+  {name:'Premium',       credits:25000,  inPaise:999900},
+  {name:'Premium Plus',  credits:60000,  inPaise:1999900},
+  {name:'Ultimate',      credits:160000, inPaise:4999900},
+  {name:'Unlimited Build',credits:350000,inPaise:9999900}
+];
 
 export default async function handler(req, res) {
   cors(res, req.headers.origin);
   if (req.method === 'OPTIONS') return res.status(200).end();
-  if (req.method !== 'POST') return res.status(405).end();
+  if (req.method !== 'POST')    return res.status(405).end();
 
-  const { plan, email, yearly } = req.body;
-  if (!plan || !email) return res.status(400).json({ error: 'Missing plan or email' });
+  const { email, packIdx, amount } = req.body;
 
-  const prices = {
-    standard:     yearly ? 69900   : 99900,
-    pro:          yearly ? 1399900 : 1999900,
-    credits_10:   9900,
-    credits_100:  99900,
-    credits_1000: 999900,
-    credits:      9900
-  };
+  if (!email)              return res.status(400).json({ error: 'Missing email' });
+  if (packIdx === undefined) return res.status(400).json({ error: 'Missing packIdx' });
 
-  const descriptions = {
-    standard:     'Standard Plan — 5 projects + 100 credits/mo',
-    pro:          'Pro Plan — Unlimited + 500 credits/mo + Opus AI',
-    credits_10:   '10 Credits Pack',
-    credits_100:  '100 Credits Pack',
-    credits_1000: '1000 Credits Pack',
-    credits:      '10 Credits Pack'
-  };
+  const idx  = parseInt(packIdx);
+  const pack = PACKS[idx];
+  if (!pack)               return res.status(400).json({ error: 'Invalid pack index: ' + idx });
 
-  const amount = prices[plan];
-  if (!amount) return res.status(400).json({ error: 'Invalid plan: ' + plan });
+  // Security: always use server-side price, never trust client amount
+  const serverAmount = pack.inPaise;
 
   const key_id     = process.env.RZP_KEY_ID;
   const key_secret = process.env.RZP_KEY_SECRET;
@@ -40,9 +44,15 @@ export default async function handler(req, res) {
       method: 'POST',
       headers: { 'Authorization': `Basic ${auth}`, 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        amount, currency: 'INR',
-        receipt: `awbb_${Date.now()}`,
-        notes: { plan, email, yearly: yearly ? '1' : '0' }
+        amount:   serverAmount,
+        currency: 'INR',
+        receipt:  `awbb_${Date.now()}`,
+        notes: {
+          pack_idx:    String(idx),
+          pack_name:   pack.name,
+          pack_credits: String(pack.credits),
+          email
+        }
       })
     });
 
@@ -53,10 +63,13 @@ export default async function handler(req, res) {
     }
 
     return res.status(200).json({
-      order_id: data.id, amount: data.amount,
-      currency: data.currency, key_id,
-      description: descriptions[plan] || plan
+      order_id:    data.id,
+      amount:      data.amount,
+      currency:    data.currency,
+      key_id,
+      description: `${pack.name} — ${pack.credits.toLocaleString()} Credits`
     });
+
   } catch (err) {
     console.error('create-order error:', err.message);
     return res.status(500).json({ error: 'Internal error' });
