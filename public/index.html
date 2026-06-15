@@ -117,7 +117,34 @@ h1 em{font-style:normal;color:var(--g400);}
 .cta-note button{background:#fff;color:#000;border:none;border-radius:var(--r);padding:10px 22px;font-size:12px;font-weight:600;font-family:'Geist',sans-serif;cursor:pointer;transition:all .15s;}
 .cta-note button:hover{background:var(--g100);}
 
-/* COMPARE TABLE */
+/* NUMBERS SECTION */
+.nums-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.num-card{background:var(--g900);border:1px solid var(--g800);border-radius:14px;padding:36px 28px;display:flex;flex-direction:column;justify-content:space-between;min-height:180px;transition:border-color .2s;}
+.num-card:hover{border-color:var(--g600);}
+.num-big{font-size:clamp(40px,5vw,64px);font-weight:800;letter-spacing:-2px;color:#fff;line-height:1;margin-bottom:auto;}
+.num-label{font-size:12px;color:var(--g400);line-height:1.5;margin-top:24px;max-width:200px;}
+
+/* READY TO BUILD CTA */
+#readytobuild{background:#000;border-top:1px solid var(--g800);padding:80px 24px 100px;}
+.rtb-inner{max-width:720px;margin:0 auto;text-align:center;}
+.rtb-label{font-size:12px;color:var(--g400);letter-spacing:.3px;margin-bottom:14px;}
+.rtb-title{font-size:clamp(44px,7vw,88px);font-weight:800;letter-spacing:-3px;line-height:.95;margin-bottom:36px;color:#fff;}
+.rtb-box{background:var(--g900);border:1px solid var(--g700);border-radius:16px;padding:20px 20px 14px;transition:border-color .2s;text-align:left;}
+.rtb-box:focus-within{border-color:var(--g500);}
+.rtb-ta{display:block;width:100%;background:none;border:none;outline:none;resize:none;font-family:'Geist',sans-serif;font-size:15px;color:#fff;line-height:1.65;max-height:200px;overflow-y:auto;padding:0;margin-bottom:12px;}
+.rtb-ta::placeholder{color:var(--g600);}
+.rtb-actions{display:flex;align-items:center;justify-content:space-between;}
+.rtb-attach{width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.05);border:1px solid var(--g700);color:var(--g500);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;flex-shrink:0;}
+.rtb-attach:hover{border-color:var(--g500);color:var(--g200);}
+.rtb-right{display:flex;align-items:center;gap:8px;}
+.rtb-mic{width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.05);border:1px solid var(--g700);color:var(--g500);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;}
+.rtb-mic:hover{border-color:var(--g400);color:var(--g200);}
+.rtb-mic.active{border-color:var(--red);color:var(--red);background:rgba(239,68,68,.08);}
+.rtb-send{width:34px;height:34px;border-radius:50%;background:#fff;color:#000;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;flex-shrink:0;}
+.rtb-send:hover{background:var(--g100);transform:scale(1.05);}
+.rtb-tags{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin-top:20px;}
+.rtb-tag{padding:7px 15px;border:1px solid var(--g800);border-radius:100px;font-size:12px;color:var(--g400);background:transparent;cursor:pointer;font-family:'Geist',sans-serif;transition:all .15s;}
+.rtb-tag:hover{border-color:var(--g600);color:var(--g200);background:rgba(255,255,255,.03);}
 #compare{background:var(--g900);border-top:1px solid var(--g800);}
 .ctable-wrap{margin-top:40px;border:1px solid var(--g800);border-radius:14px;overflow:auto;}
 .ctable{width:100%;border-collapse:collapse;min-width:600px;}
@@ -382,6 +409,12 @@ footer{border-top:1px solid var(--g800);padding:44px 24px 24px;}
   .sec{padding:56px 16px;}
   .steps{grid-template-columns:1fr;}.step{border-right:none;border-bottom:1px solid var(--g800);}
   .feats{grid-template-columns:1fr;}
+  .nums-grid{grid-template-columns:1fr;}
+  .num-card{min-height:120px;padding:24px 20px;}
+  .num-big{font-size:48px;}
+  .rtb-title{font-size:48px;letter-spacing:-2px;}
+  .rtb-tags{gap:5px;}
+  .rtb-tag{font-size:11px;padding:6px 12px;}
   .pricing-wrap{grid-template-columns:1fr;}
   .ctable-wrap{border-radius:var(--r);}
   .pack-row-per{display:none;}
@@ -651,6 +684,59 @@ footer{border-top:1px solid var(--g800);padding:44px 24px 24px;}
           </tr>
         </tbody>
       </table>
+    </div>
+  </div>
+</section>
+
+<!-- NUMBERS SECTION -->
+<section class="sec" id="numbers" style="background:#000;border-top:1px solid var(--g800);">
+  <div class="sec-in">
+    <h2 class="sh2 fadein" style="font-size:clamp(26px,3vw,38px);margin-bottom:8px;">AIWEBBB in numbers</h2>
+    <p class="ssub fadein" style="margin-bottom:44px;">Builders are already turning ideas into reality with AIWEBBB.</p>
+    <div class="nums-grid fadein">
+      <div class="num-card">
+        <div class="num-big">10M+</div>
+        <div class="num-label">projects built on AIWEBBB</div>
+      </div>
+      <div class="num-card">
+        <div class="num-big">100K+</div>
+        <div class="num-label">projects built per day on AIWEBBB</div>
+      </div>
+      <div class="num-card">
+        <div class="num-big">100M</div>
+        <div class="num-label">visits per day to AIWEBBB-built applications</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- READY TO BUILD CTA -->
+<section id="readytobuild">
+  <div class="rtb-inner">
+    <div class="rtb-label">AI Website Builder</div>
+    <h2 class="rtb-title">Ready to build?</h2>
+    <div class="rtb-box">
+      <textarea id="rtb-ta" class="rtb-ta" placeholder="Describe your website idea… e.g. A SaaS dashboard for project management with dark theme" rows="2" oninput="rtbAuto(this)" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();rtbBuild();}"></textarea>
+      <div class="rtb-actions">
+        <button class="rtb-attach" title="Coming soon" onclick="toast('File upload coming soon','📎')">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.5 8.5L7.5 14.5C5.8 16.2 3.1 16.2 1.4 14.5C-.3 12.8-.3 10.1 1.4 8.4L8.5 1.3C9.6.2 11.4.2 12.5 1.3C13.6 2.4 13.6 4.2 12.5 5.3L5.9 11.9C5.3 12.5 4.4 12.5 3.8 11.9C3.2 11.3 3.2 10.4 3.8 9.8L9.5 4.1" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="rtb-right">
+          <button class="rtb-mic" id="rtb-mic" onclick="rtbMic()" title="Voice input">
+            <svg width="15" height="15" viewBox="0 0 14 14" fill="none"><rect x="4" y="1" width="6" height="8" rx="3" stroke="currentColor" stroke-width="1.3"/><path d="M2 7.5a5 5 0 0010 0" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><path d="M7 12.5v1" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+          </button>
+          <button class="rtb-send" onclick="rtbBuild()">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M14 2L2 7.5 6.5 9.5 8.5 14 14 2z" fill="currentColor"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="rtb-tags">
+      <button class="rtb-tag" onclick="rtbFill('Build me a SaaS dashboard with auth and analytics')">SaaS Dashboard</button>
+      <button class="rtb-tag" onclick="rtbFill('Build an eCommerce store for clothing with cart and checkout')">eCommerce Store</button>
+      <button class="rtb-tag" onclick="rtbFill('Build a portfolio website for a designer, minimal dark theme')">Portfolio</button>
+      <button class="rtb-tag" onclick="rtbFill('Build a landing page for a mobile app startup')">Landing Page</button>
+      <button class="rtb-tag" onclick="rtbFill('Build a blog platform with categories and dark theme')">Blog</button>
     </div>
   </div>
 </section>
@@ -1354,7 +1440,37 @@ async function paySuccess(packIdx,email,pid){
 // Handle Razorpay redirect
 (function(){const p=new URLSearchParams(window.location.search);if(p.get('pay')==='ok'){const idx=parseInt(p.get('idx')||'3'),email=decodeURIComponent(p.get('email')||''),pid=p.get('pid');if(email)paySuccess(idx,email,pid);window.history.replaceState({},'',window.location.pathname);}})();
 
-// ── KEYBOARD ──────────────────────────────────
+// ── READY TO BUILD SECTION ───────────────────
+function rtbAuto(el){el.style.height='auto';el.style.height=Math.min(el.scrollHeight,200)+'px';}
+function rtbFill(text){const ta=document.getElementById('rtb-ta');if(ta){ta.value=text;rtbAuto(ta);ta.focus();}}
+let rtbMicOn=false;
+function rtbMic(){
+  rtbMicOn=!rtbMicOn;
+  const btn=document.getElementById('rtb-mic');
+  if(btn)btn.classList.toggle('active',rtbMicOn);
+  if(rtbMicOn&&(window.SpeechRecognition||window.webkitSpeechRecognition)){
+    const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+    const rec=new SR();rec.lang='en-IN';rec.continuous=false;rec.interimResults=false;
+    rec.onresult=e=>{const ta=document.getElementById('rtb-ta');if(ta){ta.value=e.results[0][0].transcript;rtbAuto(ta);}rtbMicOn=false;if(btn)btn.classList.remove('active');};
+    rec.onerror=()=>{rtbMicOn=false;if(btn)btn.classList.remove('active');};
+    rec.start();
+  }
+}
+function rtbBuild(){
+  const ta=document.getElementById('rtb-ta');
+  const msg=ta?ta.value.trim():'';
+  if(msg){
+    openBld();
+    // Small delay to let builder open, then inject message
+    setTimeout(()=>{
+      const chatTa=document.getElementById('chat-ta');
+      if(chatTa){chatTa.value=msg;taAuto(chatTa);}
+      sendChat();
+    },400);
+  } else {
+    openBld();
+  }
+}
 document.addEventListener('keydown',e=>{
   if(e.key==='Escape'){
     if(document.getElementById('paymo').classList.contains('open')){closePay();return;}
