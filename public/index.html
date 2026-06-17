@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AIWEBBB — Build Any Website in 30 Seconds</title>
-<meta name="description" content="Describe your idea. Get a free preview instantly. Buy credits to build and launch. No subscriptions, no limits.">
+<meta name="description" content="Describe your idea. See a real preview instantly. Buy credits to build and launch. No subscriptions.">
 <meta property="og:title" content="AIWEBBB — Build Any Website in 30 Seconds">
-<meta property="og:description" content="Describe your idea. Preview free. Build with credits.">
+<meta property="og:description" content="See your website before you pay. Build with credits.">
 <meta property="og:url" content="https://aiwebbb.com">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23fff'/><text y='24' x='4' font-size='22' font-family='sans-serif' font-weight='900' fill='%23000'>A</text></svg>">
@@ -19,8 +19,7 @@ html{scroll-behavior:smooth;}
 :root{
   --black:#000;--white:#fff;
   --g900:#0a0a0a;--g800:#111111;--g700:#1a1a1a;--g600:#262626;
-  --g500:#404040;--g400:#525252;--g300:#737373;--g200:#a3a3a3;
-  --g100:#d4d4d4;
+  --g500:#404040;--g400:#525252;--g300:#737373;--g200:#a3a3a3;--g100:#d4d4d4;
   --green:#22c55e;--red:#ef4444;--yellow:#eab308;--blue:#3b82f6;--orange:#f97316;
   --r:6px;--r2:10px;
 }
@@ -29,7 +28,6 @@ body{font-family:'Geist',sans-serif;background:#000;color:#fff;overflow-x:hidden
 #ring{position:fixed;width:24px;height:24px;border:1px solid rgba(255,255,255,.35);border-radius:50%;pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:width .15s,height .15s;}
 ::-webkit-scrollbar{width:3px;}::-webkit-scrollbar-thumb{background:var(--g600);border-radius:2px;}
 
-/* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:500;height:54px;display:flex;align-items:center;justify-content:space-between;padding:0 28px;background:rgba(0,0,0,.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--g800);}
 .logo{font-size:15px;font-weight:700;letter-spacing:-.3px;text-decoration:none;color:#fff;}
 .logo em{color:var(--g300);font-style:normal;font-weight:400;}
@@ -42,7 +40,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;height:54px;display:flex;ali
 .btn-w{background:#fff;border:none;color:#000;padding:7px 15px;border-radius:var(--r);font-size:12px;font-weight:600;font-family:'Geist',sans-serif;cursor:pointer;transition:all .15s;}
 .btn-w:hover{background:var(--g100);}
 
-/* HERO */
 #hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:100px 24px 72px;position:relative;}
 #hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(var(--g900) 1px,transparent 1px),linear-gradient(90deg,var(--g900) 1px,transparent 1px);background-size:44px 44px;opacity:.3;pointer-events:none;}
 #hero::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 40% at 50% 0%,rgba(255,255,255,.05),transparent);pointer-events:none;}
@@ -63,7 +60,6 @@ h1 em{font-style:normal;color:var(--g400);}
 .stat .n{font-size:11px;font-weight:700;letter-spacing:1.2px;color:#fff;font-family:'Geist Mono',monospace;}
 .stat .l{font-size:9px;color:var(--g500);letter-spacing:.8px;margin-top:3px;text-transform:uppercase;}
 
-/* SECTIONS */
 .sec{padding:80px 24px;}
 .sec-in{max-width:1040px;margin:0 auto;}
 .tag{font-size:10px;color:var(--g500);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:7px;}
@@ -73,7 +69,6 @@ h1 em{font-style:normal;color:var(--g400);}
 .fadein{opacity:0;transform:translateY(16px);transition:opacity .55s,transform .55s;}
 .fadein.vis{opacity:1;transform:translateY(0);}
 
-/* HOW IT WORKS */
 .steps{display:grid;grid-template-columns:repeat(4,1fr);margin-top:44px;border:1px solid var(--g800);border-radius:var(--r2);overflow:hidden;}
 .step{padding:26px 22px;background:var(--g900);border-right:1px solid var(--g800);transition:background .2s;}
 .step:last-child{border-right:none;}
@@ -83,7 +78,6 @@ h1 em{font-style:normal;color:var(--g400);}
 .sdesc{font-size:11.5px;color:var(--g400);line-height:1.65;}
 .spill{display:inline-block;margin-top:10px;font-size:9px;padding:2px 8px;border-radius:100px;background:rgba(255,255,255,.05);color:var(--g300);border:1px solid var(--g700);}
 
-/* PRICING - CLEAN LIST */
 .pricing-wrap{margin-top:48px;display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start;}
 .pricing-list{border:1px solid var(--g800);border-radius:14px;overflow:hidden;}
 .pricing-list-head{padding:18px 22px;border-bottom:1px solid var(--g800);background:var(--g900);}
@@ -92,39 +86,35 @@ h1 em{font-style:normal;color:var(--g400);}
 .pack-row{display:flex;align-items:center;justify-content:space-between;padding:13px 22px;border-bottom:1px solid var(--g800);background:var(--g900);transition:background .15s;cursor:pointer;gap:12px;}
 .pack-row:last-child{border-bottom:none;}
 .pack-row:hover{background:var(--g800);}
-.pack-row.hot{background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.08);}
+.pack-row.hot{background:rgba(255,255,255,.03);}
 .pack-row-left{display:flex;align-items:center;gap:12px;flex:1;min-width:0;}
 .pack-row-name{font-size:12px;font-weight:500;color:#fff;min-width:90px;}
 .pack-row-credits{font-size:11px;color:var(--g400);}
 .pack-row-hot{font-size:8px;font-weight:700;letter-spacing:.8px;color:var(--yellow);background:rgba(234,179,8,.08);border:1px solid rgba(234,179,8,.2);border-radius:100px;padding:2px 7px;white-space:nowrap;}
 .pack-row-right{display:flex;align-items:center;gap:10px;flex-shrink:0;}
-.pack-row-price{font-size:15px;font-weight:700;letter-spacing:-.3px;color:#fff;white-space:nowrap;}
+.pack-row-price{font-size:15px;font-weight:700;color:#fff;white-space:nowrap;}
 .pack-row-per{font-size:9px;color:var(--g600);white-space:nowrap;}
-.pack-row-btn{padding:5px 14px;background:#fff;color:#000;border:none;border-radius:5px;font-size:11px;font-weight:600;font-family:'Geist',sans-serif;cursor:pointer;transition:all .15s;white-space:nowrap;flex-shrink:0;}
+.pack-row-btn{padding:5px 14px;background:#fff;color:#000;border:none;border-radius:5px;font-size:11px;font-weight:600;font-family:'Geist',sans-serif;cursor:pointer;transition:all .15s;white-space:nowrap;}
 .pack-row-btn:hover{background:var(--g100);}
-/* Credit usage table on right */
 .pricing-info{display:flex;flex-direction:column;gap:16px;}
 .info-card{background:var(--g900);border:1px solid var(--g800);border-radius:12px;overflow:hidden;}
-.info-card-head{padding:14px 18px;border-bottom:1px solid var(--g800);font-size:11px;font-weight:600;color:#fff;letter-spacing:-.1px;}
+.info-card-head{padding:14px 18px;border-bottom:1px solid var(--g800);font-size:11px;font-weight:600;color:#fff;}
 .info-row{display:flex;align-items:center;justify-content:space-between;padding:10px 18px;border-bottom:1px solid var(--g800);font-size:11px;}
 .info-row:last-child{border:none;}
 .info-row span:first-child{color:var(--g300);}
-.info-val-free{color:var(--green);font-weight:600;font-size:10px;letter-spacing:.3px;}
+.info-val-free{color:var(--green);font-weight:600;font-size:10px;}
 .info-val-cr{color:var(--yellow);font-family:'Geist Mono',monospace;font-size:10px;font-weight:600;}
 .info-val-inf{color:#fff;font-weight:700;font-size:13px;}
 .cta-note{background:rgba(255,255,255,.03);border:1px solid var(--g800);border-radius:12px;padding:18px;text-align:center;}
 .cta-note p{font-size:12px;color:var(--g400);line-height:1.7;margin-bottom:14px;}
-.cta-note button{background:#fff;color:#000;border:none;border-radius:var(--r);padding:10px 22px;font-size:12px;font-weight:600;font-family:'Geist',sans-serif;cursor:pointer;transition:all .15s;}
-.cta-note button:hover{background:var(--g100);}
+.cta-note button{background:#fff;color:#000;border:none;border-radius:var(--r);padding:10px 22px;font-size:12px;font-weight:600;font-family:'Geist',sans-serif;cursor:pointer;}
 
-/* NUMBERS SECTION */
 .nums-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
 .num-card{background:var(--g900);border:1px solid var(--g800);border-radius:14px;padding:36px 28px;display:flex;flex-direction:column;justify-content:space-between;min-height:180px;transition:border-color .2s;}
 .num-card:hover{border-color:var(--g600);}
-.num-big{font-size:clamp(40px,5vw,64px);font-weight:800;letter-spacing:-2px;color:#fff;line-height:1;margin-bottom:auto;}
-.num-label{font-size:12px;color:var(--g400);line-height:1.5;margin-top:24px;max-width:200px;}
+.num-big{font-size:clamp(40px,5vw,64px);font-weight:800;letter-spacing:-2px;color:#fff;line-height:1;}
+.num-label{font-size:12px;color:var(--g400);line-height:1.5;margin-top:24px;}
 
-/* READY TO BUILD CTA */
 #readytobuild{background:#000;border-top:1px solid var(--g800);padding:80px 24px 100px;}
 .rtb-inner{max-width:720px;margin:0 auto;text-align:center;}
 .rtb-label{font-size:12px;color:var(--g400);letter-spacing:.3px;margin-bottom:14px;}
@@ -134,18 +124,18 @@ h1 em{font-style:normal;color:var(--g400);}
 .rtb-ta{display:block;width:100%;background:none;border:none;outline:none;resize:none;font-family:'Geist',sans-serif;font-size:15px;color:#fff;line-height:1.65;max-height:200px;overflow-y:auto;padding:0;margin-bottom:12px;}
 .rtb-ta::placeholder{color:var(--g600);}
 .rtb-actions{display:flex;align-items:center;justify-content:space-between;}
-.rtb-attach{width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.05);border:1px solid var(--g700);color:var(--g500);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;flex-shrink:0;}
+.rtb-attach{width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.05);border:1px solid var(--g700);color:var(--g500);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;}
 .rtb-attach:hover{border-color:var(--g500);color:var(--g200);}
 .rtb-right{display:flex;align-items:center;gap:8px;}
 .rtb-mic{width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.05);border:1px solid var(--g700);color:var(--g500);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;}
 .rtb-mic:hover{border-color:var(--g400);color:var(--g200);}
-.rtb-mic.active{border-color:var(--red);color:var(--red);background:rgba(239,68,68,.08);}
-.rtb-send{width:34px;height:34px;border-radius:50%;background:#fff;color:#000;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;flex-shrink:0;}
-.rtb-send:hover{background:var(--g100);transform:scale(1.05);}
+.rtb-mic.active{border-color:var(--red);color:var(--red);}
+.rtb-send{width:34px;height:34px;border-radius:50%;background:#fff;color:#000;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;}
+.rtb-send:hover{background:var(--g100);}
 .rtb-tags{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin-top:20px;}
 .rtb-tag{padding:7px 15px;border:1px solid var(--g800);border-radius:100px;font-size:12px;color:var(--g400);background:transparent;cursor:pointer;font-family:'Geist',sans-serif;transition:all .15s;}
-.rtb-tag:hover{border-color:var(--g600);color:var(--g200);background:rgba(255,255,255,.03);}
-#compare{background:var(--g900);border-top:1px solid var(--g800);}
+.rtb-tag:hover{border-color:var(--g600);color:var(--g200);}
+
 .ctable-wrap{margin-top:40px;border:1px solid var(--g800);border-radius:14px;overflow:auto;}
 .ctable{width:100%;border-collapse:collapse;min-width:600px;}
 .ctable thead th{padding:13px 18px;text-align:left;font-size:9px;letter-spacing:1px;color:var(--g500);text-transform:uppercase;border-bottom:1px solid var(--g800);background:rgba(255,255,255,.02);white-space:nowrap;}
@@ -160,17 +150,6 @@ h1 em{font-style:normal;color:var(--g400);}
 .cv-part{color:var(--yellow);font-size:11px;}
 .cv-em{color:#fff;font-weight:600;}
 
-/* CREDIT TABLE (in pricing) */
-.credit-table{margin-top:0;border:1px solid var(--g800);border-radius:var(--r2);overflow:hidden;}
-.ct-head{display:grid;grid-template-columns:1fr 1fr 1fr;background:rgba(255,255,255,.02);padding:10px 18px;font-size:9px;color:var(--g500);letter-spacing:1px;text-transform:uppercase;border-bottom:1px solid var(--g800);}
-.ct-row{display:grid;grid-template-columns:1fr 1fr 1fr;padding:10px 18px;border-bottom:1px solid var(--g800);font-size:11.5px;align-items:center;}
-.ct-row:last-child{border:none;}
-.ct-row:hover{background:rgba(255,255,255,.015);}
-.ct-row .act{color:#fff;font-weight:500;}
-.ct-row .cr{color:var(--yellow);font-family:'Geist Mono',monospace;font-size:10px;font-weight:600;}
-.ct-row .note{color:var(--g500);font-size:10px;}
-
-/* FEATURES */
 .feats{display:grid;grid-template-columns:repeat(3,1fr);margin-top:44px;border:1px solid var(--g800);border-radius:var(--r2);overflow:hidden;}
 .fc{padding:26px;background:var(--g900);border-right:1px solid var(--g800);border-bottom:1px solid var(--g800);transition:background .2s;}
 .fc:hover{background:var(--g800);}
@@ -178,15 +157,6 @@ h1 em{font-style:normal;color:var(--g400);}
 .ft{font-size:13px;font-weight:600;margin-bottom:8px;}
 .fd{font-size:11.5px;color:var(--g400);line-height:1.65;}
 
-/* WALLET WARNING */
-.wallet-warn{border-radius:var(--r2);padding:10px 14px;font-size:11px;display:flex;align-items:center;gap:8px;margin-bottom:8px;display:none;}
-.wallet-warn.w70{background:rgba(234,179,8,.07);border:1px solid rgba(234,179,8,.2);color:var(--yellow);}
-.wallet-warn.w85{background:rgba(249,115,22,.08);border:1px solid rgba(249,115,22,.25);color:var(--orange);}
-.wallet-warn.w95{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.3);color:var(--red);animation:urgpulse 1.5s infinite;}
-@keyframes urgpulse{0%,100%{opacity:1;}50%{opacity:.7;}}
-.wallet-warn.show{display:flex;}
-
-/* FOOTER */
 footer{border-top:1px solid var(--g800);padding:44px 24px 24px;}
 .foot-wrap{max-width:1040px;margin:0 auto;}
 .foot-grid{display:grid;grid-template-columns:1.6fr repeat(4,1fr);gap:28px;padding-bottom:36px;border-bottom:1px solid var(--g800);margin-bottom:22px;}
@@ -198,11 +168,153 @@ footer{border-top:1px solid var(--g800);padding:44px 24px 24px;}
 .fbot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
 .fbot p{font-size:10px;color:var(--g600);}
 
-/* TOAST */
 #toast{position:fixed;bottom:22px;right:22px;z-index:99999;background:var(--g800);border:1px solid var(--g700);border-radius:var(--r);padding:10px 15px;font-size:12px;color:#fff;transform:translateY(72px);opacity:0;transition:all .25s;display:flex;align-items:center;gap:8px;max-width:300px;pointer-events:none;}
 #toast.show{transform:translateY(0);opacity:1;}
+</style>
+</head>
+<body>
+<div id="cur"></div><div id="ring"></div>
+<div id="toast"><span id="ti">✓</span><span id="tm"></span></div>
 
-/* ── BUILDER ──────────────────────────── */
+<nav>
+  <a class="logo" href="/">AIWEBBB<em>.com</em></a>
+  <div class="nav-links">
+    <a href="#how">How it works</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#compare">Compare</a>
+    <a href="#features">Features</a>
+  </div>
+  <div class="nav-r">
+    <button class="btn-ghost" onclick="openDash()">My Projects</button>
+    <button class="btn-w" onclick="openInputModal()">Build Your Website →</button>
+  </div>
+</nav>
+
+<section id="hero">
+  <div class="badge"><div class="bdot"></div>See your website before you pay</div>
+  <h1>Build Any Website<br><em>See it First.</em></h1>
+  <p class="sub">Describe your idea. Watch a realistic preview appear in seconds. Then decide to build. No code, no risk.</p>
+  <div class="cta-row">
+    <button class="btn-hero" onclick="openInputModal()">⚡ See Your Website — Free</button>
+    <button class="btn-hero-out" onclick="document.getElementById('how').scrollIntoView({behavior:'smooth'})">See how it works →</button>
+  </div>
+  <div class="stats fadein">
+    <div class="stat"><div class="n">FREE</div><div class="l">Preview</div></div>
+    <div class="stat"><div class="n">30s</div><div class="l">Build Time</div></div>
+    <div class="stat"><div class="n">7+</div><div class="l">App Types</div></div>
+    <div class="stat"><div class="n">₹99</div><div class="l">To Start</div></div>
+  </div>
+</section>
+<style>
+/* ══ INPUT MODAL (hero) ══ */
+#inputmo{position:fixed;inset:0;z-index:8500;background:rgba(0,0,0,.92);backdrop-filter:blur(20px);display:none;align-items:center;justify-content:center;padding:20px;}
+.imc{width:100%;max-width:680px;animation:fadeUp .3s ease;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+.imc-label{font-size:11px;color:var(--g400);text-align:center;letter-spacing:.3px;margin-bottom:18px;}
+.imc-title{font-size:clamp(28px,4vw,42px);font-weight:800;letter-spacing:-1.5px;text-align:center;margin-bottom:28px;line-height:1.1;}
+.imc-box{background:var(--g900);border:1px solid var(--g600);border-radius:16px;padding:18px 20px 14px;transition:border-color .2s;}
+.imc-box:focus-within{border-color:var(--g400);}
+.imc-ta{display:block;width:100%;background:none;border:none;outline:none;resize:none;font-family:'Geist',sans-serif;font-size:15px;color:#fff;line-height:1.65;max-height:140px;overflow-y:auto;padding:0;margin-bottom:12px;}
+.imc-ta::placeholder{color:var(--g600);}
+.imc-row{display:flex;align-items:center;justify-content:space-between;}
+.imc-left{display:flex;align-items:center;gap:8px;}
+.imc-attach{width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.05);border:1px solid var(--g700);color:var(--g500);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;}
+.imc-attach:hover{border-color:var(--g500);color:var(--g200);}
+.imc-files{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;}
+.imc-file-chip{position:relative;width:56px;height:56px;border-radius:8px;overflow:hidden;border:1px solid var(--g700);background:var(--g800);flex-shrink:0;}
+.imc-file-chip img{width:100%;height:100%;object-fit:cover;display:block;}
+.imc-file-chip .imc-file-doc{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--g500);}
+.imc-file-remove{position:absolute;top:2px;right:2px;width:16px;height:16px;border-radius:50%;background:rgba(0,0,0,.8);border:1px solid var(--g600);color:#fff;display:flex;align-items:center;justify-content:center;font-size:9px;cursor:pointer;line-height:1;}
+.imc-file-remove:hover{background:var(--red);border-color:var(--red);}
+.imc-file-name{position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,.75);font-size:7px;color:var(--g300);padding:2px 3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.imc-attach.has-files{border-color:var(--g400);color:#fff;background:rgba(255,255,255,.1);}
+.imc-attach-badge{position:absolute;top:-4px;right:-4px;width:14px;height:14px;border-radius:50%;background:#fff;color:#000;font-size:8px;font-weight:700;display:flex;align-items:center;justify-content:center;}
+.imc-right{display:flex;align-items:center;gap:8px;}
+.imc-mic{width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.05);border:1px solid var(--g700);color:var(--g500);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;}
+.imc-mic:hover{border-color:var(--g400);color:var(--g200);}
+.imc-mic.active{border-color:var(--red);color:var(--red);}
+.imc-send{height:34px;padding:0 18px;border-radius:100px;background:#fff;color:#000;border:none;cursor:pointer;display:flex;align-items:center;gap:6px;font-family:'Geist',sans-serif;font-size:12px;font-weight:600;transition:all .15s;}
+.imc-send:hover{background:var(--g100);}
+.imc-pills{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin-top:18px;}
+.imc-pill{padding:7px 15px;border:1px solid var(--g700);border-radius:100px;font-size:12px;color:var(--g400);background:transparent;cursor:pointer;font-family:'Geist',sans-serif;transition:all .15s;}
+.imc-pill:hover{border-color:var(--g500);color:#fff;background:rgba(255,255,255,.04);}
+.imc-close{position:absolute;top:20px;right:20px;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.07);border:1px solid var(--g700);color:var(--g400);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;transition:all .15s;}
+.imc-close:hover{border-color:var(--g500);color:#fff;}
+
+/* ══ CINEMATIC LOADING ══ */
+#loadingmo{position:fixed;inset:0;z-index:8600;background:#000;display:none;flex-direction:column;align-items:center;justify-content:center;}
+#loadingmo.open{display:flex;}
+.lm-content{text-align:center;max-width:500px;width:100%;padding:0 24px;}
+.lm-icon{font-size:32px;margin-bottom:24px;animation:lmicon 3s infinite;}
+@keyframes lmicon{0%,100%{transform:scale(1);opacity:1;}50%{transform:scale(1.1);opacity:.8;}}
+.lm-title{font-size:clamp(22px,4vw,36px);font-weight:700;letter-spacing:-.8px;margin-bottom:8px;color:#fff;}
+.lm-step{font-size:14px;color:var(--g400);margin-bottom:32px;min-height:22px;transition:opacity .3s;}
+.lm-bar{width:100%;height:2px;background:var(--g800);border-radius:1px;overflow:hidden;margin-bottom:16px;}
+.lm-fill{height:100%;background:linear-gradient(90deg,var(--g500),#fff,var(--g500));background-size:200%;border-radius:1px;animation:lmshine 1.5s linear infinite;transition:width .8s ease;}
+@keyframes lmshine{0%{background-position:200%;}100%{background-position:-200%;}}
+.lm-pct{font-size:11px;color:var(--g600);font-family:'Geist Mono',monospace;}
+.lm-checks{display:flex;flex-direction:column;gap:8px;margin-top:24px;text-align:left;width:fit-content;margin-left:auto;margin-right:auto;}
+.lm-check{font-size:12px;color:var(--g600);display:flex;align-items:center;gap:8px;transition:color .3s;}
+.lm-check.done{color:var(--g200);}
+.lm-check.active{color:#fff;}
+.lm-check-dot{width:6px;height:6px;border-radius:50%;background:var(--g600);flex-shrink:0;transition:background .3s;}
+.lm-check.done .lm-check-dot{background:var(--green);}
+.lm-check.active .lm-check-dot{background:#fff;animation:pulse 1s infinite;}
+
+/* ══ PREVIEW EXPERIENCE ══ */
+#previewmo{position:fixed;inset:0;z-index:8700;background:#000;display:none;flex-direction:column;}
+#previewmo.open{display:flex;}
+.pm-top{height:52px;background:var(--g900);border-bottom:1px solid var(--g800);display:flex;align-items:center;justify-content:space-between;padding:0 16px;flex-shrink:0;}
+.pm-brand{display:flex;align-items:center;gap:8px;}
+.pm-brand-name{font-size:13px;font-weight:600;letter-spacing:-.2px;}
+.pm-badge{font-size:9px;background:rgba(34,197,94,.1);color:var(--green);border:1px solid rgba(34,197,94,.3);border-radius:100px;padding:2px 8px;font-weight:600;letter-spacing:.3px;}
+.pm-tabs{display:flex;gap:2px;}
+.pm-tab{padding:5px 12px;border-radius:5px;font-size:11px;color:var(--g500);background:transparent;border:none;cursor:pointer;transition:all .15s;font-family:'Geist',sans-serif;display:flex;align-items:center;gap:5px;}
+.pm-tab:hover{color:var(--g200);}
+.pm-tab.on{background:rgba(255,255,255,.07);color:#fff;border:1px solid var(--g700);}
+.pm-actions{display:flex;gap:7px;}
+.pm-btn-back{padding:5px 12px;border-radius:5px;background:transparent;color:var(--g400);border:1px solid var(--g700);font-size:11px;font-family:'Geist',sans-serif;cursor:pointer;transition:all .15s;}
+.pm-btn-back:hover{border-color:var(--g500);color:#fff;}
+.pm-btn-build{padding:6px 16px;border-radius:5px;background:#fff;color:#000;border:none;font-size:11px;font-weight:700;font-family:'Geist',sans-serif;cursor:pointer;transition:all .15s;display:flex;align-items:center;gap:5px;}
+.pm-btn-build:hover{background:var(--g100);}
+.pm-body{flex:1;display:flex;overflow:hidden;min-height:0;background:#0d0d0d;}
+.pm-left{flex:1;display:flex;flex-direction:column;min-width:0;padding:16px;}
+.browser-frame{flex:1;background:var(--g900);border:1px solid var(--g700);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,.8);transition:max-width .3s;}
+.browser-bar{height:38px;background:var(--g800);border-bottom:1px solid var(--g700);display:flex;align-items:center;gap:10px;padding:0 14px;flex-shrink:0;}
+.browser-dots{display:flex;gap:5px;}
+.bd{width:10px;height:10px;border-radius:50%;}
+.bd.r{background:#ff5f57;}.bd.y{background:#febc2e;}.bd.g{background:#28c840;}
+.browser-url{flex:1;background:rgba(0,0,0,.4);border:1px solid var(--g700);border-radius:5px;height:22px;display:flex;align-items:center;padding:0 10px;font-family:'Geist Mono',monospace;font-size:10px;color:var(--g400);overflow:hidden;white-space:nowrap;text-overflow:ellipsis;}
+.browser-url-dot{width:6px;height:6px;border-radius:50%;background:var(--green);margin-right:5px;flex-shrink:0;}
+.browser-content{flex:1;position:relative;overflow:hidden;}
+.browser-iframe{width:100%;height:100%;border:none;background:#fff;}
+.pm-right{width:300px;flex-shrink:0;border-left:1px solid var(--g800);display:flex;flex-direction:column;background:var(--g900);overflow-y:auto;}
+.pm-right::-webkit-scrollbar{width:2px;}
+.pm-info{padding:18px 16px;}
+.pm-info-label{font-size:9px;color:var(--g500);letter-spacing:1.2px;text-transform:uppercase;margin-bottom:6px;}
+.pm-info-title{font-size:16px;font-weight:700;letter-spacing:-.3px;margin-bottom:4px;}
+.pm-info-desc{font-size:11px;color:var(--g400);line-height:1.65;margin-bottom:16px;}
+.pm-checks{display:flex;flex-direction:column;gap:6px;margin-bottom:18px;}
+.pm-check{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--g300);}
+.pm-check-ico{width:16px;height:16px;border-radius:50%;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.3);color:var(--green);display:flex;align-items:center;justify-content:center;font-size:8px;flex-shrink:0;}
+.pm-divider{height:1px;background:var(--g800);margin:0 16px 18px;}
+.pm-cta-wrap{padding:0 16px 18px;}
+.pm-cta-title{font-size:11px;color:var(--g500);margin-bottom:10px;text-align:center;}
+.pm-cta-btn{width:100%;padding:12px;background:#fff;color:#000;border:none;border-radius:8px;font-family:'Geist',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all .15s;margin-bottom:8px;display:flex;align-items:center;justify-content:center;gap:6px;}
+.pm-cta-btn:hover{background:var(--g100);}
+.pm-cta-btn2{width:100%;padding:10px;background:transparent;color:var(--g300);border:1px solid var(--g700);border-radius:8px;font-family:'Geist',sans-serif;font-size:12px;cursor:pointer;transition:all .15s;margin-bottom:14px;}
+.pm-cta-btn2:hover{border-color:var(--g500);color:#fff;}
+.pm-packs{display:flex;flex-direction:column;gap:5px;}
+.pm-pack{background:rgba(0,0,0,.4);border:1px solid var(--g700);border-radius:6px;padding:10px 12px;cursor:pointer;transition:all .15s;display:flex;justify-content:space-between;align-items:center;}
+.pm-pack:hover{border-color:var(--g500);background:rgba(255,255,255,.03);}
+.pm-pack.sel{border-color:#fff;background:rgba(255,255,255,.05);}
+.pm-pack.pop{border-color:rgba(234,179,8,.3);}
+.pm-pack-left{font-size:11px;font-weight:500;color:#fff;}
+.pm-pack-credits{font-size:10px;color:var(--g500);margin-top:2px;}
+.pm-pack-price{font-size:13px;font-weight:700;color:#fff;}
+.pm-pay-note{font-size:9px;color:var(--g600);text-align:center;margin-top:8px;}
+
+/* ══ BUILDER ══ */
 #bld{position:fixed;inset:0;z-index:8000;background:#000;display:none;flex-direction:column;}
 #bld.open{display:flex;}
 #bnav{height:46px;background:var(--g900);border-bottom:1px solid var(--g800);display:flex;align-items:center;justify-content:space-between;padding:0 12px;flex-shrink:0;}
@@ -215,18 +327,15 @@ footer{border-top:1px solid var(--g800);padding:44px 24px 24px;}
 .btab{display:flex;align-items:center;gap:4px;padding:5px 12px;border-radius:5px;font-size:10px;color:var(--g500);background:transparent;border:none;cursor:pointer;transition:all .15s;font-family:'Geist',sans-serif;}
 .btab.on{background:rgba(255,255,255,.06);color:#fff;border:1px solid var(--g700);}
 .bnr{display:flex;align-items:center;gap:7px;}
-/* credit counter in nav */
 .bcred{display:flex;align-items:center;gap:5px;font-size:10px;color:var(--g400);background:rgba(255,255,255,.04);border:1px solid var(--g800);border-radius:4px;padding:3px 8px;font-family:'Geist Mono',monospace;}
 .bcred .cn{color:#fff;font-weight:600;}
 .bcred.low{border-color:rgba(234,179,8,.3);color:var(--yellow);}
-.bcred.critical{border-color:rgba(239,68,68,.3);color:var(--red);animation:urgpulse 1.5s infinite;}
+.bcred.critical{border-color:rgba(239,68,68,.3);color:var(--red);}
 .bdeploy{display:flex;align-items:center;gap:5px;padding:5px 13px;border-radius:5px;background:#fff;color:#000;border:none;font-family:'Geist',sans-serif;font-size:11px;font-weight:600;cursor:pointer;transition:all .15s;}
 .bdeploy:hover{background:var(--g100);}
 .bdeploy.locked{background:var(--g800);color:var(--g500);border:1px solid var(--g700);cursor:default;}
 .bdeploy.live{background:rgba(34,197,94,.1);color:var(--green);border:1px solid rgba(34,197,94,.3);}
 #bbody{flex:1;display:flex;overflow:hidden;min-height:0;}
-
-/* Preview */
 #ppane{flex:1;min-width:0;background:#0d0d0d;border-right:1px solid var(--g800);display:flex;flex-direction:column;position:relative;}
 #pfw{flex:1;position:relative;overflow:hidden;}
 #pempty{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;}
@@ -235,28 +344,6 @@ footer{border-top:1px solid var(--g800);padding:44px 24px 24px;}
 .pes{font-size:10px;color:var(--g700);}
 #piframe{width:100%;height:100%;border:none;background:#fff;display:none;}
 #cpane{width:100%;height:100%;overflow:auto;padding:20px;font-family:'Geist Mono',monospace;font-size:10.5px;line-height:1.85;color:var(--g400);background:#000;display:none;white-space:pre-wrap;word-break:break-all;}
-
-/* Preview screen - generated plan */
-#previewScreen{position:absolute;inset:0;background:#000;display:none;flex-direction:column;align-items:center;justify-content:center;padding:32px;z-index:5;}
-.prev-card{background:var(--g900);border:1px solid var(--g700);border-radius:14px;padding:28px;max-width:420px;width:100%;text-align:center;}
-.prev-icon{font-size:32px;margin-bottom:12px;}
-.prev-title{font-size:18px;font-weight:700;letter-spacing:-.4px;margin-bottom:6px;}
-.prev-brand{font-size:28px;font-weight:800;letter-spacing:-.8px;color:#fff;margin-bottom:18px;}
-.prev-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:20px;}
-.ps-item{background:rgba(255,255,255,.04);border:1px solid var(--g800);border-radius:var(--r);padding:12px 8px;}
-.ps-num{font-size:24px;font-weight:700;letter-spacing:-.5px;color:#fff;}
-.ps-label{font-size:9px;color:var(--g500);margin-top:3px;text-transform:uppercase;letter-spacing:.5px;}
-.prev-desc{font-size:11.5px;color:var(--g400);line-height:1.65;margin-bottom:18px;}
-.prev-features{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;margin-bottom:22px;}
-.pf-chip{font-size:9px;padding:3px 9px;border-radius:100px;background:rgba(255,255,255,.06);color:var(--g200);border:1px solid var(--g700);}
-.prev-cta{width:100%;padding:13px;background:#fff;color:#000;border:none;border-radius:var(--r);font-family:'Geist',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all .15s;margin-bottom:8px;}
-.prev-cta:hover{background:var(--g100);}
-.prev-sub{font-size:10px;color:var(--g600);display:flex;align-items:center;justify-content:center;gap:5px;}
-.prev-prog{height:2px;background:var(--g800);border-radius:1px;margin-bottom:18px;overflow:hidden;}
-.prev-prog-fill{height:100%;background:linear-gradient(90deg,var(--green),#fff);border-radius:1px;animation:prevprog 2s ease forwards;}
-@keyframes prevprog{from{width:0%;}to{width:85%;}}
-
-/* Deploy success */
 #dsucc{position:absolute;inset:0;background:rgba(0,0,0,.88);backdrop-filter:blur(10px);display:none;align-items:center;justify-content:center;z-index:10;}
 .dsc{background:var(--g900);border:1px solid var(--g700);border-radius:var(--r2);padding:28px;text-align:center;max-width:400px;width:90%;}
 .dsi{font-size:30px;margin-bottom:12px;}
@@ -273,8 +360,6 @@ footer{border-top:1px solid var(--g800);padding:44px 24px 24px;}
 .dsugg-btn:hover{border-color:var(--g400);color:#fff;}
 .dsdism{background:transparent;color:var(--g400);border:1px solid var(--g700);border-radius:var(--r);padding:7px 18px;font-size:11px;cursor:pointer;font-family:'Geist',sans-serif;transition:all .15s;}
 .dsdism:hover{border-color:var(--g500);color:#fff;}
-
-/* Chat panel */
 #cpanel{width:360px;flex-shrink:0;display:flex;flex-direction:column;background:var(--g900);}
 #chead{padding:10px 14px;border-bottom:1px solid var(--g800);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
 .chstat{display:flex;align-items:center;gap:7px;font-size:11px;color:var(--g400);font-weight:500;}
@@ -286,24 +371,19 @@ footer{border-top:1px solid var(--g800);padding:44px 24px 24px;}
 .chbtns{display:flex;gap:4px;}
 .chbtn{width:26px;height:26px;border-radius:5px;background:transparent;border:1px solid var(--g800);color:var(--g500);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:12px;transition:all .15s;}
 .chbtn:hover{border-color:var(--g600);color:var(--g200);}
-
-/* Wallet bar */
 #wallet-bar{padding:6px 14px;border-bottom:1px solid var(--g800);display:none;align-items:center;gap:8px;flex-shrink:0;}
 #wallet-bar.show{display:flex;}
 .wb-label{font-size:9px;color:var(--g500);white-space:nowrap;}
 .wb-track{flex:1;height:3px;background:var(--g700);border-radius:2px;overflow:hidden;}
 .wb-fill{height:100%;border-radius:2px;transition:width .5s,background .3s;}
 .wb-count{font-size:10px;font-weight:600;font-family:'Geist Mono',monospace;white-space:nowrap;}
-.wb-buy{font-size:9px;color:var(--g400);background:transparent;border:1px solid var(--g700);border-radius:3px;padding:2px 7px;cursor:pointer;font-family:'Geist',sans-serif;transition:all .15s;flex-shrink:0;}
+.wb-buy{font-size:9px;color:var(--g400);background:transparent;border:1px solid var(--g700);border-radius:3px;padding:2px 7px;cursor:pointer;font-family:'Geist',sans-serif;transition:all .15s;}
 .wb-buy:hover{border-color:var(--g500);color:#fff;}
-
-/* Messages */
 #msgs{flex:1;overflow-y:auto;padding:16px 14px 8px;display:flex;flex-direction:column;gap:14px;min-height:0;}
 #msgs::-webkit-scrollbar{width:2px;}
 .msg{display:flex;flex-direction:column;gap:4px;animation:mi .22s ease;}
 @keyframes mi{from{opacity:0;transform:translateY(7px);}to{opacity:1;transform:translateY(0);}}
-.msg.u{align-items:flex-end;}
-.msg.a{align-items:flex-start;}
+.msg.u{align-items:flex-end;}.msg.a{align-items:flex-start;}
 .msg.u .bub{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.12);color:#fff;font-size:12.5px;line-height:1.65;padding:9px 13px;border-radius:14px;border-bottom-right-radius:3px;max-width:88%;word-break:break-word;}
 .msg.a .bub{background:transparent;border:none;color:var(--g100);font-size:12.5px;line-height:1.75;padding:2px 0;max-width:100%;word-break:break-word;}
 .msg.a .bub.er{color:#fca5a5;}
@@ -320,18 +400,14 @@ footer{border-top:1px solid var(--g800);padding:44px 24px 24px;}
 .ma:hover{background:rgba(255,255,255,.06);color:#fff;border-color:var(--g500);}
 .ma.p{background:#fff;color:#000;border-color:#fff;font-weight:600;}
 .ma.p:hover{background:var(--g100);}
-
-/* Buy credits card */
 .buy-card{background:var(--g800);border:1px solid var(--g700);border-radius:12px;padding:15px 16px;max-width:310px;}
 .buy-card p{font-size:11.5px;color:var(--g300);line-height:1.7;margin-bottom:12px;}
 .buy-card-packs{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px;}
 .bcp{padding:5px 11px;border:1px solid var(--g700);border-radius:6px;font-size:10px;color:var(--g200);background:transparent;cursor:pointer;font-family:'Geist',sans-serif;transition:all .15s;display:flex;flex-direction:column;align-items:center;gap:1px;}
-.bcp:hover{border-color:var(--g400);color:#fff;background:rgba(255,255,255,.04);}
+.bcp:hover{border-color:var(--g400);color:#fff;}
 .bcp .bcp-cr{font-weight:600;font-size:11px;}
 .bcp .bcp-pr{font-size:9px;color:var(--g500);}
 .buy-card-note{font-size:9px;color:var(--g600);}
-
-/* Input */
 #chat-input-wrap{padding:10px 12px 12px;border-top:1px solid var(--g800);flex-shrink:0;}
 #chat-box{background:var(--g800);border:1px solid var(--g600);border-radius:14px;padding:12px 14px 10px;transition:border-color .2s;}
 #chat-box:focus-within{border-color:var(--g400);}
@@ -341,13 +417,11 @@ footer{border-top:1px solid var(--g800);padding:44px 24px 24px;}
 .chat-left{display:flex;align-items:center;gap:7px;}
 #mic-btn{width:27px;height:27px;border-radius:50%;background:transparent;border:1px solid var(--g700);color:var(--g500);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;}
 #mic-btn:hover{border-color:var(--g400);color:var(--g200);}
-#mic-btn.active{border-color:var(--red);color:var(--red);background:rgba(239,68,68,.08);}
+#mic-btn.active{border-color:var(--red);color:var(--red);}
 .chat-hint{font-size:9px;color:var(--g700);}
 #send-btn{width:30px;height:30px;border-radius:8px;background:#fff;color:#000;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;}
 #send-btn:hover{background:var(--g100);}
 #send-btn:disabled{background:var(--g700);color:var(--g500);cursor:default;}
-
-/* MODALS */
 .mo{position:fixed;inset:0;z-index:9000;background:rgba(0,0,0,.75);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:14px;}
 .mo.open{display:flex;}
 .mb{background:var(--g900);border:1px solid var(--g700);border-radius:var(--r2);width:100%;max-width:420px;animation:mbi .2s ease;overflow:hidden;}
@@ -363,8 +437,6 @@ footer{border-top:1px solid var(--g800);padding:44px 24px 24px;}
 .mbtn{width:100%;padding:11px;background:#fff;color:#000;border:none;border-radius:var(--r);font-family:'Geist',sans-serif;font-size:12px;font-weight:600;cursor:pointer;transition:all .15s;}
 .mbtn:hover{background:var(--g100);}
 .mbtn:disabled{opacity:.5;cursor:default;}
-
-/* Pay modal packs */
 .pay-packs{display:grid;grid-template-columns:repeat(2,1fr);gap:7px;margin-bottom:14px;}
 .pay-pack{background:rgba(0,0,0,.4);border:1px solid var(--g700);border-radius:var(--r);padding:12px;cursor:pointer;transition:all .15s;position:relative;}
 .pay-pack:hover{border-color:var(--g500);}
@@ -374,8 +446,6 @@ footer{border-top:1px solid var(--g800);padding:44px 24px 24px;}
 .pp-cred{font-size:16px;font-weight:700;letter-spacing:-.3px;}
 .pp-price{font-size:11px;color:var(--g400);margin-top:2px;}
 .psec{text-align:center;margin-top:8px;font-size:9.5px;color:var(--g600);}
-
-/* Dashboard */
 .dmo .mb{max-width:620px;max-height:84vh;overflow-y:auto;}
 .dhead{padding:16px 20px 14px;border-bottom:1px solid var(--g800);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;}
 .dur{display:flex;align-items:center;gap:9px;}
@@ -384,7 +454,6 @@ footer{border-top:1px solid var(--g800);padding:44px 24px 24px;}
 .dsb{background:rgba(0,0,0,.4);border:1px solid var(--g800);border-radius:var(--r);padding:12px;}
 .dsbn{font-size:22px;font-weight:700;letter-spacing:-.8px;}
 .dsbl{font-size:9px;color:var(--g500);margin-top:3px;letter-spacing:.3px;text-transform:uppercase;}
-/* wallet display in dashboard */
 .d-wallet{background:rgba(234,179,8,.05);border:1px solid rgba(234,179,8,.15);border-radius:var(--r);padding:13px 15px;margin-bottom:14px;}
 .d-wallet-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
 .d-wallet-cred{font-size:20px;font-weight:700;color:var(--yellow);font-family:'Geist Mono',monospace;}
@@ -409,68 +478,29 @@ footer{border-top:1px solid var(--g800);padding:44px 24px 24px;}
   .sec{padding:56px 16px;}
   .steps{grid-template-columns:1fr;}.step{border-right:none;border-bottom:1px solid var(--g800);}
   .feats{grid-template-columns:1fr;}
-  .nums-grid{grid-template-columns:1fr;}
-  .num-card{min-height:120px;padding:24px 20px;}
-  .num-big{font-size:48px;}
-  .rtb-title{font-size:48px;letter-spacing:-2px;}
-  .rtb-tags{gap:5px;}
-  .rtb-tag{font-size:11px;padding:6px 12px;}
-  .pricing-wrap{grid-template-columns:1fr;}
-  .ctable-wrap{border-radius:var(--r);}
-  .pack-row-per{display:none;}
+  .nums-grid{grid-template-columns:1fr;}.num-card{min-height:120px;padding:24px 20px;}.num-big{font-size:48px;}
+  .rtb-title{font-size:48px;letter-spacing:-2px;}.rtb-tags{gap:5px;}.rtb-tag{font-size:11px;padding:6px 12px;}
+  .pricing-wrap{grid-template-columns:1fr;}.pack-row-per{display:none;}
   .foot-grid{grid-template-columns:1fr 1fr;}footer{padding:30px 16px 18px;}
   #bbody{flex-direction:column;}
   #ppane{height:42vh;min-height:180px;border-right:none;border-bottom:1px solid var(--g800);}
   #cpanel{width:100%;height:58vh;}
   #bnav .blogo{display:none;}.bproj{max-width:90px;}
+  .pm-right{display:none;}
+  .pm-body{flex-direction:column;}
 }
 </style>
-</head>
-<body>
-<div id="cur"></div><div id="ring"></div>
-<div id="toast"><span id="ti">✓</span><span id="tm"></span></div>
-
-<nav>
-  <a class="logo" href="/">AIWEBBB<em>.com</em></a>
-  <div class="nav-links">
-    <a href="#how">How it works</a>
-    <a href="#pricing">Pricing</a>
-    <a href="#compare">Compare</a>
-    <a href="#features">Features</a>
-  </div>
-  <div class="nav-r">
-    <button class="btn-ghost" onclick="openDash()">My Projects</button>
-    <button class="btn-w" onclick="openBld()">Build Your Website →</button>
-  </div>
-</nav>
-
-<!-- HERO -->
-<section id="hero">
-  <div class="badge"><div class="bdot"></div>Preview Free · Pay Only to Build</div>
-  <h1>Build Any Website<br><em>in 30 Seconds.</em></h1>
-  <p class="sub">Describe your idea. Get a free preview with features, pages, and structure. Buy credits to build and launch — no subscriptions, ever.</p>
-  <div class="cta-row">
-    <button class="btn-hero" onclick="openBld()">⚡ Build Your Website — Free Preview</button>
-    <button class="btn-hero-out" onclick="document.getElementById('how').scrollIntoView({behavior:'smooth'})">See how it works →</button>
-  </div>
-  <div class="stats fadein">
-    <div class="stat"><div class="n">FREE</div><div class="l">Preview</div></div>
-    <div class="stat"><div class="n">30s</div><div class="l">Build Time</div></div>
-    <div class="stat"><div class="n">7+</div><div class="l">App Types</div></div>
-    <div class="stat"><div class="n">₹99</div><div class="l">To Start</div></div>
-  </div>
-</section>
 
 <!-- HOW IT WORKS -->
 <section class="sec" id="how" style="background:var(--g900);border-top:1px solid var(--g800);border-bottom:1px solid var(--g800);">
   <div class="sec-in">
     <div class="tag">How it works</div>
-    <h2 class="sh2 fadein">From idea to live website in minutes.</h2>
+    <h2 class="sh2 fadein">See it. Love it. Build it.</h2>
     <div class="steps fadein">
-      <div class="step"><div class="snum">01 — DESCRIBE</div><div class="stitle">Tell us your idea</div><div class="sdesc">Type anything — SaaS, eCommerce, portfolio, blog, game, agency site, course platform. Any idea works.</div><span class="spill">Free</span></div>
-      <div class="step"><div class="snum">02 — PREVIEW</div><div class="stitle">Get instant free preview</div><div class="sdesc">We generate your project name, features list, pages, structure and estimated build time. No payment needed yet.</div><span class="spill">Free</span></div>
-      <div class="step"><div class="snum">03 — BUILD</div><div class="stitle">Buy credits & build</div><div class="sdesc">Add credits to your wallet. The AI builds your complete website live — responsive, beautiful, ready to launch.</div><span class="spill">From ₹99</span></div>
-      <div class="step"><div class="snum">04 — LAUNCH</div><div class="stitle">Deploy & go live</div><div class="sdesc">Click Deploy. Your site is live at aiwebbb.com/app/ID instantly. Top up credits anytime to keep improving it.</div><span class="spill">Instant</span></div>
+      <div class="step"><div class="snum">01 — DESCRIBE</div><div class="stitle">Tell us your idea</div><div class="sdesc">Type any idea — SaaS, eCommerce, portfolio, blog, game, landing page. Any idea, any style.</div><span class="spill">Free</span></div>
+      <div class="step"><div class="snum">02 — PREVIEW</div><div class="stitle">See it come alive</div><div class="sdesc">A realistic, interactive preview of your website appears in seconds inside a browser frame. Feel the WOW moment.</div><span class="spill">Free · 5–8 seconds</span></div>
+      <div class="step"><div class="snum">03 — BUILD</div><div class="stitle">Buy credits & build</div><div class="sdesc">Add credits. AI builds the full working website using your preview as the design blueprint. Perfect match.</div><span class="spill">From ₹99</span></div>
+      <div class="step"><div class="snum">04 — LAUNCH</div><div class="stitle">Deploy instantly</div><div class="sdesc">One click to go live at aiwebbb.com/app/ID. Keep improving with credits anytime. Never start over.</div><span class="spill">Free deployment</span></div>
     </div>
   </div>
 </section>
@@ -482,58 +512,23 @@ footer{border-top:1px solid var(--g800);padding:44px 24px 24px;}
     <h2 class="sh2 fadein">Buy credits. Build anything.</h2>
     <p class="ssub fadein">No subscriptions. No expiry. Buy once, build forever. The more you buy, the less each credit costs.</p>
     <div class="pricing-wrap fadein">
-      <!-- LEFT: Pack list -->
       <div class="pricing-list">
-        <div class="pricing-list-head">
-          <h3>Credit Packs</h3>
-          <p>One-time purchase · Credits never expire · Instant top-up anytime</p>
-        </div>
-        <div class="pack-row" onclick="payPack(0)">
-          <div class="pack-row-left"><span class="pack-row-name">Starter</span><span class="pack-row-credits">100 credits</span></div>
-          <div class="pack-row-right"><span class="pack-row-per">₹0.99/cr</span><span class="pack-row-price">₹99</span><button class="pack-row-btn">Buy</button></div>
-        </div>
-        <div class="pack-row" onclick="payPack(1)">
-          <div class="pack-row-left"><span class="pack-row-name">Builder</span><span class="pack-row-credits">250 credits</span></div>
-          <div class="pack-row-right"><span class="pack-row-per">₹0.80/cr</span><span class="pack-row-price">₹199</span><button class="pack-row-btn">Buy</button></div>
-        </div>
-        <div class="pack-row" onclick="payPack(2)">
-          <div class="pack-row-left"><span class="pack-row-name">Creator</span><span class="pack-row-credits">700 credits</span></div>
-          <div class="pack-row-right"><span class="pack-row-per">₹0.71/cr</span><span class="pack-row-price">₹499</span><button class="pack-row-btn">Buy</button></div>
-        </div>
-        <div class="pack-row hot" onclick="payPack(3)">
-          <div class="pack-row-left"><span class="pack-row-name">Creator Plus</span><span class="pack-row-credits">1,500 credits</span><span class="pack-row-hot">POPULAR</span></div>
-          <div class="pack-row-right"><span class="pack-row-per">₹0.67/cr</span><span class="pack-row-price">₹999</span><button class="pack-row-btn">Buy</button></div>
-        </div>
-        <div class="pack-row" onclick="payPack(4)">
-          <div class="pack-row-left"><span class="pack-row-name">Growth</span><span class="pack-row-credits">3,500 credits</span></div>
-          <div class="pack-row-right"><span class="pack-row-per">₹0.57/cr</span><span class="pack-row-price">₹1,999</span><button class="pack-row-btn">Buy</button></div>
-        </div>
-        <div class="pack-row" onclick="payPack(5)">
-          <div class="pack-row-left"><span class="pack-row-name">Growth Plus</span><span class="pack-row-credits">10,000 credits</span></div>
-          <div class="pack-row-right"><span class="pack-row-per">₹0.50/cr</span><span class="pack-row-price">₹4,999</span><button class="pack-row-btn">Buy</button></div>
-        </div>
-        <div class="pack-row" onclick="payPack(6)">
-          <div class="pack-row-left"><span class="pack-row-name">Premium</span><span class="pack-row-credits">25,000 credits</span></div>
-          <div class="pack-row-right"><span class="pack-row-per">₹0.40/cr</span><span class="pack-row-price">₹9,999</span><button class="pack-row-btn">Buy</button></div>
-        </div>
-        <div class="pack-row" onclick="payPack(7)">
-          <div class="pack-row-left"><span class="pack-row-name">Premium Plus</span><span class="pack-row-credits">60,000 credits</span></div>
-          <div class="pack-row-right"><span class="pack-row-per">₹0.33/cr</span><span class="pack-row-price">₹19,999</span><button class="pack-row-btn">Buy</button></div>
-        </div>
-        <div class="pack-row" onclick="payPack(8)">
-          <div class="pack-row-left"><span class="pack-row-name">Ultimate</span><span class="pack-row-credits">1,60,000 credits</span></div>
-          <div class="pack-row-right"><span class="pack-row-per">₹0.31/cr</span><span class="pack-row-price">₹49,999</span><button class="pack-row-btn">Buy</button></div>
-        </div>
-        <div class="pack-row" onclick="payPack(9)">
-          <div class="pack-row-left"><span class="pack-row-name">Unlimited Build</span><span class="pack-row-credits">3,50,000 credits</span></div>
-          <div class="pack-row-right"><span class="pack-row-per">₹0.29/cr</span><span class="pack-row-price">₹99,999</span><button class="pack-row-btn">Buy</button></div>
-        </div>
+        <div class="pricing-list-head"><h3>Credit Packs</h3><p>One-time purchase · Credits never expire · Top-up anytime</p></div>
+        <div class="pack-row" onclick="payPack(0)"><div class="pack-row-left"><span class="pack-row-name">Starter</span><span class="pack-row-credits">100 credits</span></div><div class="pack-row-right"><span class="pack-row-per">₹0.99/cr</span><span class="pack-row-price">₹99</span><button class="pack-row-btn">Buy</button></div></div>
+        <div class="pack-row" onclick="payPack(1)"><div class="pack-row-left"><span class="pack-row-name">Builder</span><span class="pack-row-credits">250 credits</span></div><div class="pack-row-right"><span class="pack-row-per">₹0.80/cr</span><span class="pack-row-price">₹199</span><button class="pack-row-btn">Buy</button></div></div>
+        <div class="pack-row" onclick="payPack(2)"><div class="pack-row-left"><span class="pack-row-name">Creator</span><span class="pack-row-credits">700 credits</span></div><div class="pack-row-right"><span class="pack-row-per">₹0.71/cr</span><span class="pack-row-price">₹499</span><button class="pack-row-btn">Buy</button></div></div>
+        <div class="pack-row hot" onclick="payPack(3)"><div class="pack-row-left"><span class="pack-row-name">Creator Plus</span><span class="pack-row-credits">1,500 credits</span><span class="pack-row-hot">POPULAR</span></div><div class="pack-row-right"><span class="pack-row-per">₹0.67/cr</span><span class="pack-row-price">₹999</span><button class="pack-row-btn">Buy</button></div></div>
+        <div class="pack-row" onclick="payPack(4)"><div class="pack-row-left"><span class="pack-row-name">Growth</span><span class="pack-row-credits">3,500 credits</span></div><div class="pack-row-right"><span class="pack-row-per">₹0.57/cr</span><span class="pack-row-price">₹1,999</span><button class="pack-row-btn">Buy</button></div></div>
+        <div class="pack-row" onclick="payPack(5)"><div class="pack-row-left"><span class="pack-row-name">Growth Plus</span><span class="pack-row-credits">10,000 credits</span></div><div class="pack-row-right"><span class="pack-row-per">₹0.50/cr</span><span class="pack-row-price">₹4,999</span><button class="pack-row-btn">Buy</button></div></div>
+        <div class="pack-row" onclick="payPack(6)"><div class="pack-row-left"><span class="pack-row-name">Premium</span><span class="pack-row-credits">25,000 credits</span></div><div class="pack-row-right"><span class="pack-row-per">₹0.40/cr</span><span class="pack-row-price">₹9,999</span><button class="pack-row-btn">Buy</button></div></div>
+        <div class="pack-row" onclick="payPack(7)"><div class="pack-row-left"><span class="pack-row-name">Premium Plus</span><span class="pack-row-credits">60,000 credits</span></div><div class="pack-row-right"><span class="pack-row-per">₹0.33/cr</span><span class="pack-row-price">₹19,999</span><button class="pack-row-btn">Buy</button></div></div>
+        <div class="pack-row" onclick="payPack(8)"><div class="pack-row-left"><span class="pack-row-name">Ultimate</span><span class="pack-row-credits">1,60,000 credits</span></div><div class="pack-row-right"><span class="pack-row-per">₹0.31/cr</span><span class="pack-row-price">₹49,999</span><button class="pack-row-btn">Buy</button></div></div>
+        <div class="pack-row" onclick="payPack(9)"><div class="pack-row-left"><span class="pack-row-name">Unlimited Build</span><span class="pack-row-credits">3,50,000 credits</span></div><div class="pack-row-right"><span class="pack-row-per">₹0.29/cr</span><span class="pack-row-price">₹99,999</span><button class="pack-row-btn">Buy</button></div></div>
       </div>
-      <!-- RIGHT: Usage + info -->
       <div class="pricing-info">
         <div class="info-card">
           <div class="info-card-head">What costs credits?</div>
-          <div class="info-row"><span>Free preview</span><span class="info-val-free">FREE</span></div>
+          <div class="info-row"><span>Preview (see your website)</span><span class="info-val-free">FREE</span></div>
           <div class="info-row"><span>Full website build</span><span class="info-val-cr">50–200 cr</span></div>
           <div class="info-row"><span>Small edit / text change</span><span class="info-val-cr">1–5 cr</span></div>
           <div class="info-row"><span>Add new page</span><span class="info-val-cr">5–20 cr</span></div>
@@ -547,10 +542,7 @@ footer{border-top:1px solid var(--g800);padding:44px 24px 24px;}
           <div class="info-row"><span>Download HTML file</span><span class="info-val-free">ALWAYS</span></div>
           <div class="info-row"><span>Project deleted if credits run out?</span><span style="color:var(--green);font-weight:600;font-size:10px;">NEVER</span></div>
         </div>
-        <div class="cta-note">
-          <p>Start with the free preview. See your full project plan before buying a single credit.</p>
-          <button onclick="openBld()">⚡ Get Free Preview →</button>
-        </div>
+        <div class="cta-note"><p>See your full website preview before buying a single credit.</p><button onclick="openInputModal()">⚡ See Your Website Free →</button></div>
       </div>
     </div>
   </div>
@@ -562,12 +554,12 @@ footer{border-top:1px solid var(--g800);padding:44px 24px 24px;}
     <div class="tag">Features</div>
     <h2 class="sh2 fadein">Everything included. No hidden fees.</h2>
     <div class="feats fadein">
-      <div class="fc"><div class="fi">👁</div><div class="ft">Free Preview Always</div><div class="fd">See your project plan, features, and structure before spending a single rupee. Get emotionally invested first.</div></div>
-      <div class="fc"><div class="fi">⚡</div><div class="ft">30-Second Build</div><div class="fd">Full HTML, CSS, and JS generated live in your browser. Beautiful, responsive, production-ready output every time.</div></div>
-      <div class="fc"><div class="fi">💳</div><div class="ft">Credits Never Expire</div><div class="fd">Buy once, use whenever. No monthly resets, no forced renewals. Your credits stay in your wallet until you use them.</div></div>
-      <div class="fc"><div class="fi">🔐</div><div class="ft">Project Protection</div><div class="fd">Even if credits run out, your project is never deleted. View, download, and review anytime. Only new AI edits pause.</div></div>
+      <div class="fc"><div class="fi">👁</div><div class="ft">Realistic Preview First</div><div class="fd">See a real working preview of your website inside a browser frame — before spending a single rupee. Get emotionally attached first.</div></div>
+      <div class="fc"><div class="fi">⚡</div><div class="ft">30-Second Build</div><div class="fd">Full HTML, CSS, and JS generated live. The build matches your preview exactly — same design, same layout, real code.</div></div>
+      <div class="fc"><div class="fi">💳</div><div class="ft">Credits Never Expire</div><div class="fd">Buy once, use whenever. No monthly resets, no forced renewals. Your credits stay until you use them.</div></div>
+      <div class="fc"><div class="fi">🔐</div><div class="ft">Project Protection</div><div class="fd">Even if credits run out, your project is never deleted. View, download, review anytime. Only new AI edits pause.</div></div>
       <div class="fc"><div class="fi">🌐</div><div class="ft">Free Deployment</div><div class="fd">Deploy to a live public URL for free. Your app goes live at aiwebbb.com/app/ID instantly — no hosting needed.</div></div>
-      <div class="fc"><div class="fi">💬</div><div class="ft">Chat to Improve</div><div class="fd">Keep refining with natural language. "Add a dark mode", "create a contact form", "make it more modern" — just ask.</div></div>
+      <div class="fc"><div class="fi">💬</div><div class="ft">Chat to Improve</div><div class="fd">Keep refining with natural language after building. "Add dark mode", "create a contact form", "make it modern" — just ask.</div></div>
     </div>
   </div>
 </section>
@@ -577,166 +569,58 @@ footer{border-top:1px solid var(--g800);padding:44px 24px 24px;}
   <div class="sec-in">
     <div class="tag">Compare</div>
     <h2 class="sh2 fadein">AIWEBBB vs the alternatives.</h2>
-    <p class="ssub fadein">Why pay thousands monthly or spend weeks in Figma when you can build and launch in 30 seconds?</p>
+    <p class="ssub fadein">Why pay thousands monthly when you can see your website in 5 seconds and build for ₹99?</p>
     <div class="ctable-wrap fadein">
       <table class="ctable">
-        <thead>
-          <tr>
-            <th>Feature</th>
-            <th class="hl">AIWEBBB</th>
-            <th>Bubble</th>
-            <th>Webflow</th>
-            <th>Wix</th>
-            <th>Hiring Dev</th>
-            <th>WordPress</th>
-          </tr>
-        </thead>
+        <thead><tr><th>Feature</th><th class="hl">AIWEBBB</th><th>Bubble</th><th>Webflow</th><th>Wix</th><th>Hiring Dev</th><th>WordPress</th></tr></thead>
         <tbody>
-          <tr>
-            <td>Time to first live website</td>
-            <td class="hl"><span class="cv-em">30 seconds</span></td>
-            <td>Hours–Days</td>
-            <td>Hours–Days</td>
-            <td>Hours</td>
-            <td>Weeks–Months</td>
-            <td>Days</td>
-          </tr>
-          <tr>
-            <td>Coding required</td>
-            <td class="hl"><span class="cv-yes">Zero</span></td>
-            <td><span class="cv-part">Low</span></td>
-            <td><span class="cv-part">Medium</span></td>
-            <td><span class="cv-yes">None</span></td>
-            <td><span class="cv-no">High</span></td>
-            <td><span class="cv-part">Some</span></td>
-          </tr>
-          <tr>
-            <td>AI-powered generation</td>
-            <td class="hl"><span class="cv-yes">✓ Full AI build</span></td>
-            <td><span class="cv-no">✕</span></td>
-            <td><span class="cv-no">✕</span></td>
-            <td><span class="cv-part">Basic AI</span></td>
-            <td><span class="cv-no">✕</span></td>
-            <td><span class="cv-no">✕</span></td>
-          </tr>
-          <tr>
-            <td>Free project preview</td>
-            <td class="hl"><span class="cv-yes">✓ Always free</span></td>
-            <td><span class="cv-no">✕</span></td>
-            <td><span class="cv-no">✕</span></td>
-            <td><span class="cv-part">Limited</span></td>
-            <td><span class="cv-no">✕</span></td>
-            <td><span class="cv-no">✕</span></td>
-          </tr>
-          <tr>
-            <td>Free deployment</td>
-            <td class="hl"><span class="cv-yes">✓ Always free</span></td>
-            <td><span class="cv-no">Paid only</span></td>
-            <td><span class="cv-no">Paid only</span></td>
-            <td><span class="cv-part">Subdomain</span></td>
-            <td><span class="cv-no">Complex setup</span></td>
-            <td><span class="cv-part">Self-hosted</span></td>
-          </tr>
-          <tr>
-            <td>Monthly subscription</td>
-            <td class="hl"><span class="cv-yes">None — credits only</span></td>
-            <td><span class="cv-no">₹2,500+/mo</span></td>
-            <td><span class="cv-no">₹1,800+/mo</span></td>
-            <td><span class="cv-no">₹200+/mo</span></td>
-            <td><span class="cv-no">₹50,000+</span></td>
-            <td><span class="cv-part">Hosting fees</span></td>
-          </tr>
-          <tr>
-            <td>Edit via natural language chat</td>
-            <td class="hl"><span class="cv-yes">✓</span></td>
-            <td><span class="cv-no">✕</span></td>
-            <td><span class="cv-no">✕</span></td>
-            <td><span class="cv-no">✕</span></td>
-            <td><span class="cv-no">✕</span></td>
-            <td><span class="cv-no">✕</span></td>
-          </tr>
-          <tr>
-            <td>Download your own code</td>
-            <td class="hl"><span class="cv-yes">✓ Always</span></td>
-            <td><span class="cv-no">✕</span></td>
-            <td><span class="cv-part">Paid plan</span></td>
-            <td><span class="cv-no">✕</span></td>
-            <td><span class="cv-yes">✓</span></td>
-            <td><span class="cv-yes">✓</span></td>
-          </tr>
-          <tr>
-            <td>Project protected if budget runs out</td>
-            <td class="hl"><span class="cv-yes">✓ Never deleted</span></td>
-            <td><span class="cv-no">Suspended</span></td>
-            <td><span class="cv-no">Suspended</span></td>
-            <td><span class="cv-no">Suspended</span></td>
-            <td>—</td>
-            <td><span class="cv-part">Depends</span></td>
-          </tr>
-          <tr>
-            <td>Starting price</td>
-            <td class="hl"><span class="cv-em">₹99 one-time</span></td>
-            <td>₹2,500/mo</td>
-            <td>₹1,800/mo</td>
-            <td>₹200/mo</td>
-            <td>₹50,000+</td>
-            <td>₹300+/mo hosting</td>
-          </tr>
+          <tr><td>See preview before paying</td><td class="hl"><span class="cv-yes">✓ Always free</span></td><td><span class="cv-no">✕</span></td><td><span class="cv-no">✕</span></td><td><span class="cv-no">✕</span></td><td><span class="cv-no">✕</span></td><td><span class="cv-no">✕</span></td></tr>
+          <tr><td>Time to first live website</td><td class="hl"><span class="cv-em">30 seconds</span></td><td>Hours–Days</td><td>Hours–Days</td><td>Hours</td><td>Weeks–Months</td><td>Days</td></tr>
+          <tr><td>Coding required</td><td class="hl"><span class="cv-yes">Zero</span></td><td><span class="cv-part">Low</span></td><td><span class="cv-part">Medium</span></td><td><span class="cv-yes">None</span></td><td><span class="cv-no">High</span></td><td><span class="cv-part">Some</span></td></tr>
+          <tr><td>AI-powered generation</td><td class="hl"><span class="cv-yes">✓ Full AI build</span></td><td><span class="cv-no">✕</span></td><td><span class="cv-no">✕</span></td><td><span class="cv-part">Basic AI</span></td><td><span class="cv-no">✕</span></td><td><span class="cv-no">✕</span></td></tr>
+          <tr><td>Free deployment</td><td class="hl"><span class="cv-yes">✓ Always free</span></td><td><span class="cv-no">Paid only</span></td><td><span class="cv-no">Paid only</span></td><td><span class="cv-part">Subdomain</span></td><td><span class="cv-no">Complex</span></td><td><span class="cv-part">Self-hosted</span></td></tr>
+          <tr><td>Monthly subscription</td><td class="hl"><span class="cv-yes">None — credits only</span></td><td><span class="cv-no">₹2,500+/mo</span></td><td><span class="cv-no">₹1,800+/mo</span></td><td><span class="cv-no">₹200+/mo</span></td><td><span class="cv-no">₹50,000+</span></td><td><span class="cv-part">Hosting fees</span></td></tr>
+          <tr><td>Starting price</td><td class="hl"><span class="cv-em">₹99 one-time</span></td><td>₹2,500/mo</td><td>₹1,800/mo</td><td>₹200/mo</td><td>₹50,000+</td><td>₹300+/mo</td></tr>
         </tbody>
       </table>
     </div>
   </div>
 </section>
 
-<!-- NUMBERS SECTION -->
+<!-- NUMBERS -->
 <section class="sec" id="numbers" style="background:#000;border-top:1px solid var(--g800);">
   <div class="sec-in">
     <h2 class="sh2 fadein" style="font-size:clamp(26px,3vw,38px);margin-bottom:8px;">AIWEBBB in numbers</h2>
-    <p class="ssub fadein" style="margin-bottom:44px;">Builders are already turning ideas into reality with AIWEBBB.</p>
+    <p class="ssub fadein" style="margin-bottom:44px;">Builders are already turning ideas into reality.</p>
     <div class="nums-grid fadein">
-      <div class="num-card">
-        <div class="num-big">10M+</div>
-        <div class="num-label">projects built on AIWEBBB</div>
-      </div>
-      <div class="num-card">
-        <div class="num-big">100K+</div>
-        <div class="num-label">projects built per day on AIWEBBB</div>
-      </div>
-      <div class="num-card">
-        <div class="num-big">100M</div>
-        <div class="num-label">visits per day to AIWEBBB-built applications</div>
-      </div>
+      <div class="num-card"><div class="num-big">10M+</div><div class="num-label">projects built on AIWEBBB</div></div>
+      <div class="num-card"><div class="num-big">100K+</div><div class="num-label">projects built per day</div></div>
+      <div class="num-card"><div class="num-big">100M</div><div class="num-label">visits per day to AIWEBBB-built apps</div></div>
     </div>
   </div>
 </section>
 
-<!-- READY TO BUILD CTA -->
+<!-- READY TO BUILD -->
 <section id="readytobuild">
   <div class="rtb-inner">
     <div class="rtb-label">AI Website Builder</div>
     <h2 class="rtb-title">Ready to build?</h2>
     <div class="rtb-box">
-      <textarea id="rtb-ta" class="rtb-ta" placeholder="Describe your website idea… e.g. A SaaS dashboard for project management with dark theme" rows="2" oninput="rtbAuto(this)" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();rtbBuild();}"></textarea>
+      <textarea id="rtb-ta" class="rtb-ta" placeholder="Describe your website idea…" rows="2" oninput="rtbAuto(this)" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();rtbBuild();}"></textarea>
       <div class="rtb-actions">
-        <button class="rtb-attach" title="Coming soon" onclick="toast('File upload coming soon','📎')">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.5 8.5L7.5 14.5C5.8 16.2 3.1 16.2 1.4 14.5C-.3 12.8-.3 10.1 1.4 8.4L8.5 1.3C9.6.2 11.4.2 12.5 1.3C13.6 2.4 13.6 4.2 12.5 5.3L5.9 11.9C5.3 12.5 4.4 12.5 3.8 11.9C3.2 11.3 3.2 10.4 3.8 9.8L9.5 4.1" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
+        <button class="rtb-attach" onclick="toast('File upload coming soon','📎')"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.5 8.5L7.5 14.5C5.8 16.2 3.1 16.2 1.4 14.5C-.3 12.8-.3 10.1 1.4 8.4L8.5 1.3C9.6.2 11.4.2 12.5 1.3C13.6 2.4 13.6 4.2 12.5 5.3L5.9 11.9C5.3 12.5 4.4 12.5 3.8 11.9C3.2 11.3 3.2 10.4 3.8 9.8L9.5 4.1" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         <div class="rtb-right">
-          <button class="rtb-mic" id="rtb-mic" onclick="rtbMic()" title="Voice input">
-            <svg width="15" height="15" viewBox="0 0 14 14" fill="none"><rect x="4" y="1" width="6" height="8" rx="3" stroke="currentColor" stroke-width="1.3"/><path d="M2 7.5a5 5 0 0010 0" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><path d="M7 12.5v1" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
-          </button>
-          <button class="rtb-send" onclick="rtbBuild()">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M14 2L2 7.5 6.5 9.5 8.5 14 14 2z" fill="currentColor"/></svg>
-          </button>
+          <button class="rtb-mic" id="rtb-mic" onclick="rtbMic()"><svg width="15" height="15" viewBox="0 0 14 14" fill="none"><rect x="4" y="1" width="6" height="8" rx="3" stroke="currentColor" stroke-width="1.3"/><path d="M2 7.5a5 5 0 0010 0" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><path d="M7 12.5v1" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></button>
+          <button class="rtb-send" onclick="rtbBuild()"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M14 2L2 7.5 6.5 9.5 8.5 14 14 2z" fill="currentColor"/></svg></button>
         </div>
       </div>
     </div>
     <div class="rtb-tags">
-      <button class="rtb-tag" onclick="rtbFill('Build me a SaaS dashboard with auth and analytics')">SaaS Dashboard</button>
-      <button class="rtb-tag" onclick="rtbFill('Build an eCommerce store for clothing with cart and checkout')">eCommerce Store</button>
-      <button class="rtb-tag" onclick="rtbFill('Build a portfolio website for a designer, minimal dark theme')">Portfolio</button>
-      <button class="rtb-tag" onclick="rtbFill('Build a landing page for a mobile app startup')">Landing Page</button>
-      <button class="rtb-tag" onclick="rtbFill('Build a blog platform with categories and dark theme')">Blog</button>
+      <button class="rtb-tag" onclick="rtbFill('SaaS dashboard with auth and analytics')">SaaS Dashboard</button>
+      <button class="rtb-tag" onclick="rtbFill('eCommerce store for clothing with cart')">eCommerce Store</button>
+      <button class="rtb-tag" onclick="rtbFill('Portfolio for a designer, minimal dark theme')">Portfolio</button>
+      <button class="rtb-tag" onclick="rtbFill('Landing page for a mobile app startup')">Landing Page</button>
+      <button class="rtb-tag" onclick="rtbFill('Blog platform with categories and dark theme')">Blog</button>
     </div>
   </div>
 </section>
@@ -744,8 +628,8 @@ footer{border-top:1px solid var(--g800);padding:44px 24px 24px;}
 <footer>
   <div class="foot-wrap">
     <div class="foot-grid">
-      <div><div class="flogo">AIWEBBB.com</div><div class="ftag">Build any website in 30 seconds. Free preview. Credits-based. No subscriptions.</div><div style="font-size:10px;color:var(--g600);">Made in India 🇮🇳 · Powered by Claude AI</div></div>
-      <div><div class="fh">Product</div><a class="fl" onclick="openBld()">Build Now</a><a class="fl" href="#how">How it works</a><a class="fl" href="#pricing">Pricing</a><a class="fl" href="#compare">Compare</a><a class="fl" href="#features">Features</a></div>
+      <div><div class="flogo">AIWEBBB.com</div><div class="ftag">See your website before you pay. Build with credits. No subscriptions.</div><div style="font-size:10px;color:var(--g600);">Made in India 🇮🇳 · Powered by Claude AI</div></div>
+      <div><div class="fh">Product</div><a class="fl" onclick="openInputModal()">Build Now</a><a class="fl" href="#how">How it works</a><a class="fl" href="#pricing">Pricing</a><a class="fl" href="#compare">Compare</a><a class="fl" href="#features">Features</a></div>
       <div><div class="fh">Account</div><a class="fl" onclick="openDash()">My Projects</a><a class="fl" onclick="payPack(0)">Buy Credits</a></div>
       <div><div class="fh">Legal</div><a class="fl" href="/privacy">Privacy Policy</a><a class="fl" href="/terms">Terms of Service</a><a class="fl" href="/refund">Refund Policy</a></div>
       <div><div class="fh">Connect</div><a class="fl" href="mailto:hello@aiwebbb.com">Email Us</a><a class="fl" href="https://x.com/aiwebbb" target="_blank">X / Twitter</a></div>
@@ -754,7 +638,107 @@ footer{border-top:1px solid var(--g800);padding:44px 24px 24px;}
   </div>
 </footer>
 
-<!-- ══ BUILDER ══════════════════════════════ -->
+<!-- ══ INPUT MODAL ══ -->
+<div id="inputmo">
+  <button class="imc-close" onclick="closeInputModal()">✕</button>
+  <div class="imc">
+    <div class="imc-label">AI Website Builder</div>
+    <div class="imc-title">What are you building?</div>
+    <div class="imc-box">
+      <textarea id="imc-ta" class="imc-ta" placeholder="e.g. A SaaS dashboard for project management with dark theme, sidebar navigation, charts, and user authentication" rows="3" oninput="imcAuto(this)" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();imcSend();}"></textarea>
+      <div class="imc-files" id="imc-files"></div>
+      <div class="imc-row">
+        <div class="imc-left">
+          <input type="file" id="imc-file-input" accept="image/*,.pdf,.txt,.md" multiple style="display:none;" onchange="imcFilesSelected(event)">
+          <button class="imc-attach" id="imc-attach-btn" onclick="document.getElementById('imc-file-input').click()" style="position:relative;"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M13.5 8.5L7.5 14.5C5.8 16.2 3.1 16.2 1.4 14.5C-.3 12.8-.3 10.1 1.4 8.4L8.5 1.3C9.6.2 11.4.2 12.5 1.3C13.6 2.4 13.6 4.2 12.5 5.3L5.9 11.9C5.3 12.5 4.4 12.5 3.8 11.9C3.2 11.3 3.2 10.4 3.8 9.8L9.5 4.1" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="imc-attach-badge" id="imc-attach-badge" style="display:none;">0</span></button>
+        </div>
+        <div class="imc-right">
+          <button class="imc-mic" id="imc-mic" onclick="imcMic()"><svg width="13" height="13" viewBox="0 0 14 14" fill="none"><rect x="4" y="1" width="6" height="8" rx="3" stroke="currentColor" stroke-width="1.3"/><path d="M2 7.5a5 5 0 0010 0" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><path d="M7 12.5v1" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></button>
+          <button class="imc-send" onclick="imcSend()"><svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M12 2L2 6.5l4 1.5 1.5 4L12 2z" fill="currentColor"/></svg> Generate Preview</button>
+        </div>
+      </div>
+    </div>
+    <div class="imc-pills">
+      <button class="imc-pill" onclick="imcFill('Website')">🌐 Website</button>
+      <button class="imc-pill" onclick="imcFill('Web App')">💻 Web App</button>
+      <button class="imc-pill" onclick="imcFill('eCommerce Store with products, cart and checkout')">🛒 eCommerce</button>
+      <button class="imc-pill" onclick="imcFill('Portfolio website for a designer')">🎨 Portfolio</button>
+      <button class="imc-pill" onclick="imcFill('Landing page for a startup')">🚀 Landing Page</button>
+      <button class="imc-pill" onclick="imcFill('Blog platform with categories')">📝 Blog</button>
+      <button class="imc-pill" onclick="imcFill('Browser game with levels and score')">🎮 Game</button>
+      <button class="imc-pill" onclick="imcFill('Mobile app UI with bottom navigation')">📱 Mobile App</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ CINEMATIC LOADING ══ -->
+<div id="loadingmo">
+  <div class="lm-content">
+    <div class="lm-icon" id="lm-icon">✦</div>
+    <div class="lm-title" id="lm-title">Creating your preview</div>
+    <div class="lm-step" id="lm-step">Analysing your idea…</div>
+    <div class="lm-bar"><div class="lm-fill" id="lm-fill" style="width:0%;"></div></div>
+    <div class="lm-pct" id="lm-pct">0%</div>
+    <div class="lm-checks">
+      <div class="lm-check active" id="lmc1"><div class="lm-check-dot"></div>Understanding your idea</div>
+      <div class="lm-check" id="lmc2"><div class="lm-check-dot"></div>Designing layout & structure</div>
+      <div class="lm-check" id="lmc3"><div class="lm-check-dot"></div>Creating visual components</div>
+      <div class="lm-check" id="lmc4"><div class="lm-check-dot"></div>Adding interactions</div>
+      <div class="lm-check" id="lmc5"><div class="lm-check-dot"></div>Making it feel premium</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ PREVIEW EXPERIENCE ══ -->
+<div id="previewmo">
+  <div class="pm-top">
+    <div class="pm-brand">
+      <span class="pm-brand-name" id="pm-brand-name">My App</span>
+      <span class="pm-badge">✨ Preview Ready</span>
+    </div>
+    <div class="pm-tabs">
+      <button class="pm-tab on" id="pmt-desktop" onclick="switchView('desktop')">🖥 Desktop</button>
+      <button class="pm-tab" id="pmt-tablet" onclick="switchView('tablet')">📱 Tablet</button>
+      <button class="pm-tab" id="pmt-mobile" onclick="switchView('mobile')">📲 Mobile</button>
+    </div>
+    <div class="pm-actions">
+      <button class="pm-btn-back" onclick="closePreviewAndBack()">← Back</button>
+      <button class="pm-btn-build" onclick="startBuildFlow()">⚡ Start Building</button>
+    </div>
+  </div>
+  <div class="pm-body">
+    <div class="pm-left">
+      <div class="browser-frame" id="browser-frame">
+        <div class="browser-bar">
+          <div class="browser-dots"><div class="bd r"></div><div class="bd y"></div><div class="bd g"></div></div>
+          <div class="browser-url"><div class="browser-url-dot"></div><span id="browser-url-text">aiwebbb.com/app/preview</span></div>
+        </div>
+        <div class="browser-content">
+          <iframe id="preview-iframe" class="browser-iframe" sandbox="allow-scripts allow-same-origin"></iframe>
+        </div>
+      </div>
+    </div>
+    <div class="pm-right" id="pm-right">
+      <div class="pm-info">
+        <div class="pm-info-label">✨ Preview ready</div>
+        <div class="pm-info-title" id="pm-info-title">Your website is ready</div>
+        <div class="pm-info-desc" id="pm-info-desc">A realistic preview of your website. Buy credits to build the full working version.</div>
+        <div class="pm-checks" id="pm-checks"></div>
+      </div>
+      <div class="pm-divider"></div>
+      <div class="pm-cta-wrap">
+        <div class="pm-cta-title">Choose a pack to start building</div>
+        <div class="pm-packs" id="pm-packs"></div>
+        <input type="email" class="mi-inp" id="pm-email" placeholder="your@email.com" style="margin-top:10px;">
+        <button class="pm-cta-btn" id="pm-pay-btn" onclick="pmPay()"><svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M12 2L2 6.5l4 1.5 1.5 4L12 2z" fill="currentColor"/></svg> Start Building Now</button>
+        <button class="pm-cta-btn2" onclick="pmCustomize()">🎨 Customize Preview First</button>
+        <div class="pm-pay-note">🔒 Secured by Razorpay · Credits never expire</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BUILDER -->
 <div id="bld">
   <div id="bnav">
     <div class="bnl">
@@ -767,42 +751,14 @@ footer{border-top:1px solid var(--g800);padding:44px 24px 24px;}
       <button class="btab" id="tcode" onclick="swTab('code')">⌨ Code</button>
     </div>
     <div class="bnr">
-      <div class="bcred" id="bcred" style="display:none;">
-        <span class="cn" id="bcred-n">0</span>
-        <span>credits</span>
-      </div>
+      <div class="bcred" id="bcred" style="display:none;"><span class="cn" id="bcred-n">0</span><span>credits</span></div>
       <button class="bdeploy locked" id="bdeploy" onclick="doDeploy()">↑ Deploy Free</button>
     </div>
   </div>
   <div id="bbody">
     <div id="ppane">
       <div id="pfw">
-        <div id="pempty">
-          <div class="pei">✦</div>
-          <div class="pet">Your website appears here</div>
-          <div class="pes">Describe your idea to get started →</div>
-        </div>
-        <!-- FREE PREVIEW SCREEN -->
-        <div id="previewScreen">
-          <div class="prev-card">
-            <div class="prev-icon">✦</div>
-            <div class="prev-title">Your project is ready to build</div>
-            <div class="prev-brand" id="prev-brand">My App</div>
-            <div class="prev-prog"><div class="prev-prog-fill"></div></div>
-            <div class="prev-stats">
-              <div class="ps-item"><div class="ps-num" id="prev-pages">0</div><div class="ps-label">Pages</div></div>
-              <div class="ps-item"><div class="ps-num" id="prev-feats">0</div><div class="ps-label">Features</div></div>
-              <div class="ps-item"><div class="ps-num" id="prev-time">~2m</div><div class="ps-label">Est. Build</div></div>
-            </div>
-            <div class="prev-desc" id="prev-desc">AI-powered website with all features included.</div>
-            <div class="prev-features" id="prev-chips"></div>
-            <button class="prev-cta" onclick="startBuildFromPreview()">⚡ Build This Now</button>
-            <div class="prev-sub">
-              <svg width="11" height="11" viewBox="0 0 14 14" fill="none"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-              Requires credits · <span id="prev-cost-est">~100–200 credits</span>
-            </div>
-          </div>
-        </div>
+        <div id="pempty"><div class="pei">✦</div><div class="pet">Your website appears here</div><div class="pes">Building your website…</div></div>
         <iframe id="piframe" sandbox="allow-scripts allow-same-origin" title="Preview"></iframe>
         <div id="cpane"></div>
       </div>
@@ -812,7 +768,7 @@ footer{border-top:1px solid var(--g800);padding:44px 24px 24px;}
           <div class="dst">Your site is live!</div>
           <div class="dss">Publicly accessible · Any browser · Forever free</div>
           <div class="dsurow"><a id="dsurl" class="dsurl" href="#" target="_blank"></a><button class="dscopy" onclick="copyURL()">Copy</button></div>
-          <div class="dsnote">Continue improving with credits. Chat below to make changes.</div>
+          <div class="dsnote">Continue improving with credits.</div>
           <div class="dsugg-title">What next?</div>
           <div class="dsugg-grid" id="dsugg-grid"></div>
           <button class="dsdism" onclick="document.getElementById('dsucc').style.display='none'">Continue editing</button>
@@ -821,9 +777,9 @@ footer{border-top:1px solid var(--g800);padding:44px 24px 24px;}
     </div>
     <div id="cpanel">
       <div id="chead">
-        <div class="chstat"><div class="sdot" id="sdot"></div><span id="stxt">Ready to build</span></div>
+        <div class="chstat"><div class="sdot" id="sdot"></div><span id="stxt">Building…</span></div>
         <div class="chbtns">
-          <button class="chbtn" onclick="newProj()" title="New project">+</button>
+          <button class="chbtn" onclick="openInputModal()" title="New project">+</button>
           <button class="chbtn" onclick="openDash()" title="My projects">⊞</button>
         </div>
       </div>
@@ -836,17 +792,13 @@ footer{border-top:1px solid var(--g800);padding:44px 24px 24px;}
       <div id="msgs"></div>
       <div id="chat-input-wrap">
         <div id="chat-box">
-          <textarea id="chat-ta" rows="1" placeholder="Describe your website idea…" oninput="taAuto(this)" onkeydown="taKey(event)"></textarea>
+          <textarea id="chat-ta" rows="1" placeholder="Ask for changes…" oninput="taAuto(this)" onkeydown="taKey(event)"></textarea>
           <div id="chat-row">
             <div class="chat-left">
-              <button id="mic-btn" onclick="toggleMic()">
-                <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><rect x="4" y="1" width="6" height="8" rx="3" stroke="currentColor" stroke-width="1.3"/><path d="M2 7.5a5 5 0 0010 0" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><path d="M7 12.5v1" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
-              </button>
+              <button id="mic-btn" onclick="toggleMic()"><svg width="12" height="12" viewBox="0 0 14 14" fill="none"><rect x="4" y="1" width="6" height="8" rx="3" stroke="currentColor" stroke-width="1.3"/><path d="M2 7.5a5 5 0 0010 0" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><path d="M7 12.5v1" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></button>
               <span class="chat-hint">Enter to send</span>
             </div>
-            <button id="send-btn" onclick="sendChat()">
-              <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M12 2L2 6.5l4 1.5 1.5 4L12 2z" fill="currentColor"/></svg>
-            </button>
+            <button id="send-btn" onclick="sendChat()"><svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M12 2L2 6.5l4 1.5 1.5 4L12 2z" fill="currentColor"/></svg></button>
           </div>
         </div>
       </div>
@@ -871,47 +823,17 @@ footer{border-top:1px solid var(--g800);padding:44px 24px 24px;}
 <div class="mo dmo" id="dashmo">
   <div class="mb" style="max-width:620px;max-height:84vh;overflow-y:auto;">
     <div class="dhead">
-      <div class="dur">
-        <div class="dav" id="dav">?</div>
-        <div><div id="demail" style="font-size:12px;font-weight:500;">Not logged in</div><div id="dplan" style="font-size:10px;color:var(--g500);">No account</div></div>
-      </div>
-      <div style="display:flex;gap:6px;">
-        <button class="btn-w" style="font-size:10px;padding:5px 12px;" onclick="closeDash();newProj();">+ New Project</button>
-        <button class="mx" onclick="closeDash()">✕</button>
-      </div>
+      <div class="dur"><div class="dav" id="dav">?</div><div><div id="demail" style="font-size:12px;font-weight:500;">Not logged in</div><div id="dplan" style="font-size:10px;color:var(--g500);">No account</div></div></div>
+      <div style="display:flex;gap:6px;"><button class="btn-w" style="font-size:10px;padding:5px 12px;" onclick="closeDash();openInputModal();">+ New Project</button><button class="mx" onclick="closeDash()">✕</button></div>
     </div>
     <div style="padding:16px 18px;">
-      <div id="dlogin">
-        <div style="text-align:center;padding:28px 0;">
-          <div style="font-size:26px;margin-bottom:10px;">👤</div>
-          <div style="font-size:14px;font-weight:600;margin-bottom:8px;">Access your projects</div>
-          <div style="font-size:11px;color:var(--g400);margin-bottom:18px;">Enter the email you used when building.</div>
-          <div style="max-width:280px;margin:0 auto;">
-            <input class="mi-inp" id="dein" type="email" placeholder="your@email.com" onkeydown="if(event.key==='Enter')dashLogin()">
-            <button class="mbtn" onclick="dashLogin()">View my projects →</button>
-          </div>
-        </div>
-      </div>
+      <div id="dlogin"><div style="text-align:center;padding:28px 0;"><div style="font-size:26px;margin-bottom:10px;">👤</div><div style="font-size:14px;font-weight:600;margin-bottom:8px;">Access your projects</div><div style="font-size:11px;color:var(--g400);margin-bottom:18px;">Enter the email you used when building.</div><div style="max-width:280px;margin:0 auto;"><input class="mi-inp" id="dein" type="email" placeholder="your@email.com" onkeydown="if(event.key==='Enter')dashLogin()"><button class="mbtn" onclick="dashLogin()">View my projects →</button></div></div></div>
       <div id="dcontent" style="display:none;">
-        <div class="dstats">
-          <div class="dsb"><div class="dsbn" id="dspr">0</div><div class="dsbl">Projects</div></div>
-          <div class="dsb"><div class="dsbn" id="dsdep">0</div><div class="dsbl">Deployed</div></div>
-          <div class="dsb"><div class="dsbn" id="dscred" style="color:var(--yellow);">0</div><div class="dsbl">Credits</div></div>
-        </div>
-        <div class="d-wallet" id="d-wallet">
-          <div class="d-wallet-top">
-            <div><div style="font-size:9px;color:var(--g500);text-transform:uppercase;letter-spacing:.8px;margin-bottom:3px;">Credit Wallet</div><div class="d-wallet-cred"><span id="d-cred-rem">0</span> remaining</div></div>
-            <button class="btn-ghost" style="font-size:10px;" onclick="closeDash();openPayModal();">Buy Credits</button>
-          </div>
-          <div class="d-wallet-track"><div class="d-wallet-fill" id="d-wallet-fill" style="width:100%;"></div></div>
-          <div class="d-wallet-sub"><span>0 used</span><span id="d-cred-total">0 total purchased</span></div>
-        </div>
+        <div class="dstats"><div class="dsb"><div class="dsbn" id="dspr">0</div><div class="dsbl">Projects</div></div><div class="dsb"><div class="dsbn" id="dsdep">0</div><div class="dsbl">Deployed</div></div><div class="dsb"><div class="dsbn" id="dscred" style="color:var(--yellow);">0</div><div class="dsbl">Credits</div></div></div>
+        <div class="d-wallet"><div class="d-wallet-top"><div><div style="font-size:9px;color:var(--g500);text-transform:uppercase;letter-spacing:.8px;margin-bottom:3px;">Credit Wallet</div><div class="d-wallet-cred"><span id="d-cred-rem">0</span> remaining</div></div><button class="btn-ghost" style="font-size:10px;" onclick="closeDash();openPayModal();">Buy Credits</button></div><div class="d-wallet-track"><div class="d-wallet-fill" id="d-wallet-fill" style="width:100%;"></div></div><div class="d-wallet-sub"><span>Credits wallet</span><span id="d-cred-total">0 total purchased</span></div></div>
         <div style="font-size:9px;color:var(--g500);letter-spacing:.8px;text-transform:uppercase;margin-bottom:8px;">My Projects</div>
         <div id="dplist"></div>
-        <div style="display:flex;justify-content:space-between;padding-top:14px;border-top:1px solid var(--g800);flex-wrap:wrap;gap:7px;margin-top:6px;">
-          <button class="btn-ghost" style="font-size:10px;" onclick="dashOut()">Sign out</button>
-          <button class="btn-w" style="font-size:10px;" onclick="closeDash();openPayModal();">Buy Credits</button>
-        </div>
+        <div style="display:flex;justify-content:space-between;padding-top:14px;border-top:1px solid var(--g800);flex-wrap:wrap;gap:7px;margin-top:6px;"><button class="btn-ghost" style="font-size:10px;" onclick="dashOut()">Sign out</button><button class="btn-w" style="font-size:10px;" onclick="closeDash();openPayModal();">Buy Credits</button></div>
       </div>
     </div>
   </div>
@@ -920,55 +842,38 @@ footer{border-top:1px solid var(--g800);padding:44px 24px 24px;}
 <script>
 'use strict';
 
-// ── CREDIT PACKS ──────────────────────────────
-const PACKS = [
-  {name:'Starter',      credits:100,     price:99,    inPaise:9900},
-  {name:'Builder',      credits:250,     price:199,   inPaise:19900},
-  {name:'Creator',      credits:700,     price:499,   inPaise:49900},
-  {name:'Creator Plus', credits:1500,    price:999,   inPaise:99900,  popular:true},
-  {name:'Growth',       credits:3500,    price:1999,  inPaise:199900},
-  {name:'Growth Plus',  credits:10000,   price:4999,  inPaise:499900},
-  {name:'Premium',      credits:25000,   price:9999,  inPaise:999900},
-  {name:'Premium Plus', credits:60000,   price:19999, inPaise:1999900},
-  {name:'Ultimate',     credits:160000,  price:49999, inPaise:4999900},
-  {name:'Unlimited Build',credits:350000,price:99999, inPaise:9999900}
+const PACKS=[
+  {name:'Starter',credits:100,price:99,inPaise:9900},
+  {name:'Builder',credits:250,price:199,inPaise:19900},
+  {name:'Creator',credits:700,price:499,inPaise:49900},
+  {name:'Creator Plus',credits:1500,price:999,inPaise:99900,popular:true},
+  {name:'Growth',credits:3500,price:1999,inPaise:199900},
+  {name:'Growth Plus',credits:10000,price:4999,inPaise:499900},
+  {name:'Premium',credits:25000,price:9999,inPaise:999900},
+  {name:'Premium Plus',credits:60000,price:19999,inPaise:1999900},
+  {name:'Ultimate',credits:160000,price:49999,inPaise:4999900},
+  {name:'Unlimited Build',credits:350000,price:99999,inPaise:9999900}
 ];
+const COSTS={build_sm:50,build_md:100,build_lg:200,edit_sm:2,edit_md:10,edit_lg:30};
 
-// ── CREDIT COSTS (internal) ───────────────────
-const COSTS = {
-  preview:    0,
-  build_sm:   50,   // simple page
-  build_md:   100,  // typical website
-  build_lg:   200,  // complex app
-  edit_sm:    2,    // small text/style change
-  edit_md:    10,   // add section/page
-  edit_lg:    30,   // add feature
-  deploy:     0
-};
-
-// ── CURSOR ───────────────────────────────────
 const $c=document.getElementById('cur'),$r=document.getElementById('ring');
 let mx=0,my=0,rx=0,ry=0;
 document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;$c.style.left=mx+'px';$c.style.top=my+'px';});
 (function a(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;$r.style.left=rx+'px';$r.style.top=ry+'px';requestAnimationFrame(a);})();
-document.addEventListener('mouseover',e=>{const b=e.target.closest('button,a,.pack,.pcrd,.fc,.step');$r.style.width=b?'36px':'24px';$r.style.height=b?'36px':'24px';});
+document.addEventListener('mouseover',e=>{const b=e.target.closest('button,a,.pack-row,.fc,.step,.pm-pack,.pcrd');$r.style.width=b?'36px':'24px';$r.style.height=b?'36px':'24px';});
 
-// ── SCROLL FADE ───────────────────────────────
 const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis');}),{threshold:.1});
 document.querySelectorAll('.fadein').forEach(el=>obs.observe(el));
 
-// ── TOAST ─────────────────────────────────────
 let _t;
 function toast(msg,icon='✓'){clearTimeout(_t);document.getElementById('tm').textContent=msg;document.getElementById('ti').textContent=icon;const t=document.getElementById('toast');t.classList.add('show');_t=setTimeout(()=>t.classList.remove('show'),3500);}
 
-// ── SESSION ───────────────────────────────────
 let S={email:localStorage.getItem('awbb_em')||null,credits:0,totalPurchased:0};
 
 async function proxyDB(action,table,data,filter){
   try{const r=await fetch('/api/supabase',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action,table,data,filter})});const res=await r.json();if(res.fallback)return null;return res.data;}
   catch{return null;}
 }
-
 const DB={
   async gU(e){const rows=await proxyDB('get','users',null,{email:e});if(rows&&rows.length)return rows[0];return JSON.parse(localStorage.getItem('u_'+e)||'null');},
   async sU(e,d){const o={email:e,...d,updated_at:new Date().toISOString()};await proxyDB('upsert','users',o,null);localStorage.setItem('u_'+e,JSON.stringify(o));return o;},
@@ -977,124 +882,283 @@ const DB={
   async dP(id,e){await proxyDB('delete','projects',null,{id,email:e});const key='p_'+e;const l=JSON.parse(localStorage.getItem(key)||'[]');localStorage.setItem(key,JSON.stringify(l.filter(p=>p.id!==id)));},
   async saveDeployment(did,html,email,brand){localStorage.setItem('d_'+did,html);try{await fetch('/api/save-deployment',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({deployId:did,html,email:email||'anon',brand:brand||'App'})});}catch{}}
 };
-
-async function loadS(){
-  if(!S.email)return;
-  const u=await DB.gU(S.email);
-  if(u){S.credits=u.credits||0;S.totalPurchased=u.total_purchased||S.credits;}
-  updWallet();
-}
+async function loadS(){if(!S.email)return;const u=await DB.gU(S.email);if(u){S.credits=u.credits||0;S.totalPurchased=u.total_purchased||S.credits;}updWallet();}
 loadS();
 
-// ── WALLET UI ─────────────────────────────────
 function updWallet(){
-  // Nav credit display
   const bc=document.getElementById('bcred'),bcn=document.getElementById('bcred-n');
-  if(S.email&&S.credits>0){
-    bc.style.display='flex';if(bcn)bcn.textContent=S.credits.toLocaleString();
-    bc.className='bcred'+(S.credits<100?' critical':S.credits<300?' low':'');
-  } else if(S.email){bc.style.display='flex';if(bcn)bcn.textContent='0';bc.className='bcred critical';}
+  if(S.email){bc.style.display='flex';if(bcn)bcn.textContent=S.credits.toLocaleString();bc.className='bcred'+(S.credits<100?' critical':S.credits<300?' low':'');}
   else bc.style.display='none';
-
-  // Wallet bar in chat
   const wb=document.getElementById('wallet-bar');
-  if(S.email){
-    wb.classList.add('show');
-    const wbcount=document.getElementById('wb-count');
-    if(wbcount)wbcount.textContent=S.credits.toLocaleString();
-    const fill=document.getElementById('wb-fill');
-    if(fill){
-      const pct=S.totalPurchased>0?Math.max(0,Math.min(100,(S.credits/S.totalPurchased)*100)):100;
-      fill.style.width=pct+'%';
-      fill.style.background=pct<5?'var(--red)':pct<15?'var(--orange)':pct<30?'var(--yellow)':'var(--green)';
+  if(S.email){wb.classList.add('show');const wbc=document.getElementById('wb-count');if(wbc)wbc.textContent=S.credits.toLocaleString();const fill=document.getElementById('wb-fill');if(fill){const pct=S.totalPurchased>0?Math.max(0,Math.min(100,(S.credits/S.totalPurchased)*100)):100;fill.style.width=pct+'%';fill.style.background=pct<5?'var(--red)':pct<15?'var(--orange)':pct<30?'var(--yellow)':'var(--green)';}}
+  else wb.classList.remove('show');
+}
+async function spendCredits(amount){if(S.credits<amount)return false;S.credits=Math.max(0,S.credits-amount);if(S.email){const u=await DB.gU(S.email)||{};await DB.sU(S.email,{...u,credits:S.credits});}updWallet();return true;}
+function estimateBuildCost(desc){const d=desc.toLowerCase();if(d.includes('simple')||d.includes('landing'))return COSTS.build_sm;if(d.includes('ecommerce')||d.includes('saas')||d.includes('dashboard')||d.includes('platform'))return COSTS.build_lg;return COSTS.build_md;}
+function estimateEditCost(msg){const m=msg.toLowerCase();if(m.includes('add page')||m.includes('new page'))return COSTS.edit_md;if(m.includes('add feature')||m.includes('auth')||m.includes('payment'))return COSTS.edit_lg;return COSTS.edit_sm;}
+
+function openInputModal(){document.getElementById('inputmo').style.display='flex';setTimeout(()=>document.getElementById('imc-ta').focus(),200);}
+function closeInputModal(){document.getElementById('inputmo').style.display='none';imcClearFiles();}
+function imcAuto(el){el.style.height='auto';el.style.height=Math.min(el.scrollHeight,140)+'px';}
+function imcFill(txt){const ta=document.getElementById('imc-ta');if(ta){ta.value=txt;imcAuto(ta);ta.focus();}}
+
+let imcMicOn=false;
+function imcMic(){imcMicOn=!imcMicOn;const btn=document.getElementById('imc-mic');btn.classList.toggle('active',imcMicOn);if(imcMicOn&&(window.SpeechRecognition||window.webkitSpeechRecognition)){const SR=window.SpeechRecognition||window.webkitSpeechRecognition;const rec=new SR();rec.lang='en-IN';rec.continuous=false;rec.interimResults=false;rec.onresult=e=>{const ta=document.getElementById('imc-ta');if(ta){ta.value=e.results[0][0].transcript;imcAuto(ta);}imcMicOn=false;btn.classList.remove('active');};rec.onerror=()=>{imcMicOn=false;btn.classList.remove('active');};rec.start();}}
+
+// ── FILE UPLOAD ───────────────────────────────
+let imcFiles=[]; // {name, type, mediaType, base64, isImage}
+const MAX_FILES=5;
+const MAX_FILE_MB=8;
+
+function imcFilesSelected(e){
+  const files=Array.from(e.target.files||[]);
+  e.target.value=''; // reset so same file can be re-selected
+  if(!files.length)return;
+  if(imcFiles.length+files.length>MAX_FILES){toast(`Max ${MAX_FILES} files allowed`,'⚠️');return;}
+  files.forEach(f=>{
+    if(f.size>MAX_FILE_MB*1024*1024){toast(`${f.name} is too large (max ${MAX_FILE_MB}MB)`,'⚠️');return;}
+    const isImage=f.type.startsWith('image/');
+    if(isImage){
+      compressImage(f).then(({dataUrl,base64,mediaType})=>{
+        imcFiles.push({name:f.name,type:f.type,mediaType,base64,isImage:true,dataUrl});
+        renderImcFiles();
+      }).catch(()=>toast(`Could not process ${f.name}`,'⚠️'));
+    }else{
+      const reader=new FileReader();
+      reader.onload=ev=>{
+        const dataUrl=ev.target.result;
+        const base64=dataUrl.split(',')[1];
+        imcFiles.push({name:f.name,type:f.type,mediaType:f.type||'application/octet-stream',base64,isImage:false,dataUrl});
+        renderImcFiles();
+      };
+      reader.onerror=()=>toast(`Could not read ${f.name}`,'⚠️');
+      reader.readAsDataURL(f);
     }
-    // Warnings
-    checkCreditWarning();
-  } else wb.classList.remove('show');
+  });
 }
 
-function checkCreditWarning(){
-  if(!S.totalPurchased||S.totalPurchased===0)return;
-  const pct=(S.credits/S.totalPurchased)*100;
-  const used=100-pct;
-  if(used>=95&&BS.code){
-    showWarnMsg('🚨 You have only '+S.credits+' credits left. Top up now to avoid interruption.','critical');
-  } else if(used>=85&&BS.code){
-    showWarnMsg('⚠️ Running low — '+S.credits+' credits remaining. You may need ~'+Math.max(50,S.credits)+' more to finish.','warning');
-  } else if(used>=70&&BS.code){
-    showWarnMsg('💡 70% of your credits used. '+S.credits+' remaining.','info');
-  }
+// Resize large images client-side to keep payloads small & fast
+function compressImage(file){
+  return new Promise((resolve,reject)=>{
+    const img=new Image();
+    const reader=new FileReader();
+    reader.onload=ev=>{
+      img.onload=()=>{
+        const MAX_DIM=1280;
+        let{width,height}=img;
+        if(width>MAX_DIM||height>MAX_DIM){
+          if(width>height){height=Math.round(height*(MAX_DIM/width));width=MAX_DIM;}
+          else{width=Math.round(width*(MAX_DIM/height));height=MAX_DIM;}
+        }
+        const canvas=document.createElement('canvas');
+        canvas.width=width;canvas.height=height;
+        const ctx=canvas.getContext('2d');
+        ctx.drawImage(img,0,0,width,height);
+        const dataUrl=canvas.toDataURL('image/jpeg',0.82);
+        resolve({dataUrl,base64:dataUrl.split(',')[1],mediaType:'image/jpeg'});
+      };
+      img.onerror=reject;
+      img.src=ev.target.result;
+    };
+    reader.onerror=reject;
+    reader.readAsDataURL(file);
+  });
 }
 
-let _lastWarn=0;
-function showWarnMsg(msg,level){
-  const now=Date.now();
-  if(now-_lastWarn<120000)return; // max once per 2 min
-  _lastWarn=now;
-  addAI(msg,'',level==='critical'?[{l:'Top Up Credits',c:'p',fn:'openPayModal()'}]:[{l:'Buy More Credits',c:'',fn:'openPayModal()'}]);
+function renderImcFiles(){
+  const container=document.getElementById('imc-files');
+  const badge=document.getElementById('imc-attach-badge');
+  const attachBtn=document.getElementById('imc-attach-btn');
+  if(!container)return;
+  container.innerHTML=imcFiles.map((f,i)=>`
+    <div class="imc-file-chip">
+      ${f.isImage?`<img src="${f.dataUrl}" alt="${esc(f.name)}">`:`<div class="imc-file-doc">📄</div>`}
+      <div class="imc-file-name">${esc(f.name)}</div>
+      <div class="imc-file-remove" onclick="imcRemoveFile(${i})">✕</div>
+    </div>`).join('');
+  if(badge){badge.style.display=imcFiles.length?'flex':'none';badge.textContent=imcFiles.length;}
+  if(attachBtn)attachBtn.classList.toggle('has-files',imcFiles.length>0);
 }
 
-// ── CONSUME CREDITS ───────────────────────────
-async function spendCredits(amount,action){
-  if(S.credits<amount)return false;
-  S.credits=Math.max(0,S.credits-amount);
-  if(S.email){
-    const u=await DB.gU(S.email)||{};
-    await DB.sU(S.email,{...u,credits:S.credits});
-  }
-  updWallet();
-  return true;
+function imcRemoveFile(i){imcFiles.splice(i,1);renderImcFiles();}
+function imcClearFiles(){imcFiles=[];renderImcFiles();}
+
+async function imcSend(){
+  const ta=document.getElementById('imc-ta');
+  const msg=ta?ta.value.trim():'';
+  if(!msg&&!imcFiles.length){toast('Describe your website idea first','⚠️');return;}
+  const filesToUse=[...imcFiles];
+  closeInputModal();
+  await runCinematicFlow(msg||'Build a website based on the attached reference',filesToUse);
 }
 
-function estimateBuildCost(desc){
-  const d=desc.toLowerCase();
-  if(d.includes('simple')||d.includes('basic')||d.includes('landing'))return COSTS.build_sm;
-  if(d.includes('ecommerce')||d.includes('saas')||d.includes('dashboard')||d.includes('platform'))return COSTS.build_lg;
-  return COSTS.build_md;
+const LM_STEPS=[
+  {label:'Understanding your idea…',pct:12,check:1},
+  {label:'Designing layout & structure…',pct:28,check:2},
+  {label:'Creating visual components…',pct:48,check:3},
+  {label:'Adding interactions & animations…',pct:68,check:4},
+  {label:'Making it feel premium…',pct:88,check:5},
+  {label:'Almost there…',pct:96,check:5}
+];
+
+function showLoading(){
+  document.getElementById('loadingmo').classList.add('open');
+  document.body.style.overflow='hidden';
+  document.getElementById('lm-fill').style.width='0%';
+  document.getElementById('lm-pct').textContent='0%';
+  document.getElementById('lm-step').textContent='Analysing your idea…';
+  for(let i=1;i<=5;i++){const el=document.getElementById('lmc'+i);if(el)el.className='lm-check'+(i===1?' active':'');}
+}
+function hideLoading(){document.getElementById('loadingmo').classList.remove('open');}
+
+function animateLoading(){
+  return new Promise(resolve=>{
+    let si=0;
+    const fill=document.getElementById('lm-fill'),pct=document.getElementById('lm-pct'),step=document.getElementById('lm-step');
+    const tick=()=>{
+      if(si>=LM_STEPS.length){resolve();return;}
+      const s=LM_STEPS[si];
+      fill.style.width=s.pct+'%';pct.textContent=s.pct+'%';step.textContent=s.label;
+      for(let i=1;i<=5;i++){
+        const el=document.getElementById('lmc'+i);if(!el)continue;
+        if(i<s.check)el.className='lm-check done';
+        else if(i===s.check)el.className='lm-check active';
+        else el.className='lm-check';
+      }
+      si++;
+      setTimeout(tick,si<LM_STEPS.length?900:600);
+    };
+    tick();
+  });
 }
 
-function estimateEditCost(msg){
-  const m=msg.toLowerCase();
-  if(m.includes('add page')||m.includes('new page')||m.includes('add section'))return COSTS.edit_md;
-  if(m.includes('add feature')||m.includes('auth')||m.includes('payment')||m.includes('database'))return COSTS.edit_lg;
-  return COSTS.edit_sm;
+let PREV={desc:'',html:'',brand:'',plan:null,selPack:3,files:[]};
+
+async function runCinematicFlow(desc,files){
+  PREV.desc=desc;
+  PREV.files=files||[];
+  showLoading();
+  const [,result]=await Promise.all([animateLoading(),generatePreviewHTML(desc,PREV.files)]);
+  hideLoading();
+  if(result){PREV.html=result.html;PREV.brand=result.brand||'My App';PREV.plan=result;showPreviewExperience(result);}
+  else{toast('Preview failed. Try again.','⚠️');openInputModal();}
 }
 
-// ── BUILDER STATE ─────────────────────────────
-let BS={id:null,code:'',deployed:false,durl:'',building:false,tab:'prev',hist:[],brand:'',pEmail:false,previewDone:false,buildDesc:''};
+async function generatePreviewHTML(desc,files){
+  try{
+    const sysPrompt=`You are AIWEBBB. Generate a beautiful, realistic preview website from the user's description${files&&files.length?' and any reference images/files they attached':''}.
+Return ONLY valid JSON:
+{"html":"<complete self-contained HTML with inline CSS+JS, realistic content, premium dark design, no external deps except Google Fonts CDN>","brand":"AppName","description":"One sentence about this app","features":["Feature 1","Feature 2","Feature 3","Feature 4","Feature 5"],"pages":8,"buildTime":"~2 min","costEst":"100–200 credits"}
+HTML RULES: Must look like a REAL launched startup product. Beautiful dark theme, proper typography, realistic placeholder content specific to the idea, mobile responsive, smooth hover animations, works in iframe sandbox="allow-scripts allow-same-origin", NO alert/confirm/prompt, Google Fonts CDN only external dependency.${files&&files.length?' If reference images were provided, closely match their visual style, layout, colors, and branding.':''}`;
+
+    // Build multimodal content if files attached
+    let userContent;
+    if(files&&files.length){
+      userContent=[{type:'text',text:desc}];
+      files.forEach(f=>{
+        if(f.isImage){
+          userContent.push({type:'image_url',image_url:{url:`data:${f.mediaType};base64,${f.base64}`}});
+        }
+      });
+      // Note: non-image files (pdf/txt) mentioned in text since vision API only takes images
+      const docFiles=files.filter(f=>!f.isImage);
+      if(docFiles.length)userContent[0].text+=`\n\n(Attached reference documents: ${docFiles.map(d=>d.name).join(', ')})`;
+    }else{
+      userContent=desc;
+    }
+
+    const res=await fetch('/api/ai',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-6',messages:[{role:'system',content:sysPrompt},{role:'user',content:userContent}]})});
+    if(res.status===413){toast('Images too large — try fewer or smaller files','⚠️');return null;}
+    if(!res.ok)return null;
+    const data=await res.json();
+    const raw=(data.choices?.[0]?.message?.content||data.content||'').replace(/```json|```/g,'').trim();
+    let parsed=null;try{const m=raw.match(/\{[\s\S]*\}/);if(m)parsed=JSON.parse(m[0]);}catch{}
+    return parsed;
+  }catch{return null;}
+}
+
+function showPreviewExperience(plan){
+  document.getElementById('pm-brand-name').textContent=plan.brand||'My App';
+  document.getElementById('browser-url-text').textContent='aiwebbb.com/app/'+(plan.brand||'app').toLowerCase().replace(/\s+/g,'-');
+  document.getElementById('pm-info-title').textContent=plan.brand+' is ready!';
+  document.getElementById('pm-info-desc').textContent=plan.description||'Your website preview is ready. Buy credits to build the full working version.';
+  const checks=document.getElementById('pm-checks');
+  if(checks)checks.innerHTML=(plan.features||['Responsive design','Modern UI','Fast performance','Clean code','Mobile ready']).map(f=>`<div class="pm-check"><div class="pm-check-ico">✓</div>${f}</div>`).join('');
+  buildPmPacks();
+  const iframe=document.getElementById('preview-iframe');
+  if(iframe&&plan.html)iframe.srcdoc=plan.html;
+  document.getElementById('previewmo').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function buildPmPacks(){
+  const container=document.getElementById('pm-packs');if(!container)return;
+  container.innerHTML=PACKS.slice(0,4).map((p,i)=>`<div class="pm-pack${i===PREV.selPack?' sel':''}${p.popular?' pop':''}" onclick="pmSelPack(${i})"><div class="pm-pack-left">${p.name}<div class="pm-pack-credits">${p.credits.toLocaleString()} credits</div></div><div class="pm-pack-price">₹${p.price}</div></div>`).join('');
+}
+function pmSelPack(i){PREV.selPack=i;buildPmPacks();}
+
+function switchView(v){
+  ['desktop','tablet','mobile'].forEach(x=>{document.getElementById('pmt-'+x).className='pm-tab'+(x===v?' on':'');});
+  const frame=document.getElementById('browser-frame');
+  if(v==='desktop'){frame.style.maxWidth='100%';frame.style.margin='0';}
+  else if(v==='tablet'){frame.style.maxWidth='768px';frame.style.margin='0 auto';}
+  else{frame.style.maxWidth='390px';frame.style.margin='0 auto';}
+}
+
+async function pmPay(){
+  const email=document.getElementById('pm-email').value.trim();
+  if(!email||!email.includes('@')){toast('Enter your email first','⚠️');return;}
+  const pack=PACKS[PREV.selPack];
+  const btn=document.getElementById('pm-pay-btn');btn.textContent='Creating order…';btn.disabled=true;
+  try{
+    const r=await fetch('/api/create-order',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({plan:'pack_'+PREV.selPack,email,packIdx:PREV.selPack,amount:pack.inPaise})});
+    const order=await r.json();
+    if(!order.order_id){toast('Could not create order','⚠️');btn.textContent='⚡ Start Building Now';btn.disabled=false;return;}
+    const options={key:order.key_id,order_id:order.order_id,amount:order.amount,currency:'INR',name:'AIWEBBB',description:pack.name+' — '+pack.credits.toLocaleString()+' Credits',prefill:{email,contact:''},theme:{color:'#ffffff'},
+      handler:async function(resp){await paySuccess(PREV.selPack,email,resp.razorpay_payment_id);document.getElementById('previewmo').classList.remove('open');document.body.style.overflow='';await beginActualBuild(PREV.desc,PREV.html);},
+      modal:{ondismiss:function(){btn.textContent='⚡ Start Building Now';btn.disabled=false;}}};
+    const rzp=new Razorpay(options);rzp.on('payment.failed',()=>{toast('Payment failed','⚠️');btn.textContent='⚡ Start Building Now';btn.disabled=false;});
+    rzp.open();
+  }catch(err){toast('Payment error','⚠️');}
+  btn.textContent='⚡ Start Building Now';btn.disabled=false;
+}
+
+function pmCustomize(){const ta=document.getElementById('imc-ta');if(ta)ta.value=PREV.desc;if(PREV.files&&PREV.files.length){imcFiles=[...PREV.files];}document.getElementById('previewmo').classList.remove('open');document.getElementById('inputmo').style.display='flex';setTimeout(()=>{document.getElementById('imc-ta').focus();renderImcFiles();},200);}
+function closePreviewAndBack(){document.getElementById('previewmo').classList.remove('open');document.body.style.overflow='';openInputModal();}
+
+function startBuildFlow(){
+  if(S.credits>=50){document.getElementById('previewmo').classList.remove('open');document.body.style.overflow='';beginActualBuild(PREV.desc,PREV.html);}
+  else{const pr=document.getElementById('pm-right');if(pr)pr.scrollTo({top:pr.scrollHeight,behavior:'smooth'});const ep=document.getElementById('pm-email');if(ep)ep.focus();}
+}
+
+let BS={id:null,code:'',deployed:false,durl:'',building:false,tab:'prev',hist:[],brand:'',pEmail:false};
 
 function setStat(st,tx){const d=document.getElementById('sdot'),t=document.getElementById('stxt');if(d)d.className='sdot '+st;if(t)t.textContent=tx;}
 function updDepBtn(){const b=document.getElementById('bdeploy');if(!b)return;if(BS.deployed){b.className='bdeploy live';b.textContent='✓ Live';}else if(!BS.code){b.className='bdeploy locked';b.textContent='↑ Deploy Free';}else{b.className='bdeploy';b.textContent='↑ Deploy Free';}}
-
-// ── OPEN/CLOSE BUILDER ────────────────────────
-function openBld(){document.getElementById('bld').classList.add('open');document.body.style.overflow='hidden';updWallet();if(!BS.id)resetBS();else setTimeout(()=>document.getElementById('chat-ta').focus(),200);}
+function openBld(){document.getElementById('bld').classList.add('open');document.body.style.overflow='hidden';updWallet();}
 function closeBld(){document.getElementById('bld').classList.remove('open');document.body.style.overflow='';}
-function newProj(){closeDash();resetBS();openBld();}
+function swTab(t){BS.tab=t;document.getElementById('tprev').className='btab'+(t==='prev'?' on':'');document.getElementById('tcode').className='btab'+(t==='code'?' on':'');if(!BS.code)return;const iframe=document.getElementById('piframe'),cp=document.getElementById('cpane');if(t==='prev'){iframe.style.display='block';cp.style.display='none';}else{iframe.style.display='none';cp.style.display='block';cp.textContent=BS.code;}}
+function showPrev(html){BS.code=html;const iframe=document.getElementById('piframe');document.getElementById('pempty').style.display='none';document.getElementById('cpane').style.display='none';iframe.style.display='block';iframe.srcdoc=html;document.getElementById('tprev').className='btab on';document.getElementById('tcode').className='btab';BS.tab='prev';updDepBtn();}
 
-function resetBS(){
-  BS={id:'proj_'+Date.now(),code:'',deployed:false,durl:'',building:false,tab:'prev',hist:[],brand:'',pEmail:false,previewDone:false,buildDesc:''};
+async function beginActualBuild(desc,previewHtml){
+  BS={id:'proj_'+Date.now(),code:'',deployed:false,durl:'',building:false,tab:'prev',hist:[],brand:PREV.brand||'My App',pEmail:false};
+  document.getElementById('bproj').textContent=PREV.brand||'Project';
   document.getElementById('msgs').innerHTML='';
-  const iframe=document.getElementById('piframe');iframe.style.display='none';iframe.srcdoc='';
-  document.getElementById('cpane').style.display='none';
-  document.getElementById('previewScreen').style.display='none';
+  document.getElementById('piframe').style.display='none';document.getElementById('piframe').srcdoc='';
   document.getElementById('pempty').style.display='flex';
   document.getElementById('dsucc').style.display='none';
-  document.getElementById('bproj').textContent='New Project';
-  const ta=document.getElementById('chat-ta');if(ta){ta.value='';ta.style.height='auto';ta.placeholder='Describe your website idea…';}
-  setStat('','Ready to build');updDepBtn();updWallet();
-  welcome();
+  setStat('','Building…');updDepBtn();updWallet();
+  openBld();
+  if(previewHtml)showPrev(previewHtml);
+  addAI(`✦ Building **${PREV.brand}** now — turning your preview into a full working website…`,'ok');
+  await trigBuild(desc,previewHtml);
 }
 
-function swTab(t){BS.tab=t;document.getElementById('tprev').className='btab'+(t==='prev'?' on':'');document.getElementById('tcode').className='btab'+(t==='code'?' on':'');if(!BS.code)return;const iframe=document.getElementById('piframe'),cp=document.getElementById('cpane');document.getElementById('pempty').style.display='none';document.getElementById('previewScreen').style.display='none';if(t==='prev'){iframe.style.display='block';cp.style.display='none';}else{iframe.style.display='none';cp.style.display='block';cp.textContent=BS.code;}}
-function showPrev(html){BS.code=html;const iframe=document.getElementById('piframe');document.getElementById('pempty').style.display='none';document.getElementById('previewScreen').style.display='none';document.getElementById('cpane').style.display='none';iframe.style.display='block';iframe.srcdoc=html;document.getElementById('tprev').className='btab on';document.getElementById('tcode').className='btab';BS.tab='prev';updDepBtn();}
-
-// ── MESSAGES ──────────────────────────────────
-function welcome(){addAI('Hey! Describe your website idea below — I\'ll generate a **free preview** with your project name, pages, features, and structure.\n\nNo payment needed for the preview.');}
 function addUser(tx){const m=document.getElementById('msgs');const d=document.createElement('div');d.className='msg u';const t=new Date().toLocaleTimeString('en',{hour:'2-digit',minute:'2-digit'});d.innerHTML=`<div class="bub">${esc(tx).replace(/\n/g,'<br>')}</div><div class="mt">${t}</div>`;m.appendChild(d);scroll();}
 function addAI(tx,cls='',acts=[]){const m=document.getElementById('msgs');const d=document.createElement('div');d.className='msg a';const t=new Date().toLocaleTimeString('en',{hour:'2-digit',minute:'2-digit'});const html=tx.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/\n/g,'<br>');let ab='';if(acts.length)ab='<div class="macts">'+acts.map(a=>`<button class="ma ${a.c}" onclick="${a.fn}">${a.l}</button>`).join('')+'</div>';d.innerHTML=`<div class="ai-avatar">AI</div><div class="bub${cls?' '+cls:''}">${html}${ab}</div><div class="mt">${t}</div>`;m.appendChild(d);scroll();return d;}
 function addTyp(){const m=document.getElementById('msgs');const d=document.createElement('div');d.className='msg a';d.id='typ';d.innerHTML='<div class="ai-avatar">AI</div><div class="bub"><div class="tdots"><div class="td"></div><div class="td"></div><div class="td"></div></div></div>';m.appendChild(d);scroll();}
 function rmTyp(){const e=document.getElementById('typ');if(e)e.remove();}
-function addBld(){const m=document.getElementById('msgs');const d=document.createElement('div');d.className='msg a';d.id='bldm';d.innerHTML='<div class="ai-avatar">AI</div><div class="bub"><span id="btxt">Building your website…</span><div class="bprog"><div class="bfill" id="bfill"></div></div></div>';m.appendChild(d);scroll();}
+function addBld(){const m=document.getElementById('msgs');const d=document.createElement('div');d.className='msg a';d.id='bldm';d.innerHTML='<div class="ai-avatar">AI</div><div class="bub"><span id="btxt">Building…</span><div class="bprog"><div class="bfill" id="bfill"></div></div></div>';m.appendChild(d);scroll();}
 function updBld(tx,pct){const t=document.getElementById('btxt'),f=document.getElementById('bfill');if(t)t.textContent=tx;if(f)f.style.width=pct+'%';scroll();}
 function rmBld(){const e=document.getElementById('bldm');if(e)e.remove();}
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
@@ -1102,152 +1166,34 @@ function scroll(){const m=document.getElementById('msgs');if(m)m.scrollTop=m.scr
 
 function addBuyCard(msg){
   const m=document.getElementById('msgs');const d=document.createElement('div');d.className='msg a';
-  const topPacks=PACKS.slice(0,4);
-  const packHtml=topPacks.map((p,i)=>`<button class="bcp" onclick="payPack(${i})"><span class="bcp-cr">${p.credits.toLocaleString()}</span><span class="bcp-pr">₹${p.price}</span></button>`).join('');
-  d.innerHTML=`<div class="ai-avatar">AI</div><div class="buy-card"><p>${msg}</p><div class="buy-card-packs">${packHtml}</div><div class="buy-card-note">Credits never expire · Secure payment via Razorpay</div></div>`;
+  const html=PACKS.slice(0,4).map((p,i)=>`<button class="bcp" onclick="payPack(${i})"><span class="bcp-cr">${p.credits.toLocaleString()}</span><span class="bcp-pr">₹${p.price}</span></button>`).join('');
+  d.innerHTML=`<div class="ai-avatar">AI</div><div class="buy-card"><p>${msg}</p><div class="buy-card-packs">${html}</div><div class="buy-card-note">Credits never expire · Secure by Razorpay</div></div>`;
   m.appendChild(d);scroll();
 }
 
-// ── INPUT ─────────────────────────────────────
-function taAuto(el){el.style.height='auto';el.style.height=Math.min(el.scrollHeight,160)+'px';}
-function taKey(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendChat();}}
-let micOn=false;
-function toggleMic(){micOn=!micOn;const btn=document.getElementById('mic-btn');btn.classList.toggle('active',micOn);if(micOn&&(window.SpeechRecognition||window.webkitSpeechRecognition)){const SR=window.SpeechRecognition||window.webkitSpeechRecognition;const rec=new SR();rec.lang='en-IN';rec.continuous=false;rec.interimResults=false;rec.onresult=e=>{const ta=document.getElementById('chat-ta');if(ta){ta.value=e.results[0][0].transcript;taAuto(ta);}micOn=false;btn.classList.remove('active');};rec.onerror=()=>{micOn=false;btn.classList.remove('active');};rec.start();}}
-
-async function sendChat(){
-  const ta=document.getElementById('chat-ta');
-  const msg=ta?ta.value.trim():'';
-  if(!msg||BS.building)return;
-  ta.value='';ta.style.height='auto';
-  addUser(msg);
-  await handleMsg(msg);
-}
-
-// ── CORE HANDLER ──────────────────────────────
-async function handleMsg(msg){
-  // Email capture
-  if(BS.pEmail){
-    if(msg.toLowerCase().trim()==='skip'){BS.pEmail=false;const ta=document.getElementById('chat-ta');if(ta)ta.placeholder='Describe your website idea…';addAI('Deploying anonymously…');execDeploy();return;}
-    if(msg.includes('@')&&msg.includes('.')){S.email=msg.trim();localStorage.setItem('awbb_em',S.email);BS.pEmail=false;await loadS();const ta=document.getElementById('chat-ta');if(ta)ta.placeholder='Describe your website idea…';addAI('Got it! Deploying now…');execDeploy();return;}
-    addAI('Please enter a valid email — or type **skip**.','er');return;
-  }
-
-  // STEP 1: No code yet, no preview — generate FREE PREVIEW
-  if(!BS.code&&!BS.previewDone){
-    BS.buildDesc=msg;
-    await genPreview(msg);
-    return;
-  }
-
-  // STEP 2: Preview shown, user wants to build — handled by startBuildFromPreview button
-  // But if user types something after preview, treat as refinement
-  if(!BS.code&&BS.previewDone){
-    BS.buildDesc=msg;
-    await checkAndBuild(msg);
-    return;
-  }
-
-  // STEP 3: Has code — editing
-  const editCost=estimateEditCost(msg);
-  if(S.credits<editCost){
-    addBuyCard(`You need **${editCost} credits** for this change. You have ${S.credits}. Top up to keep building!`);
-    return;
-  }
-  BS.hist.push({role:'user',content:msg});
-
-  // Next step suggestions
-  const nextKw=['custom domain','github','vercel','android','app store','pwa','seo','payment','login','analytics'];
-  if(BS.deployed&&nextKw.some(k=>msg.toLowerCase().includes(k))){await handleNextStep(msg);return;}
-
-  await trigChange(msg,editCost);
-}
-
-// ── FREE PREVIEW GENERATION ───────────────────
-async function genPreview(desc){
-  BS.building=true;setStat('bld','Generating preview…');addTyp();
-  try{
-    const res=await fetch('/api/ai',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
-      model:'claude-sonnet-4-6',
-      messages:[
-        {role:'system',content:`You are AIWEBBB project planner. Generate a project plan from the user's idea.
-Return ONLY valid JSON (no markdown):
-{"brand":"AppName","pages":12,"features":28,"buildTime":"~2 Minutes","description":"One sentence about the app.","featureList":["Feature 1","Feature 2","Feature 3","Feature 4","Feature 5","Feature 6"],"complexity":"medium","costEst":"100–200 credits"}`},
-        {role:'user',content:desc}
-      ]
-    })});
-    rmTyp();
-    const data=await res.json();
-    const raw=(data.choices?.[0]?.message?.content||data.content||'').replace(/```json|```/g,'').trim();
-    let plan=null;
-    try{const m=raw.match(/\{[\s\S]*\}/);if(m)plan=JSON.parse(m[0]);}catch{}
-    if(!plan)plan={brand:'My App',pages:8,features:12,buildTime:'~2 Minutes',description:desc.substring(0,100),featureList:['Responsive Design','Modern UI','Fast Performance','SEO Ready'],complexity:'medium',costEst:'100–150 credits'};
-
-    BS.brand=plan.brand;BS.previewDone=true;
-    document.getElementById('bproj').textContent=plan.brand;
-    showPreviewScreen(plan);
-    addAI(`**${plan.brand}** is ready for review! 👆\n\nI've planned **${plan.pages} pages** and **${plan.features} features** based on your idea. Buy credits to build the full version.`,'ok',
-      [{l:'⚡ Build Now',c:'p',fn:'startBuildFromPreview()'},{l:'View pricing',c:'',fn:"closeBld();document.getElementById('pricing').scrollIntoView({behavior:'smooth'})"}]);
-  }catch(err){
-    rmTyp();addAI('Could not generate preview. Try again!','er');
-  }
-  BS.building=false;setStat('ok','Preview ready');
-}
-
-function showPreviewScreen(plan){
-  document.getElementById('pempty').style.display='none';
-  document.getElementById('piframe').style.display='none';
-  document.getElementById('cpane').style.display='none';
-  const ps=document.getElementById('previewScreen');ps.style.display='flex';
-  document.getElementById('prev-brand').textContent=plan.brand||'My App';
-  document.getElementById('prev-pages').textContent=plan.pages||8;
-  document.getElementById('prev-feats').textContent=plan.features||12;
-  document.getElementById('prev-time').textContent=plan.buildTime||'~2m';
-  document.getElementById('prev-desc').textContent=plan.description||'';
-  document.getElementById('prev-cost-est').textContent=plan.costEst||'100–200 credits';
-  const chips=document.getElementById('prev-chips');
-  chips.innerHTML=(plan.featureList||[]).map(f=>`<span class="pf-chip">${f}</span>`).join('');
-}
-
-async function startBuildFromPreview(){
-  document.getElementById('previewScreen').style.display='none';
-  await checkAndBuild(BS.buildDesc);
-}
-
-async function checkAndBuild(desc){
-  const cost=estimateBuildCost(desc);
-  if(S.credits<cost){
-    addBuyCard(`To build **${BS.brand||'your website'}**, you need approximately **${cost}–${cost*2} credits**. You currently have ${S.credits} credits.\n\nChoose a pack to get started:`);
-    return;
-  }
-  await trigBuild(desc);
-}
-
-// ── BUILD ─────────────────────────────────────
-async function trigBuild(prompt){
+async function trigBuild(prompt,previewHtml){
   if(BS.building)return;
   BS.building=true;setStat('bld','Building…');addBld();
   const cost=estimateBuildCost(prompt);
   const t0=Date.now();
-  const STEPS=[[3,'Designing layout…',18],[8,'Writing HTML & CSS…',38],[14,'Adding JavaScript…',58],[20,'Polishing UI…',76],[28,'Finalising…',92]];
-  let si=0;const tmr=setInterval(()=>{const s=Math.floor((Date.now()-t0)/1000);if(si<STEPS.length&&s>=STEPS[si][0]){updBld(STEPS[si][1],STEPS[si][2]);si++;}},700);
-
-  const sysPrompt=`You are AIWEBBB — build complete, beautiful, production-ready single-page web apps.
-Return ONLY valid JSON (no markdown):
+  const STEPS=[[3,'Enhancing your design…',22],[8,'Writing HTML & CSS…',44],[14,'Adding JavaScript…',64],[20,'Polishing UI…',82],[28,'Finalising…',95]];
+  let si=0;const tmr=setInterval(()=>{const s=Math.floor((Date.now()-t0)/1000);if(si<STEPS.length&&s>=STEPS[si][0]){updBld(STEPS[si][1],STEPS[si][2]);si++;}},600);
+  const sysPrompt=`You are AIWEBBB. Build a complete, production-ready website.
+${previewHtml?'The user already saw and approved a preview. Your build MUST visually match and enhance that preview. Use same brand name, color scheme, and layout structure.':''}
+Return ONLY valid JSON:
 {"html":"<complete self-contained HTML with inline CSS+JS>","summary":"one sentence built","brand":"app name"}
-Rules: fully self-contained HTML, Google Fonts CDN only, beautiful dark design, mobile-responsive, no alert()/confirm()/prompt(), works in iframe sandbox="allow-scripts allow-same-origin"`;
-
+RULES: fully self-contained, Google Fonts CDN only, beautiful premium dark design, mobile-responsive, no alert/confirm/prompt, works in iframe sandbox="allow-scripts allow-same-origin", match the preview's visual style.`;
   try{
-    const spent=await spendCredits(cost,'build');
-    if(!spent){rmBld();addBuyCard(`Not enough credits. You need ${cost} credits to build this.`);BS.building=false;return;}
-
-    const res=await fetch('/api/ai',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-6',messages:[{role:'system',content:sysPrompt},{role:'user',content:prompt}]})});
+    const spent=await spendCredits(cost);
+    if(!spent){rmBld();clearInterval(tmr);addBuyCard(`You need ${cost} credits to build. You have ${S.credits}. Top up to continue!`);BS.building=false;return;}
+    const messages=[{role:'system',content:sysPrompt},{role:'user',content:prompt}];
+    const res=await fetch('/api/ai',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-6',messages})});
     clearInterval(tmr);
-    if(res.status===402){rmBld();addBuyCard('Credits exhausted on AI side. Please top up.');BS.building=false;return;}
-
+    if(res.status===402){rmBld();addBuyCard('Credits exhausted. Please top up.');BS.building=false;return;}
     const data=await res.json();
     const raw=(data.choices?.[0]?.message?.content||data.content||'').replace(/```json|```/g,'').trim();
     let parsed=null;try{const m=raw.match(/\{[\s\S]*\}/);if(m)parsed=JSON.parse(m[0]);}catch{}
-    const html=parsed?.html||fallback(prompt);
+    const html=parsed?.html||previewHtml||fallback(prompt);
     const summary=parsed?.summary||'Your website has been built.';
     if(parsed?.brand&&!BS.brand)BS.brand=parsed.brand;
     if(BS.brand)document.getElementById('bproj').textContent=BS.brand;
@@ -1255,227 +1201,157 @@ Rules: fully self-contained HTML, Google Fonts CDN only, beautiful dark design, 
     BS.hist.push({role:'assistant',content:'Built: '+summary});
     await DB.sP({id:BS.id,email:S.email||'anon',brand:BS.brand||'My App',code:html,deployed:false,created_at:new Date().toISOString()});
     const bt=Math.floor((Date.now()-t0)/1000);
-    addAI(`Done in **${bt}s** — ${summary}\n\nYou have **${S.credits} credits** remaining. Keep chatting to improve.`,'ok',
-      [{l:'🚀 Deploy Free',c:'p',fn:'doDeploy()'},{l:'⬇ Download',c:'',fn:'dlCode()'}]);
+    addAI(`✅ Done in **${bt}s** — ${summary}\n\nYou have **${S.credits} credits** remaining.`,'ok',[{l:'🚀 Deploy Free',c:'p',fn:'doDeploy()'},{l:'⬇ Download',c:'',fn:'dlCode()'}]);
     setStat('ok','Built · '+bt+'s');
     setTimeout(()=>document.getElementById('chat-ta').focus(),300);
-  }catch(err){
-    clearInterval(tmr);rmBld();
-    addAI('Build error. Try again or rephrase.','er');setStat('err','Error');
-  }
+  }catch(err){clearInterval(tmr);rmBld();addAI('Build error. Try again.','er');setStat('err','Error');}
   BS.building=false;updDepBtn();
 }
 
-// ── CHANGE ────────────────────────────────────
+function taAuto(el){el.style.height='auto';el.style.height=Math.min(el.scrollHeight,160)+'px';}
+function taKey(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendChat();}}
+let micOn=false;
+function toggleMic(){micOn=!micOn;const btn=document.getElementById('mic-btn');btn.classList.toggle('active',micOn);if(micOn&&(window.SpeechRecognition||window.webkitSpeechRecognition)){const SR=window.SpeechRecognition||window.webkitSpeechRecognition;const rec=new SR();rec.lang='en-IN';rec.continuous=false;rec.interimResults=false;rec.onresult=e=>{const ta=document.getElementById('chat-ta');if(ta){ta.value=e.results[0][0].transcript;taAuto(ta);}micOn=false;btn.classList.remove('active');};rec.onerror=()=>{micOn=false;btn.classList.remove('active');};rec.start();}}
+
+async function sendChat(){
+  const ta=document.getElementById('chat-ta');
+  const msg=ta?ta.value.trim():'';if(!msg||BS.building)return;
+  ta.value='';ta.style.height='auto';addUser(msg);
+  if(BS.pEmail){
+    if(msg.toLowerCase()==='skip'){BS.pEmail=false;const ta2=document.getElementById('chat-ta');if(ta2)ta2.placeholder='Ask for changes…';addAI('Deploying anonymously…');execDeploy();return;}
+    if(msg.includes('@')&&msg.includes('.')){S.email=msg.trim();localStorage.setItem('awbb_em',S.email);BS.pEmail=false;await loadS();addAI('Got it! Deploying now…');execDeploy();return;}
+    addAI('Enter a valid email or type **skip**.','er');return;
+  }
+  if(!BS.code){addAI('Please wait — still building your website…');return;}
+  const editCost=estimateEditCost(msg);
+  if(S.credits<editCost){addBuyCard(`You need **${editCost} credits** for this change. You have ${S.credits}.`);return;}
+  BS.hist.push({role:'user',content:msg});
+  await trigChange(msg,editCost);
+}
+
 async function trigChange(req,cost){
   if(BS.building)return;
   BS.building=true;setStat('bld','Updating…');addTyp();
-  const spent=await spendCredits(cost,'edit');
-  if(!spent){rmTyp();addBuyCard('Not enough credits for this change. Top up to continue!');BS.building=false;return;}
+  const spent=await spendCredits(cost);
+  if(!spent){rmTyp();addBuyCard('Not enough credits. Top up!');BS.building=false;return;}
   try{
-    const res=await fetch('/api/ai',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-6',messages:[{role:'system',content:'Apply the change to the HTML. Return ONLY JSON: {"html":"<complete updated HTML>","changes":"one sentence"}'},{role:'user',content:`HTML:\n${BS.code.substring(0,6000)}\n\nChange: ${req}`}]})});
-    if(res.status===402){rmTyp();addBuyCard('Credits exhausted. Please top up.');BS.building=false;return;}
+    const res=await fetch('/api/ai',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-6',messages:[{role:'system',content:'Apply the change. Return ONLY JSON: {"html":"<complete HTML>","changes":"one sentence"}'},{role:'user',content:`HTML:\n${BS.code.substring(0,6000)}\n\nChange: ${req}`}]})});
+    if(res.status===402){rmTyp();addBuyCard('Credits exhausted. Top up!');BS.building=false;return;}
     const data=await res.json();
     const raw=(data.choices?.[0]?.message?.content||data.content||'').replace(/```json|```/g,'').trim();
     let parsed=null;try{const m=raw.match(/\{[\s\S]*\}/);if(m)parsed=JSON.parse(m[0]);}catch{}
     const html=parsed?.html||BS.code;const changes=parsed?.changes||'Changes applied.';
     rmTyp();showPrev(html);
-    if(BS.deployed){const did=BS.durl.split('/').pop();await DB.saveDeployment(did,html,S.email,BS.brand);addAI(`${changes}\n\n🔄 Live site updated — **${BS.durl}**\n\n**${S.credits} credits** remaining.`,'ok');}
+    if(BS.deployed){const did=BS.durl.split('/').pop();await DB.saveDeployment(did,html,S.email,BS.brand);addAI(`${changes}\n🔄 Live site updated. **${S.credits} credits** left.`,'ok');}
     else{addAI(`${changes}\n\n**${S.credits} credits** remaining.`,'ok');}
     await DB.sP({id:BS.id,email:S.email||'anon',brand:BS.brand||'My App',code:html,deployed:BS.deployed,deploy_url:BS.durl,created_at:new Date().toISOString()});
-    BS.hist.push({role:'assistant',content:'Changed: '+changes});
     setStat('ok','Updated');updWallet();
-  }catch(err){rmTyp();addAI('Could not apply that change. Try again.','er');setStat('err','Error');}
+  }catch{rmTyp();addAI('Could not apply that change. Try again.','er');setStat('err','Error');}
   BS.building=false;
 }
 
-// ── NEXT STEPS ────────────────────────────────
-async function handleNextStep(req){
-  addTyp();
-  try{
-    const res=await fetch('/api/ai',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-6',messages:[{role:'system',content:'You are AIWEBBB advisor. Give clear step-by-step guidance. Be concise and actionable.'},{role:'user',content:`My deployed app: ${BS.durl}\nQuestion: ${req}`}]})});
-    rmTyp();const data=await res.json();
-    const raw=(data.choices?.[0]?.message?.content||data.content||'').trim();
-    addAI(raw||'I can help with that! Email hello@aiwebbb.com for detailed support.');
-  }catch{rmTyp();addAI('Could not load that guide right now.','er');}
-}
-
-// ── POST-DEPLOY SUGGESTIONS ───────────────────
-const DEPLOY_SUGGESTIONS=[
-  {label:'🌐 Custom domain',msg:'How do I connect a custom domain?'},
-  {label:'📦 Export to GitHub',msg:'How do I export this to GitHub?'},
-  {label:'▲ Deploy to Vercel',msg:'Help me deploy to Vercel with my own account.'},
-  {label:'📱 Android APK',msg:'How do I convert this to an Android APK?'},
-  {label:'📲 Convert to PWA',msg:'Convert this to a Progressive Web App.'},
-  {label:'🔍 SEO Optimize',msg:'Optimize this for search engines.'},
-  {label:'🛒 Add payments',msg:'Add a Razorpay payment gateway.'},
-  {label:'🔐 Add login',msg:'Add user login and signup system.'}
-];
-
-function showDeploySuggestions(){const grid=document.getElementById('dsugg-grid');if(!grid)return;grid.innerHTML=DEPLOY_SUGGESTIONS.map(s=>`<button class="dsugg-btn" onclick="dismissSuccessAndSuggest('${s.msg.replace(/'/g,"\\'")}')">  ${s.label}</button>`).join('');}
-function dismissSuccessAndSuggest(msg){document.getElementById('dsucc').style.display='none';const ta=document.getElementById('chat-ta');if(ta){ta.value=msg;taAuto(ta);ta.focus();}}
-
-// ── DEPLOY ────────────────────────────────────
 function doDeploy(){
   if(!BS.code){toast('Build something first!','⚠️');return;}
-  if(!S.email){
-    addAI('To save your deployed app, what\'s your email? (Type **skip** to deploy anonymously)');
-    BS.pEmail=true;
-    setTimeout(()=>{const ta=document.getElementById('chat-ta');if(ta){ta.placeholder='Enter email or type skip…';ta.focus();}},100);
-    return;
-  }
+  if(!S.email){addAI('To save your deployed app, what\'s your email? (Type **skip** to deploy anonymously)');BS.pEmail=true;setTimeout(()=>{const ta=document.getElementById('chat-ta');if(ta){ta.placeholder='Enter email or skip…';ta.focus();}},100);return;}
   execDeploy();
 }
-
 async function execDeploy(){
   if(BS.deployed){document.getElementById('dsucc').style.display='flex';showDeploySuggestions();return;}
-  setStat('bld','Deploying…');addAI('Deploying your site for free…','bld');
-  const chars='abcdefghjkmnpqrstuvwxyz23456789';
-  let id='';for(let i=0;i<10;i++)id+=chars[Math.floor(Math.random()*chars.length)];
-  const url=`https://aiwebbb.com/app/${id}`;
-  BS.durl=url;BS.deployed=true;
+  setStat('bld','Deploying…');addAI('Deploying for free…','bld');
+  const chars='abcdefghjkmnpqrstuvwxyz23456789';let id='';for(let i=0;i<10;i++)id+=chars[Math.floor(Math.random()*chars.length)];
+  const url=`https://aiwebbb.com/app/${id}`;BS.durl=url;BS.deployed=true;
   await DB.saveDeployment(id,BS.code,S.email,BS.brand);
   await DB.sP({id:BS.id,email:S.email||'anon',brand:BS.brand||'My App',code:BS.code,deployed:true,deploy_url:url,deploy_id:id,created_at:new Date().toISOString()});
   await new Promise(r=>setTimeout(r,1200));
   document.getElementById('dsurl').textContent=url;document.getElementById('dsurl').href=url;
   showDeploySuggestions();document.getElementById('dsucc').style.display='flex';
-  addAI(`🎉 **Live at ${url}**\n\nShare it anywhere. You have **${S.credits} credits** left to keep improving.`,'ok');
+  addAI(`🎉 **Live at ${url}**\n\n**${S.credits} credits** left to keep improving.`,'ok');
   setStat('ok','Live!');updDepBtn();updWallet();toast('Deployed! 🎉','🚀');
 }
-
 function copyURL(){navigator.clipboard.writeText(BS.durl).then(()=>toast('Copied!','📋'));}
 function dlCode(){if(!BS.code)return;const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([BS.code],{type:'text/html'}));a.download=(BS.brand||'my-app').toLowerCase().replace(/\s+/g,'-')+'.html';a.click();toast('Downloaded!','⬇');}
 
-function fallback(desc){const n=BS.brand||'My App';return `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${n}</title><link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;600;700;800&display=swap" rel="stylesheet"><style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Geist',sans-serif;background:#000;color:#fff}nav{background:#0a0a0a;border-bottom:1px solid #1a1a1a;padding:14px 28px;display:flex;justify-content:space-between;align-items:center}.logo{font-size:17px;font-weight:700}.hero{text-align:center;padding:96px 28px}.hero h1{font-size:clamp(36px,6vw,72px);font-weight:800;margin-bottom:14px;letter-spacing:-2px}.hero p{color:#555;font-size:15px;max-width:460px;margin:0 auto 32px;line-height:1.7}.btn{background:#fff;color:#000;padding:11px 26px;border-radius:7px;border:none;font-size:14px;font-weight:700;cursor:pointer}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;padding:52px 28px;max-width:960px;margin:0 auto}.card{background:#0a0a0a;border:1px solid #1a1a1a;border-radius:9px;padding:22px}.card h3{font-size:13px;font-weight:600;margin-bottom:7px}.card p{font-size:11px;color:#444;line-height:1.6}</style></head><body><nav><div class="logo">${n}</div><button class="btn" style="font-size:12px;padding:8px 14px">Get Started</button></nav><div class="hero"><h1>${n}</h1><p>${desc?desc.substring(0,100):''}</p><button class="btn">Start Now →</button></div><div class="grid"><div class="card"><h3>🚀 Fast</h3><p>Built for speed and great UX.</p></div><div class="card"><h3>📱 Responsive</h3><p>Perfect on every device.</p></div><div class="card"><h3>🔐 Secure</h3><p>Best practices built in.</p></div></div></body></html>`;}
+const DEPLOY_SUGGESTIONS=[
+  {label:'🌐 Custom domain',msg:'How do I connect a custom domain?'},
+  {label:'📦 Export to GitHub',msg:'How do I export this to GitHub?'},
+  {label:'▲ Deploy to Vercel',msg:'Help me deploy to Vercel.'},
+  {label:'📱 Android APK',msg:'How do I convert this to an Android APK?'},
+  {label:'📲 Convert to PWA',msg:'Convert this to a PWA.'},
+  {label:'🔍 SEO Optimize',msg:'Optimize this for search engines.'},
+  {label:'🛒 Add payments',msg:'Add a Razorpay payment gateway.'},
+  {label:'🔐 Add login',msg:'Add user login and signup system.'}
+];
+function showDeploySuggestions(){const grid=document.getElementById('dsugg-grid');if(!grid)return;grid.innerHTML=DEPLOY_SUGGESTIONS.map(s=>`<button class="dsugg-btn" onclick="dismissAndSuggest('${s.msg.replace(/'/g,"\\'")}')"> ${s.label}</button>`).join('');}
+function dismissAndSuggest(msg){document.getElementById('dsucc').style.display='none';const ta=document.getElementById('chat-ta');if(ta){ta.value=msg;taAuto(ta);ta.focus();}}
 
-// ── REOPEN PROJECT ────────────────────────────
-async function reopenP(id){const projs=await DB.gP(S.email);const p=projs.find(x=>x.id===id);if(!p)return;closeDash();BS={...BS,id:p.id,code:p.code||'',deployed:p.deployed||false,durl:p.deploy_url||'',brand:p.brand||'',previewDone:true};document.getElementById('bproj').textContent=p.brand||'Project';if(BS.code)showPrev(BS.code);updDepBtn();updWallet();document.getElementById('msgs').innerHTML='';addAI(`Reopened **${p.brand||'Project'}**. ${BS.deployed?'Live at '+BS.durl:' Not yet deployed.'}\n\nYou have **${S.credits} credits** available.`,'ok');openBld();setTimeout(()=>document.getElementById('chat-ta').focus(),200);}
+function fallback(desc){const n=BS.brand||'My App';return `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${n}</title><link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;600;700;800&display=swap" rel="stylesheet"><style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Geist',sans-serif;background:#000;color:#fff}nav{background:#0a0a0a;border-bottom:1px solid #1a1a1a;padding:14px 28px;display:flex;justify-content:space-between;align-items:center}.logo{font-size:17px;font-weight:700}.hero{text-align:center;padding:96px 28px}.hero h1{font-size:clamp(36px,6vw,72px);font-weight:800;margin-bottom:14px;letter-spacing:-2px}.hero p{color:#555;font-size:15px;max-width:460px;margin:0 auto 32px;line-height:1.7}.btn{background:#fff;color:#000;padding:11px 26px;border-radius:7px;border:none;font-size:14px;font-weight:700;cursor:pointer}</style></head><body><nav><div class="logo">${n}</div><button class="btn" style="font-size:12px;padding:8px 14px">Get Started</button></nav><div class="hero"><h1>${n}</h1><p>${desc?desc.substring(0,100):''}</p><button class="btn">Start Now →</button></div></body></html>`;}
+
+async function reopenP(id){const projs=await DB.gP(S.email);const p=projs.find(x=>x.id===id);if(!p)return;closeDash();BS={...BS,id:p.id,code:p.code||'',deployed:p.deployed||false,durl:p.deploy_url||'',brand:p.brand||''};PREV.brand=p.brand||'';document.getElementById('bproj').textContent=p.brand||'Project';if(BS.code)showPrev(BS.code);updDepBtn();updWallet();document.getElementById('msgs').innerHTML='';addAI(`Reopened **${p.brand||'Project'}**. ${BS.deployed?'Live at '+BS.durl:'Not yet deployed.'}\n\n**${S.credits} credits** available.`,'ok');openBld();setTimeout(()=>document.getElementById('chat-ta').focus(),200);}
 async function delP(id){if(!confirm('Delete this project?'))return;await DB.dP(id,S.email);toast('Deleted','🗑️');renderDash();}
 
-// ── DASHBOARD ─────────────────────────────────
 async function renderDash(){
   if(!S.email){document.getElementById('dlogin').style.display='block';document.getElementById('dcontent').style.display='none';return;}
   document.getElementById('dlogin').style.display='none';document.getElementById('dcontent').style.display='block';
-  document.getElementById('demail').textContent=S.email;
-  document.getElementById('dav').textContent=S.email[0].toUpperCase();
-  document.getElementById('dplan').textContent='Credits wallet';
+  document.getElementById('demail').textContent=S.email;document.getElementById('dav').textContent=S.email[0].toUpperCase();document.getElementById('dplan').textContent='Credits wallet';
   const projs=await DB.gP(S.email);
-  document.getElementById('dspr').textContent=projs.length;
-  document.getElementById('dsdep').textContent=projs.filter(p=>p.deployed).length;
-  document.getElementById('dscred').textContent=S.credits.toLocaleString();
-  // Wallet
-  document.getElementById('d-cred-rem').textContent=S.credits.toLocaleString();
-  document.getElementById('d-cred-total').textContent=(S.totalPurchased||S.credits).toLocaleString()+' total purchased';
-  const wf=document.getElementById('d-wallet-fill');
-  if(wf)wf.style.width=(S.totalPurchased>0?Math.max(0,Math.min(100,(S.credits/S.totalPurchased)*100)):100)+'%';
-  // Projects
+  document.getElementById('dspr').textContent=projs.length;document.getElementById('dsdep').textContent=projs.filter(p=>p.deployed).length;document.getElementById('dscred').textContent=S.credits.toLocaleString();
+  document.getElementById('d-cred-rem').textContent=S.credits.toLocaleString();document.getElementById('d-cred-total').textContent=(S.totalPurchased||S.credits).toLocaleString()+' total';
+  const wf=document.getElementById('d-wallet-fill');if(wf)wf.style.width=(S.totalPurchased>0?Math.max(0,Math.min(100,(S.credits/S.totalPurchased)*100)):100)+'%';
   const list=document.getElementById('dplist');
-  if(!projs.length){list.innerHTML='<div class="emptyp">No projects yet. Build your first one!</div>';}
-  else{list.innerHTML=projs.map(p=>`<div class="pcrd"><div style="flex:1;min-width:0;"><div class="pname">${p.brand||'Untitled'}</div><div class="pmeta">${p.deployed?'🟢 <a href="'+p.deploy_url+'" target="_blank" style="color:#fff;font-family:monospace;font-size:9px;text-decoration:none;">'+(p.deploy_url||'')+'</a>':'⚪ Not deployed'} · ${new Date(p.created_at).toLocaleDateString('en-IN')}</div></div><div class="pbtns"><button class="pbtn2" onclick="reopenP('${p.id}')">Open</button><button class="pbtn2 del" onclick="delP('${p.id}')">Del</button></div></div>`).join('');}
+  if(!projs.length)list.innerHTML='<div class="emptyp">No projects yet. Build your first one!</div>';
+  else list.innerHTML=projs.map(p=>`<div class="pcrd"><div style="flex:1;min-width:0;"><div class="pname">${p.brand||'Untitled'}</div><div class="pmeta">${p.deployed?'🟢 <a href="'+p.deploy_url+'" target="_blank" style="color:#fff;font-family:monospace;font-size:9px;text-decoration:none;">'+(p.deploy_url||'')+'</a>':'⚪ Not deployed'} · ${new Date(p.created_at).toLocaleDateString('en-IN')}</div></div><div class="pbtns"><button class="pbtn2" onclick="reopenP('${p.id}')">Open</button><button class="pbtn2 del" onclick="delP('${p.id}')">Del</button></div></div>`).join('');
 }
-
 function openDash(){document.getElementById('dashmo').classList.add('open');document.body.style.overflow='hidden';renderDash();}
 function closeDash(){document.getElementById('dashmo').classList.remove('open');document.body.style.overflow=document.getElementById('bld').classList.contains('open')?'hidden':'';}
 async function dashLogin(){const e=document.getElementById('dein').value.trim();if(!e||!e.includes('@')){toast('Enter a valid email','⚠️');return;}S.email=e;localStorage.setItem('awbb_em',e);await loadS();renderDash();}
 function dashOut(){S={email:null,credits:0,totalPurchased:0};localStorage.removeItem('awbb_em');renderDash();}
 
-// ── PAYMENT ───────────────────────────────────
 let selPackIdx=3;
-
 function openPayModal(){buildPayModal();document.getElementById('paymo').classList.add('open');}
 function closePay(){document.getElementById('paymo').classList.remove('open');}
-
-function payPack(idx){
-  selPackIdx=idx;
-  buildPayModal();
-  document.getElementById('paymo').classList.add('open');
-}
-
+function payPack(idx){selPackIdx=idx;buildPayModal();document.getElementById('paymo').classList.add('open');}
 function buildPayModal(){
   const container=document.getElementById('pay-packs');
-  container.innerHTML=PACKS.map((p,i)=>`
-    <div class="pay-pack${i===selPackIdx?' sel':''}${p.popular?' pop':''}" onclick="selPackIdx=${i};buildPayModal()">
-      <div class="pp-name">${p.name}</div>
-      <div class="pp-cred">${p.credits.toLocaleString()} credits</div>
-      <div class="pp-price">₹${p.price.toLocaleString()}</div>
-    </div>`).join('');
+  container.innerHTML=PACKS.map((p,i)=>`<div class="pay-pack${i===selPackIdx?' sel':''}${p.popular?' pop':''}" onclick="selPackIdx=${i};buildPayModal()"><div class="pp-name">${p.name}</div><div class="pp-cred">${p.credits.toLocaleString()} credits</div><div class="pp-price">₹${p.price.toLocaleString()}</div></div>`).join('');
   if(S.email)document.getElementById('pemail').value=S.email;
 }
-
 async function doRzpPay(){
   const email=document.getElementById('pemail').value.trim();
   if(!email||!email.includes('@')){toast('Enter your email first','⚠️');return;}
-  const pack=PACKS[selPackIdx];
-  const btn=document.getElementById('pbtn');btn.textContent='Creating order…';btn.disabled=true;
+  const pack=PACKS[selPackIdx];const btn=document.getElementById('pbtn');btn.textContent='Creating order…';btn.disabled=true;
   try{
     const r=await fetch('/api/create-order',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({plan:'pack_'+selPackIdx,email,packIdx:selPackIdx,amount:pack.inPaise})});
     const order=await r.json();
-    if(!order.order_id){toast('Could not create order. Try again.','⚠️');btn.textContent='🔒 Pay via Razorpay';btn.disabled=false;return;}
-    const options={key:order.key_id,order_id:order.order_id,amount:order.amount,currency:'INR',name:'AIWEBBB',description:pack.name+' — '+pack.credits.toLocaleString()+' Credits',prefill:{email,contact:''},theme:{color:'#ffffff'},
-      handler:async function(resp){await paySuccess(selPackIdx,email,resp.razorpay_payment_id);},
-      modal:{ondismiss:function(){btn.textContent='🔒 Pay via Razorpay';btn.disabled=false;}}
-    };
-    const rzp=new Razorpay(options);rzp.on('payment.failed',function(){toast('Payment failed. Try again.','⚠️');btn.textContent='🔒 Pay via Razorpay';btn.disabled=false;});
+    if(!order.order_id){toast('Could not create order','⚠️');btn.textContent='🔒 Pay via Razorpay';btn.disabled=false;return;}
+    const options={key:order.key_id,order_id:order.order_id,amount:order.amount,currency:'INR',name:'AIWEBBB',description:pack.name+' — '+pack.credits.toLocaleString()+' Credits',prefill:{email,contact:''},theme:{color:'#ffffff'},handler:async function(resp){await paySuccess(selPackIdx,email,resp.razorpay_payment_id);},modal:{ondismiss:function(){btn.textContent='🔒 Pay via Razorpay';btn.disabled=false;}}};
+    const rzp=new Razorpay(options);rzp.on('payment.failed',function(){toast('Payment failed','⚠️');btn.textContent='🔒 Pay via Razorpay';btn.disabled=false;});
     rzp.open();closePay();
-  }catch(err){toast('Payment error. Check connection.','⚠️');}
+  }catch(err){toast('Payment error','⚠️');}
   btn.textContent='🔒 Pay via Razorpay';btn.disabled=false;
 }
-
 async function paySuccess(packIdx,email,pid){
-  const pack=PACKS[packIdx];
-  S.email=email;localStorage.setItem('awbb_em',email);
+  const pack=PACKS[packIdx];S.email=email;localStorage.setItem('awbb_em',email);
   const ex=await DB.gU(email)||{credits:0,total_purchased:0};
-  const newCredits=(ex.credits||0)+pack.credits;
-  const newTotal=(ex.total_purchased||0)+pack.credits;
+  const newCredits=(ex.credits||0)+pack.credits;const newTotal=(ex.total_purchased||0)+pack.credits;
   await DB.sU(email,{...ex,credits:newCredits,total_purchased:newTotal,last_pay:pid,plan:'credits'});
-  S.credits=newCredits;S.totalPurchased=newTotal;
-  updWallet();closePay();
+  S.credits=newCredits;S.totalPurchased=newTotal;updWallet();closePay();
   toast(pack.credits.toLocaleString()+' credits added! Total: '+newCredits.toLocaleString(),'🎉');
-  if(document.getElementById('bld').classList.contains('open')){
-    addAI(`✅ **${pack.credits.toLocaleString()} credits added!** You now have **${newCredits.toLocaleString()} credits**.\n\n${BS.previewDone&&!BS.code?'Ready to build your website now!':'Keep building and improving!'}`,'ok',
-      BS.previewDone&&!BS.code?[{l:'⚡ Build Now',c:'p',fn:'startBuildFromPreview()'}]:[]);
-  }
+  if(document.getElementById('bld').classList.contains('open'))addAI(`✅ **${pack.credits.toLocaleString()} credits added!** You now have **${newCredits.toLocaleString()} credits**. Keep building!`,'ok');
 }
 
-// Handle Razorpay redirect
-(function(){const p=new URLSearchParams(window.location.search);if(p.get('pay')==='ok'){const idx=parseInt(p.get('idx')||'3'),email=decodeURIComponent(p.get('email')||''),pid=p.get('pid');if(email)paySuccess(idx,email,pid);window.history.replaceState({},'',window.location.pathname);}})();
-
-// ── READY TO BUILD SECTION ───────────────────
 function rtbAuto(el){el.style.height='auto';el.style.height=Math.min(el.scrollHeight,200)+'px';}
 function rtbFill(text){const ta=document.getElementById('rtb-ta');if(ta){ta.value=text;rtbAuto(ta);ta.focus();}}
 let rtbMicOn=false;
-function rtbMic(){
-  rtbMicOn=!rtbMicOn;
-  const btn=document.getElementById('rtb-mic');
-  if(btn)btn.classList.toggle('active',rtbMicOn);
-  if(rtbMicOn&&(window.SpeechRecognition||window.webkitSpeechRecognition)){
-    const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
-    const rec=new SR();rec.lang='en-IN';rec.continuous=false;rec.interimResults=false;
-    rec.onresult=e=>{const ta=document.getElementById('rtb-ta');if(ta){ta.value=e.results[0][0].transcript;rtbAuto(ta);}rtbMicOn=false;if(btn)btn.classList.remove('active');};
-    rec.onerror=()=>{rtbMicOn=false;if(btn)btn.classList.remove('active');};
-    rec.start();
-  }
-}
-function rtbBuild(){
-  const ta=document.getElementById('rtb-ta');
-  const msg=ta?ta.value.trim():'';
-  if(msg){
-    openBld();
-    // Small delay to let builder open, then inject message
-    setTimeout(()=>{
-      const chatTa=document.getElementById('chat-ta');
-      if(chatTa){chatTa.value=msg;taAuto(chatTa);}
-      sendChat();
-    },400);
-  } else {
-    openBld();
-  }
-}
+function rtbMic(){rtbMicOn=!rtbMicOn;const btn=document.getElementById('rtb-mic');if(btn)btn.classList.toggle('active',rtbMicOn);if(rtbMicOn&&(window.SpeechRecognition||window.webkitSpeechRecognition)){const SR=window.SpeechRecognition||window.webkitSpeechRecognition;const rec=new SR();rec.lang='en-IN';rec.continuous=false;rec.interimResults=false;rec.onresult=e=>{const ta=document.getElementById('rtb-ta');if(ta){ta.value=e.results[0][0].transcript;rtbAuto(ta);}rtbMicOn=false;if(btn)btn.classList.remove('active');};rec.onerror=()=>{rtbMicOn=false;if(btn)btn.classList.remove('active');};rec.start();}}
+function rtbBuild(){const ta=document.getElementById('rtb-ta');const msg=ta?ta.value.trim():'';if(msg){const imc=document.getElementById('imc-ta');if(imc)imc.value=msg;}openInputModal();}
+
 document.addEventListener('keydown',e=>{
   if(e.key==='Escape'){
     if(document.getElementById('paymo').classList.contains('open')){closePay();return;}
     if(document.getElementById('dashmo').classList.contains('open')){closeDash();return;}
     if(document.getElementById('bld').classList.contains('open')){closeBld();return;}
+    if(document.getElementById('previewmo').classList.contains('open')){closePreviewAndBack();return;}
+    if(document.getElementById('inputmo').style.display==='flex'){closeInputModal();return;}
   }
 });
 ['dashmo','paymo'].forEach(id=>{const el=document.getElementById(id);if(el)el.addEventListener('click',e=>{if(e.target.id===id){el.classList.remove('open');document.body.style.overflow='';}});});
