@@ -10,6 +10,7 @@
   ],
   "functions": {
     "api/ai.js":              { "maxDuration": 120 },
+    "api/preview-image.js":   { "maxDuration": 60 },
     "api/webhook.js":         { "maxDuration": 30 },
     "api/save-deployment.js": { "maxDuration": 30 },
     "api/app/[id].js":        { "maxDuration": 10 }
