@@ -225,7 +225,25 @@ footer{border-top:1px solid var(--g800);padding:44px 24px 24px;}
 .bcp.rec{border-color:var(--yellow);background:rgba(234,179,8,.06);}
 .bcp .bcp-cr{font-weight:600;font-size:11px;}.bcp .bcp-pr{font-size:9px;color:var(--g500);}.bcp .bcp-tag{font-size:8px;color:var(--yellow);}
 .buy-card-note{font-size:9px;color:var(--g600);}
-#chat-input-wrap{padding:10px 12px 12px;border-top:1px solid var(--g800);flex-shrink:0;}
+/* FILE UPLOAD */
+.attach-btn{width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.05);border:1px solid var(--g700);color:var(--g500);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;flex-shrink:0;position:relative;}
+.attach-btn:hover{border-color:var(--g400);color:var(--g200);}
+.attach-btn.has-file{border-color:var(--blue);color:var(--blue);background:rgba(59,130,246,.08);}
+#file-input{display:none;}
+#chat-file-input{display:none;}
+.file-preview-bar{display:none;flex-wrap:wrap;gap:6px;padding:8px 14px 0;border-top:1px solid var(--g800);margin-top:6px;}
+.file-preview-bar.show{display:flex;}
+.file-chip{display:flex;align-items:center;gap:5px;background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.25);border-radius:6px;padding:4px 8px;font-size:10px;color:var(--g200);max-width:200px;}
+.file-chip-img{width:22px;height:22px;border-radius:3px;object-fit:cover;flex-shrink:0;}
+.file-chip-icon{font-size:13px;flex-shrink:0;}
+.file-chip-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1;}
+.file-chip-rm{background:none;border:none;color:var(--g500);cursor:pointer;font-size:13px;padding:0;line-height:1;flex-shrink:0;}.file-chip-rm:hover{color:var(--red);}
+.file-drop-overlay{position:absolute;inset:0;background:rgba(59,130,246,.08);border:2px dashed var(--blue);border-radius:14px;display:none;align-items:center;justify-content:center;z-index:10;pointer-events:none;}
+.file-drop-overlay.active{display:flex;}
+.file-drop-text{font-size:13px;color:var(--blue);font-weight:600;}
+/* RTB file preview */
+.rtb-file-bar{display:none;flex-wrap:wrap;gap:6px;margin-top:10px;}
+.rtb-file-bar.show{display:flex;}
 #chat-box{background:var(--g800);border:1px solid var(--g600);border-radius:14px;padding:12px 14px 10px;}#chat-box:focus-within{border-color:var(--g400);}
 #chat-ta{display:block;width:100%;background:none;border:none;outline:none;resize:none;font-family:'Geist',sans-serif;font-size:13px;color:#fff;line-height:1.6;max-height:160px;overflow-y:auto;padding:0;}#chat-ta::placeholder{color:var(--g500);}
 #chat-row{display:flex;align-items:center;justify-content:space-between;margin-top:9px;}
@@ -423,9 +441,10 @@ footer{border-top:1px solid var(--g800);padding:44px 24px 24px;}
     <div class="rtb-box">
       <textarea id="rtb-ta" class="rtb-ta" placeholder="Describe your website idea&hellip;" rows="2" oninput="rtbAuto(this)" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();rtbBuild();}"></textarea>
       <div class="rtb-actions">
-        <button class="rtb-attach" onclick="toast('File upload coming soon','&#128206;')">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.5 8.5L7.5 14.5C5.8 16.2 3.1 16.2 1.4 14.5C-.3 12.8-.3 10.1 1.4 8.4L8.5 1.3C9.6.2 11.4.2 12.5 1.3C13.6 2.4 13.6 4.2 12.5 5.3L5.9 11.9C5.3 12.5 4.4 12.5 3.8 11.9C3.2 11.3 3.2 10.4 3.8 9.8L9.5 4.1" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <button class="rtb-attach attach-btn" id="rtb-attach-btn" onclick="document.getElementById('file-input').click()" title="Attach image or file">
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M13.5 8.5L7.5 14.5C5.8 16.2 3.1 16.2 1.4 14.5C-.3 12.8-.3 10.1 1.4 8.4L8.5 1.3C9.6.2 11.4.2 12.5 1.3C13.6 2.4 13.6 4.2 12.5 5.3L5.9 11.9C5.3 12.5 4.4 12.5 3.8 11.9C3.2 11.3 3.2 10.4 3.8 9.8L9.5 4.1" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
+        <input id="file-input" type="file" accept="image/*,.pdf,.txt,.doc,.docx,.csv,.json,.zip" multiple onchange="rtbHandleFiles(this.files)">
         <div class="rtb-right">
           <button class="rtb-mic" id="rtb-mic" onclick="rtbMic()">
             <svg width="15" height="15" viewBox="0 0 14 14" fill="none"><rect x="4" y="1" width="6" height="8" rx="3" stroke="currentColor" stroke-width="1.3"/><path d="M2 7.5a5 5 0 0010 0" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><path d="M7 12.5v1" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
@@ -435,6 +454,7 @@ footer{border-top:1px solid var(--g800);padding:44px 24px 24px;}
           </button>
         </div>
       </div>
+      <div class="rtb-file-bar" id="rtb-file-bar"></div>
     </div>
     <div class="rtb-tags">
       <button class="rtb-tag" onclick="rtbFill('Build me a SaaS dashboard with auth and analytics')">SaaS Dashboard</button>
@@ -560,10 +580,16 @@ footer{border-top:1px solid var(--g800);padding:44px 24px 24px;}
       </div>
       <div id="msgs"></div>
       <div id="chat-input-wrap">
-        <div id="chat-box">
+        <div id="chat-box" ondragover="chatDragOver(event)" ondragleave="chatDragLeave(event)" ondrop="chatDrop(event)" style="position:relative;">
+          <div class="file-drop-overlay" id="drop-overlay"><div class="file-drop-text">Drop files here</div></div>
+          <div class="file-preview-bar" id="chat-file-bar"></div>
           <textarea id="chat-ta" rows="1" placeholder="Describe your website idea&hellip;" oninput="taAuto(this)" onkeydown="taKey(event)"></textarea>
           <div id="chat-row">
             <div class="chat-left">
+              <button class="attach-btn" id="chat-attach-btn" onclick="document.getElementById('chat-file-input').click()" title="Attach image or file">
+                <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M13.5 8.5L7.5 14.5C5.8 16.2 3.1 16.2 1.4 14.5C-.3 12.8-.3 10.1 1.4 8.4L8.5 1.3C9.6.2 11.4.2 12.5 1.3C13.6 2.4 13.6 4.2 12.5 5.3L5.9 11.9C5.3 12.5 4.4 12.5 3.8 11.9C3.2 11.3 3.2 10.4 3.8 9.8L9.5 4.1" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <input id="chat-file-input" type="file" accept="image/*,.pdf,.txt,.doc,.docx,.csv,.json,.zip" multiple onchange="chatHandleFiles(this.files)">
               <button id="mic-btn" onclick="toggleMic()">
                 <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><rect x="4" y="1" width="6" height="8" rx="3" stroke="currentColor" stroke-width="1.3"/><path d="M2 7.5a5 5 0 0010 0" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><path d="M7 12.5v1" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
               </button>
@@ -1005,10 +1031,29 @@ function toggleMic() {
 }
 
 async function sendChat() {
-  var ta=document.getElementById('chat-ta'), msg=ta?ta.value.trim():'';
-  if (!msg||BS.building) return;
-  ta.value=''; ta.style.height='auto';
-  addUser(msg); await handleMsg(msg);
+  var ta = document.getElementById('chat-ta');
+  var msg = ta ? ta.value.trim() : '';
+  var hasFiles = CHAT_FILES.length > 0;
+  if ((!msg && !hasFiles) || BS.building) return;
+
+  // Capture files before clearing
+  var filesToSend = CHAT_FILES.slice();
+
+  // Clear input and files
+  if (ta) { ta.value = ''; ta.style.height = 'auto'; }
+  CHAT_FILES = [];
+  renderChatFileBar();
+  var btn = document.getElementById('chat-attach-btn');
+  if (btn) btn.classList.remove('has-file');
+
+  // Show user message with file thumbnails
+  if (filesToSend.length) {
+    addUserWithFiles(msg, filesToSend);
+  } else {
+    addUser(msg);
+  }
+
+  await handleMsg(msg, filesToSend);
 }
 
 // ── CORE HANDLER ──────────────────────────────
@@ -1042,7 +1087,8 @@ function isPreviewIntent(msg) {
   return (hasCreate || hasApp) && msg.trim().length > 15;
 }
 
-async function handleMsg(msg) {
+async function handleMsg(msg, files) {
+  files = files || [];
   // Email capture for deploy
   if (BS.pEmail) {
     if (msg.toLowerCase().trim()==='skip') { BS.pEmail=false; var ta=document.getElementById('chat-ta'); if(ta)ta.placeholder='Describe your website idea…'; addAI('Deploying anonymously…'); execDeploy(); return; }
@@ -1052,13 +1098,13 @@ async function handleMsg(msg) {
 
   // STAGE 1: No code, no preview yet
   if (!BS.code && !BS.previewDone) {
-    if (isPreviewIntent(msg)) {
-      // It's a build description → generate preview
-      BS.buildDesc = msg;
-      await genPreview(msg);
+    var hasImages = files.some(function(f){return f.type.startsWith('image/');});
+    if (isPreviewIntent(msg) || hasImages) {
+      var fullDesc = msg || 'Build a website based on the attached reference image';
+      BS.buildDesc = fullDesc; BS.buildFiles = files;
+      await genPreview(fullDesc, files);
     } else {
-      // It's a question/conversation → free chat with Owl Alpha
-      await freeChat(msg);
+      await freeChat(msg, files);
     }
     return;
   }
@@ -1066,69 +1112,72 @@ async function handleMsg(msg) {
   // STAGE 2: Preview shown, no code yet
   if (!BS.code && BS.previewDone) {
     if (isBuildIntent(msg)) {
-      // Explicit build request → check credits and build
-      await checkAndBuild(BS.buildDesc);
+      await checkAndBuild(BS.buildDesc, BS.buildFiles || []);
     } else {
-      // Still asking questions → free chat, keep preview visible
-      await freeChat(msg);
+      await freeChat(msg, files);
     }
     return;
   }
 
-  // STAGE 3: Code exists — editing mode
-  // Check if it's a question about the project (not an edit request)
+  // STAGE 3: Code exists — editing
   var m = msg.toLowerCase();
   var questionWords = ['can you','what is','how do','will this','does this','can i','is there','what about','explain','tell me'];
   var isQuestion = m.endsWith('?') || questionWords.some(function(k){return m.startsWith(k);});
+  var hasFiles = files.length > 0;
 
-  if (isQuestion && !BS.deployed) {
-    // Answer questions for free, don't charge credits
-    await freeChat(msg);
-    return;
-  }
+  if (isQuestion && !hasFiles) { await freeChat(msg, files); return; }
 
-  // It's an edit request → check credits
   var editCost = estimateEditCost(msg);
-  if (S.credits < editCost) {
-    addBuyCard('You need **'+editCost+' credits** for this edit. You have '+S.credits+'.', BS.complexity);
-    return;
-  }
+  if (S.credits < editCost) { addBuyCard('You need **'+editCost+' credits** for this edit. You have '+S.credits+'.', BS.complexity); return; }
   BS.hist.push({role:'user',content:msg});
   var nextKw = ['custom domain','github','vercel','android','pwa','seo'];
-  if (BS.deployed && nextKw.some(function(k){return m.includes(k);})) { await freeChat(msg); return; }
-  await trigChange(msg, editCost);
+  if (BS.deployed && !hasFiles && nextKw.some(function(k){return m.includes(k);})) { await freeChat(msg, files); return; }
+  await trigChange(msg, editCost, files);
 }
 
 // ── FREE CHAT (Owl Alpha - no credits) ────────
-async function freeChat(msg) {
+async function freeChat(msg, files) {
+  files = files || [];
   addTyp();
-  BS.hist.push({role:'user', content:msg});
+  BS.hist.push({role:'user', content: msg || (files.length ? '[attached ' + files.length + ' file(s)]' : '')});
 
-  // Build system prompt based on current stage
   var sysPrompt = 'You are AIWEBBB\'s AI assistant — a helpful web development consultant. ' +
     'You help users plan, understand, and build websites and apps. ' +
     'Be concise, friendly, and professional. ' +
     'When users ask about features or integrations (like Razorpay, login, etc.), ' +
     'explain what you can build and ask clarifying questions. ' +
     'Never mention pricing or credits in your response. ' +
+    'If the user shares a reference image or screenshot, describe what you see and ask how they want to use it as inspiration for their website.' +
     'If the user seems ready to build, suggest they describe their full idea so you can generate a preview.';
 
-  if (BS.brand) {
-    sysPrompt += ' The user is working on a project called "' + BS.brand + '".';
-  }
-  if (BS.code) {
-    sysPrompt += ' Their website has been built. Help them improve or extend it.';
-  }
+  if (BS.brand) sysPrompt += ' The user is working on a project called "' + BS.brand + '".';
+  if (BS.code) sysPrompt += ' Their website has been built. Help them improve or extend it.';
 
-  // Keep last 6 messages for context
   var history = BS.hist.slice(-6);
   var messages = [{role:'system', content:sysPrompt}].concat(history);
+
+  // If files attached, use vision-capable model (gpt-4o-mini supports vision)
+  var model = 'owl-alpha';
+  var hasImages = files.some(function(f){return f.type.startsWith('image/');});
+  if (hasImages) {
+    model = 'gpt-4o-mini'; // vision capable
+    // Add image to last message
+    var lastMsg = messages[messages.length - 1];
+    var contentArr = [{type:'text', text: msg || 'Please look at this reference image.'}];
+    for (var i = 0; i < files.length; i++) {
+      if (files[i].type.startsWith('image/')) {
+        var b64 = await readFileAsBase64(files[i]);
+        contentArr.push({type:'image_url', image_url:{url: b64}});
+      }
+    }
+    lastMsg.content = contentArr;
+  }
 
   try {
     var res = await fetch('/api/ai', {
       method: 'POST',
       headers: {'Content-Type':'application/json'},
-      body: JSON.stringify({model:'owl-alpha', messages:messages})
+      body: JSON.stringify({model: model, messages: messages})
     });
     rmTyp();
     var data = await res.json();
@@ -1136,7 +1185,6 @@ async function freeChat(msg) {
     if (!reply) reply = 'I can help with that! Could you describe your full project idea so I can plan it out for you?';
     BS.hist.push({role:'assistant', content:reply});
 
-    // Check if reply suggests user is ready to build → show preview button
     var buildReadyKw = ['generate a preview','create a preview','shall i generate','want me to create','ready to build','let\'s build'];
     var showBuildBtn = !BS.previewDone && buildReadyKw.some(function(k){return reply.toLowerCase().includes(k);});
 
@@ -1147,7 +1195,7 @@ async function freeChat(msg) {
     }
   } catch(err) {
     rmTyp();
-    addAI('Happy to help! Tell me more about what you want to build.','er');
+    addAI('Happy to help! Tell me more about what you want to build.');
   }
 }
 
@@ -1163,7 +1211,8 @@ function triggerPreviewFromChat() {
 // Step 1: gpt-4o-mini → project plan (fast, cheap)
 // Step 2: gpt-image-1 → preview image (visual, free)
 // Step 3: claude-sonnet-4-6 → actual build (credits)
-async function genPreview(desc) {
+async function genPreview(desc, files) {
+  files = files || [];
   BS.building = true;
   setStat('bld', 'Analysing your idea…');
   addTyp();
@@ -1302,28 +1351,43 @@ function showPreviewScreen(plan, rec, imageUrl) {
 
 async function startBuildFromPreview() { document.getElementById('previewScreen').style.display='none'; await checkAndBuild(BS.buildDesc); }
 
-async function checkAndBuild(desc) {
+async function checkAndBuild(desc, files) {
+  files = files || [];
   var cost=estimateBuildCost(desc);
   if (S.credits<cost) {
     var rec=getRecInfo(BS.complexity);
     addBuyCard('To build **'+(BS.brand||'your website')+'**, you need approximately **'+cost+'–'+(cost*2)+' credits**. You have '+S.credits+'.\n\n**'+rec.desc+'** — '+rec.pack.name+' recommended.', BS.complexity);
     return;
   }
-  await trigBuild(desc);
+  await trigBuild(desc, files);
 }
 
-async function trigBuild(prompt) {
+async function trigBuild(prompt, files) {
+  files = files || [];
   if (BS.building) return;
   BS.building=true; setStat('bld','Building…'); addBld();
   var cost=estimateBuildCost(prompt), t0=Date.now();
   var STEPS=[[3,'Designing layout…',18],[8,'Writing HTML & CSS…',38],[14,'Adding JavaScript…',58],[20,'Polishing UI…',76],[28,'Finalising…',92]];
   var si=0;
   var tmr=setInterval(function(){var s=Math.floor((Date.now()-t0)/1000);if(si<STEPS.length&&s>=STEPS[si][0]){updBld(STEPS[si][1],STEPS[si][2]);si++;}},700);
-  var sys='You are AIWEBBB — build complete, beautiful, production-ready single-page web apps. Return ONLY valid JSON (no markdown): {"html":"<complete self-contained HTML with inline CSS+JS>","summary":"one sentence","brand":"app name"}. Rules: fully self-contained HTML, Google Fonts CDN only, beautiful dark design, mobile-responsive, no alert()/confirm()/prompt(), works in iframe sandbox="allow-scripts allow-same-origin"';
+  var sys='You are AIWEBBB — build complete, beautiful, production-ready single-page web apps. Return ONLY valid JSON (no markdown): {"html":"<complete self-contained HTML with inline CSS+JS>","summary":"one sentence","brand":"app name"}. Rules: fully self-contained HTML, Google Fonts CDN only, beautiful dark design, mobile-responsive, no alert()/confirm()/prompt(), works in iframe sandbox="allow-scripts allow-same-origin". If reference images are provided, use them as visual design inspiration.';
   try {
     var spent=await spendCredits(cost);
     if (!spent) { rmBld(); addBuyCard('Not enough credits. You need '+cost+' credits to build this.', BS.complexity); BS.building=false; return; }
-    var res=await fetch('/api/ai',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-6',messages:[{role:'system',content:sys},{role:'user',content:prompt}]})});
+    // Build user message - include reference images if attached
+    var userContent = prompt;
+    var hasImages = files.some(function(f){return f.type.startsWith('image/');});
+    if (hasImages) {
+      var contentArr = [{type:'text', text:prompt}];
+      for (var i=0;i<files.length;i++) {
+        if (files[i].type.startsWith('image/')) {
+          var b64 = await readFileAsBase64(files[i]);
+          contentArr.push({type:'image_url', image_url:{url:b64}});
+        }
+      }
+      userContent = contentArr;
+    }
+    var res=await fetch('/api/ai',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-6',messages:[{role:'system',content:sys},{role:'user',content:userContent}]})});
     clearInterval(tmr);
     if (res.status===402) { rmBld(); addBuyCard('Credits exhausted. Please top up.', BS.complexity); BS.building=false; return; }
     var data=await res.json();
@@ -1345,13 +1409,30 @@ async function trigBuild(prompt) {
   BS.building=false; updDepBtn();
 }
 
-async function trigChange(req, cost) {
+async function trigChange(req, cost, files) {
+  files = files || [];
   if (BS.building) return;
   BS.building=true; setStat('bld','Updating…'); addTyp();
   var spent=await spendCredits(cost);
   if (!spent) { rmTyp(); addBuyCard('Not enough credits for this change.', BS.complexity); BS.building=false; return; }
   try {
-    var res=await fetch('/api/ai',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-6',messages:[{role:'system',content:'Apply the change to the HTML. Return ONLY JSON: {"html":"<complete updated HTML>","changes":"one sentence"}'},{role:'user',content:'HTML:\n'+BS.code.substring(0,6000)+'\n\nChange: '+req}]})});
+    // Build user content - include images if attached
+    var userContent;
+    var changeDesc = 'HTML:\n'+BS.code.substring(0,5000)+'\n\nChange: '+req;
+    var hasImages = files.some(function(f){return f.type.startsWith('image/');});
+    if (hasImages) {
+      var contentArr = [{type:'text', text:changeDesc}];
+      for (var i=0;i<files.length;i++) {
+        if (files[i].type.startsWith('image/')) {
+          var b64 = await readFileAsBase64(files[i]);
+          contentArr.push({type:'image_url', image_url:{url:b64}});
+        }
+      }
+      userContent = contentArr;
+    } else {
+      userContent = changeDesc;
+    }
+    var res=await fetch('/api/ai',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-6',messages:[{role:'system',content:'Apply the change to the HTML. If images are attached use them as visual reference. Return ONLY JSON: {"html":"<complete updated HTML>","changes":"one sentence"}'},{role:'user',content:userContent}]})});
     if (res.status===402) { rmTyp(); addBuyCard('Credits exhausted. Please top up.', BS.complexity); BS.building=false; return; }
     var data=await res.json();
     var raw=(data.choices&&data.choices[0]&&data.choices[0].message&&data.choices[0].message.content||data.content||'').replace(/```json|```/g,'').trim();
@@ -1805,6 +1886,317 @@ function renderGuide() {
 
 function switchGuide(p) { currentGuide = p; renderGuide(); }
 
+// ── FILE UPLOAD SYSTEM ────────────────────────
+// Stores attached files for both RTB and builder chat
+var RTB_FILES = [];   // files on landing page
+var CHAT_FILES = [];  // files in builder chat
+
+var ALLOWED_TYPES = {
+  'image/jpeg': true, 'image/jpg': true, 'image/png': true,
+  'image/gif': true, 'image/webp': true, 'image/svg+xml': true,
+  'application/pdf': true, 'text/plain': true, 'text/csv': true,
+  'application/json': true,
+  'application/msword': true,
+  'application/vnd.openxmlformats-officedocument.wordprocessingml.document': true,
+  'application/zip': true
+};
+
+var MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB per file
+var MAX_FILES = 5;
+
+function validateFile(file) {
+  if (!ALLOWED_TYPES[file.type] && !file.type.startsWith('image/')) {
+    return 'File type not supported: ' + file.name;
+  }
+  if (file.size > MAX_FILE_SIZE) {
+    return file.name + ' is too large (max 10MB)';
+  }
+  return null;
+}
+
+function fileIcon(file) {
+  if (file.type.startsWith('image/')) return null; // use thumbnail
+  if (file.type === 'application/pdf') return '📄';
+  if (file.type === 'text/csv') return '📊';
+  if (file.type === 'application/json') return '📋';
+  if (file.type === 'application/zip') return '🗜️';
+  if (file.type.includes('word')) return '📝';
+  return '📎';
+}
+
+function readFileAsBase64(file) {
+  return new Promise(function(resolve, reject) {
+    var reader = new FileReader();
+    reader.onload = function(e) { resolve(e.target.result); };
+    reader.onerror = function() { reject(new Error('Failed to read ' + file.name)); };
+    reader.readAsDataURL(file);
+  });
+}
+
+function readFileAsText(file) {
+  return new Promise(function(resolve, reject) {
+    var reader = new FileReader();
+    reader.onload = function(e) { resolve(e.target.result); };
+    reader.onerror = function() { reject(new Error('Failed to read ' + file.name)); };
+    reader.readAsText(file);
+  });
+}
+
+// ── RTB (landing page) file handling ──────────
+function rtbHandleFiles(fileList) {
+  var files = Array.from(fileList);
+  var remaining = MAX_FILES - RTB_FILES.length;
+  if (remaining <= 0) { toast('Max ' + MAX_FILES + ' files allowed', '⚠️'); return; }
+  files = files.slice(0, remaining);
+  var errors = [];
+  files.forEach(function(file) {
+    var err = validateFile(file);
+    if (err) { errors.push(err); return; }
+    RTB_FILES.push(file);
+  });
+  if (errors.length) toast(errors[0], '⚠️');
+  renderRtbFileBar();
+  // Update attach button state
+  var btn = document.getElementById('rtb-attach-btn');
+  if (btn) btn.classList.toggle('has-file', RTB_FILES.length > 0);
+  // Reset input so same file can be re-selected
+  document.getElementById('file-input').value = '';
+}
+
+function renderRtbFileBar() {
+  var bar = document.getElementById('rtb-file-bar');
+  if (!bar) return;
+  if (!RTB_FILES.length) { bar.className = 'rtb-file-bar'; bar.innerHTML = ''; return; }
+  bar.className = 'rtb-file-bar show';
+  bar.innerHTML = RTB_FILES.map(function(file, i) {
+    var icon = fileIcon(file);
+    var thumbHtml = icon
+      ? '<span class="file-chip-icon">' + icon + '</span>'
+      : '<img class="file-chip-img" src="' + URL.createObjectURL(file) + '" alt="">';
+    return '<div class="file-chip">' + thumbHtml +
+      '<span class="file-chip-name">' + file.name + '</span>' +
+      '<button class="file-chip-rm" onclick="rtbRemoveFile(' + i + ')" title="Remove">&#10005;</button>' +
+      '</div>';
+  }).join('');
+}
+
+function rtbRemoveFile(idx) {
+  RTB_FILES.splice(idx, 1);
+  renderRtbFileBar();
+  var btn = document.getElementById('rtb-attach-btn');
+  if (btn) btn.classList.toggle('has-file', RTB_FILES.length > 0);
+}
+
+// ── BUILDER CHAT file handling ─────────────────
+function chatHandleFiles(fileList) {
+  var files = Array.from(fileList);
+  var remaining = MAX_FILES - CHAT_FILES.length;
+  if (remaining <= 0) { toast('Max ' + MAX_FILES + ' files allowed', '⚠️'); return; }
+  files = files.slice(0, remaining);
+  var errors = [];
+  files.forEach(function(file) {
+    var err = validateFile(file);
+    if (err) { errors.push(err); return; }
+    CHAT_FILES.push(file);
+  });
+  if (errors.length) toast(errors[0], '⚠️');
+  renderChatFileBar();
+  var btn = document.getElementById('chat-attach-btn');
+  if (btn) btn.classList.toggle('has-file', CHAT_FILES.length > 0);
+  document.getElementById('chat-file-input').value = '';
+}
+
+function renderChatFileBar() {
+  var bar = document.getElementById('chat-file-bar');
+  if (!bar) return;
+  if (!CHAT_FILES.length) { bar.className = 'file-preview-bar'; bar.innerHTML = ''; return; }
+  bar.className = 'file-preview-bar show';
+  bar.innerHTML = CHAT_FILES.map(function(file, i) {
+    var icon = fileIcon(file);
+    var thumbHtml = icon
+      ? '<span class="file-chip-icon">' + icon + '</span>'
+      : '<img class="file-chip-img" src="' + URL.createObjectURL(file) + '" alt="">';
+    return '<div class="file-chip">' + thumbHtml +
+      '<span class="file-chip-name">' + file.name + '</span>' +
+      '<button class="file-chip-rm" onclick="chatRemoveFile(' + i + ')" title="Remove">&#10005;</button>' +
+      '</div>';
+  }).join('');
+}
+
+function chatRemoveFile(idx) {
+  CHAT_FILES.splice(idx, 1);
+  renderChatFileBar();
+  var btn = document.getElementById('chat-attach-btn');
+  if (btn) btn.classList.toggle('has-file', CHAT_FILES.length > 0);
+}
+
+// ── DRAG & DROP for builder chat ───────────────
+function chatDragOver(e) {
+  e.preventDefault();
+  var overlay = document.getElementById('drop-overlay');
+  if (overlay) overlay.classList.add('active');
+}
+
+function chatDragLeave(e) {
+  var overlay = document.getElementById('drop-overlay');
+  if (overlay) overlay.classList.remove('active');
+}
+
+function chatDrop(e) {
+  e.preventDefault();
+  var overlay = document.getElementById('drop-overlay');
+  if (overlay) overlay.classList.remove('active');
+  if (e.dataTransfer && e.dataTransfer.files) {
+    chatHandleFiles(e.dataTransfer.files);
+  }
+}
+
+// ── BUILD FILE CONTEXT for AI ─────────────────
+// Converts attached files into content blocks for the AI API call
+async function buildFileContext(files) {
+  if (!files || !files.length) return null;
+  var parts = [];
+  for (var i = 0; i < files.length; i++) {
+    var file = files[i];
+    try {
+      if (file.type.startsWith('image/')) {
+        // Images → base64 for vision models
+        var b64 = await readFileAsBase64(file);
+        parts.push({
+          type: 'image',
+          name: file.name,
+          data: b64,
+          mimeType: file.type
+        });
+      } else if (file.type === 'text/plain' || file.type === 'text/csv' || file.type === 'application/json') {
+        // Text files → read content
+        var text = await readFileAsText(file);
+        parts.push({
+          type: 'text',
+          name: file.name,
+          content: text.substring(0, 8000) // cap at 8KB
+        });
+      } else {
+        // PDF, doc, zip → mention by name only
+        parts.push({
+          type: 'reference',
+          name: file.name,
+          size: Math.round(file.size / 1024) + 'KB'
+        });
+      }
+    } catch(e) {
+      console.error('Error reading file:', file.name, e);
+    }
+  }
+  return parts.length ? parts : null;
+}
+
+// ── SHOW ATTACHED FILES IN CHAT BUBBLE ────────
+function addUserWithFiles(text, files) {
+  var m = document.getElementById('msgs');
+  var d = document.createElement('div');
+  d.className = 'msg u';
+  var t = new Date().toLocaleTimeString('en', {hour:'2-digit', minute:'2-digit'});
+
+  var filesHtml = '';
+  if (files && files.length) {
+    filesHtml = '<div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:6px;">';
+    files.forEach(function(file) {
+      if (file.type.startsWith('image/')) {
+        filesHtml += '<img src="' + URL.createObjectURL(file) + '" style="width:80px;height:60px;object-fit:cover;border-radius:5px;border:1px solid rgba(255,255,255,.1);" alt="' + file.name + '">';
+      } else {
+        var icon = fileIcon(file) || '📎';
+        filesHtml += '<div style="display:flex;align-items:center;gap:4px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:5px;padding:4px 8px;font-size:10px;">' + icon + ' ' + file.name + '</div>';
+      }
+    });
+    filesHtml += '</div>';
+  }
+
+  var textHtml = text ? '<div>' + esc(text) + '</div>' : '';
+  d.innerHTML = '<div class="bub">' + filesHtml + textHtml + '</div><div class="mt">' + t + '</div>';
+  m.appendChild(d);
+  scroll();
+}
+
+// ── BUILD PROMPT WITH FILE CONTEXT ────────────
+async function buildPromptWithFiles(userText, files) {
+  if (!files || !files.length) return userText;
+
+  var fileContext = await buildFileContext(files);
+  if (!fileContext) return userText;
+
+  var contextParts = [];
+  var hasImages = false;
+
+  fileContext.forEach(function(part) {
+    if (part.type === 'image') {
+      hasImages = true;
+      contextParts.push('[Image attached: ' + part.name + ']');
+    } else if (part.type === 'text') {
+      contextParts.push('[File: ' + part.name + ']\n' + part.content);
+    } else {
+      contextParts.push('[File attached: ' + part.name + ' (' + part.size + ')]');
+    }
+  });
+
+  var prompt = userText || '';
+  if (contextParts.length) {
+    prompt = (prompt ? prompt + '\n\n' : '') + 'Attached files:\n' + contextParts.join('\n\n');
+  }
+  return prompt;
+}
+
+// ── MESSAGES WITH IMAGE VISION ────────────────
+// Build messages array including image content blocks for Claude
+async function buildMessagesWithFiles(userText, files, systemPrompt) {
+  var messages = [{role:'system', content:systemPrompt}];
+
+  if (!files || !files.length) {
+    messages.push({role:'user', content:userText});
+    return messages;
+  }
+
+  var fileContext = await buildFileContext(files);
+  if (!fileContext) {
+    messages.push({role:'user', content:userText});
+    return messages;
+  }
+
+  // Build content array for multimodal message
+  var contentArr = [];
+
+  // Add images first (vision)
+  fileContext.forEach(function(part) {
+    if (part.type === 'image') {
+      // Extract base64 from data URL
+      var base64 = part.data.split(',')[1];
+      contentArr.push({
+        type: 'image_url',
+        image_url: {
+          url: part.data  // OpenRouter accepts data URLs
+        }
+      });
+    }
+  });
+
+  // Add text content
+  var textContent = userText || '';
+  fileContext.forEach(function(part) {
+    if (part.type === 'text') {
+      textContent += '\n\n[File: ' + part.name + ']\n' + part.content;
+    } else if (part.type === 'reference') {
+      textContent += '\n\n[File attached: ' + part.name + ' - ' + part.size + ']';
+    }
+  });
+
+  if (textContent) {
+    contentArr.push({type:'text', text:textContent});
+  }
+
+  messages.push({role:'user', content:contentArr.length === 1 && contentArr[0].type === 'text' ? contentArr[0].text : contentArr});
+  return messages;
+}
+
 // ── RTB SECTION ───────────────────────────────
 function rtbAuto(el) { el.style.height='auto'; el.style.height=Math.min(el.scrollHeight,200)+'px'; }
 function rtbFill(text) { var ta=document.getElementById('rtb-ta'); if(ta){ta.value=text;rtbAuto(ta);ta.focus();} }
@@ -1824,15 +2216,27 @@ function rtbMic() {
 }
 
 function rtbBuild() {
-  var ta=document.getElementById('rtb-ta'), msg=ta?ta.value.trim():'';
-  if (msg) {
+  var ta = document.getElementById('rtb-ta');
+  var msg = ta ? ta.value.trim() : '';
+  if (msg || RTB_FILES.length) {
+    // Transfer RTB files to chat files
+    if (RTB_FILES.length) {
+      CHAT_FILES = CHAT_FILES.concat(RTB_FILES);
+      RTB_FILES = [];
+      renderRtbFileBar();
+      var btn = document.getElementById('rtb-attach-btn');
+      if (btn) btn.classList.remove('has-file');
+    }
     openBld();
     setTimeout(function() {
-      var ct=document.getElementById('chat-ta');
-      if (ct) { ct.value=msg; taAuto(ct); }
-      sendChat();
+      var ct = document.getElementById('chat-ta');
+      if (ct && msg) { ct.value = msg; taAuto(ct); }
+      renderChatFileBar(); // show transferred files
+      if (msg || CHAT_FILES.length) sendChat();
     }, 400);
-  } else { openBld(); }
+  } else {
+    openBld();
+  }
 }
 
 // ── KEYBOARD & MODAL CLOSE ────────────────────
