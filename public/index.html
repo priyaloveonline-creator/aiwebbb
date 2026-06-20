@@ -62,7 +62,6 @@ h1 em{font-style:normal;color:var(--g400);}
 .pack-row-price{font-size:15px;font-weight:700;letter-spacing:-.3px;color:#fff;white-space:nowrap;}
 .pack-row-per{font-size:9px;color:var(--g600);white-space:nowrap;}
 .pack-row-btn{padding:5px 14px;background:#fff;color:#000;border:none;border-radius:5px;font-size:11px;font-weight:600;font-family:'Geist',sans-serif;cursor:pointer;transition:all .15s;white-space:nowrap;flex-shrink:0;}.pack-row-btn:hover{background:var(--g100);}
-.pricing-info{display:flex;flex-direction:column;gap:16px;}
 .info-card{background:var(--g900);border:1px solid var(--g800);border-radius:12px;overflow:hidden;}
 .info-card-head{padding:14px 18px;border-bottom:1px solid var(--g800);font-size:11px;font-weight:600;color:#fff;}
 .info-row{display:flex;align-items:center;justify-content:space-between;padding:10px 18px;border-bottom:1px solid var(--g800);font-size:11px;}.info-row:last-child{border:none;}.info-row span:first-child{color:var(--g300);}
@@ -103,12 +102,17 @@ h1 em{font-style:normal;color:var(--g400);}
 .fi{width:32px;height:32px;border-radius:var(--r);background:rgba(255,255,255,.05);border:1px solid var(--g700);display:flex;align-items:center;justify-content:center;font-size:14px;margin-bottom:16px;}
 .ft{font-size:13px;font-weight:600;margin-bottom:8px;}.fd{font-size:11.5px;color:var(--g400);line-height:1.65;}
 @keyframes urgpulse{0%,100%{opacity:1;}50%{opacity:.7;}}
-footer{border-top:1px solid var(--g800);padding:44px 24px 24px;}
-.foot-wrap{max-width:1040px;margin:0 auto;}
-.foot-grid{display:grid;grid-template-columns:1.6fr repeat(4,1fr);gap:28px;padding-bottom:36px;border-bottom:1px solid var(--g800);margin-bottom:22px;}
-.flogo{font-size:15px;font-weight:700;margin-bottom:8px;}.ftag{font-size:11px;color:var(--g500);line-height:1.7;margin-bottom:14px;max-width:220px;}
-.fh{font-size:10px;color:var(--g400);margin-bottom:12px;letter-spacing:.4px;font-weight:500;}
-.fl{display:block;font-size:11px;color:var(--g500);text-decoration:none;margin-bottom:8px;transition:color .15s;cursor:pointer;}.fl:hover{color:var(--g200);}
+footer{border-top:1px solid var(--g800);padding:56px 24px 24px;}
+.foot-wrap{max-width:1100px;margin:0 auto;}
+.foot-grid{display:grid;grid-template-columns:1.7fr repeat(4,1fr);gap:28px;padding-bottom:36px;border-bottom:1px solid var(--g800);margin-bottom:22px;}
+.foot-brand{padding-right:16px;}
+.flogo{font-size:17px;font-weight:700;margin-bottom:10px;letter-spacing:-.3px;}.flogo em{color:var(--g400);font-style:normal;font-weight:400;}
+.ftag{font-size:11.5px;color:var(--g500);line-height:1.75;margin-bottom:16px;max-width:240px;}
+.foot-made{font-size:10px;color:var(--g600);margin-bottom:18px;}
+.foot-social-row{display:flex;gap:8px;}
+.fsoc{width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.04);border:1px solid var(--g800);color:var(--g400);display:flex;align-items:center;justify-content:center;transition:all .15s;text-decoration:none;}.fsoc:hover{border-color:var(--g500);color:#fff;background:rgba(255,255,255,.08);}
+.fh{font-size:10.5px;color:var(--g300);margin-bottom:14px;letter-spacing:.5px;font-weight:600;text-transform:uppercase;}
+.fl{display:block;font-size:12px;color:var(--g500);text-decoration:none;margin-bottom:10px;transition:color .15s;cursor:pointer;}.fl:hover{color:#fff;}
 .fbot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}.fbot p{font-size:10px;color:var(--g600);}
 #toast{position:fixed;bottom:22px;right:22px;z-index:99999;background:var(--g800);border:1px solid var(--g700);border-radius:var(--r);padding:10px 15px;font-size:12px;color:#fff;transform:translateY(72px);opacity:0;transition:all .25s;display:flex;align-items:center;gap:8px;max-width:300px;pointer-events:none;}
 #toast.show{transform:translateY(0);opacity:1;}
@@ -283,6 +287,38 @@ footer{border-top:1px solid var(--g800);padding:44px 24px 24px;}
 .pbtns{display:flex;gap:5px;}
 .pbtn2{padding:4px 10px;border-radius:5px;font-size:10px;cursor:pointer;border:1px solid var(--g700);color:var(--g300);background:transparent;font-family:'Geist',sans-serif;}.pbtn2:hover{border-color:var(--g500);color:#fff;}
 .pbtn2.del{border-color:rgba(239,68,68,.3);color:rgba(239,68,68,.6);}.pbtn2.del:hover{border-color:var(--red);color:var(--red);}
+.dsearch-row{margin-bottom:12px;}
+.dsearch-inp{width:100%;background:rgba(0,0,0,.4);border:1px solid var(--g700);border-radius:var(--r);padding:8px 11px;font-family:'Geist',sans-serif;font-size:12px;color:#fff;outline:none;margin-bottom:8px;}.dsearch-inp:focus{border-color:var(--g500);}.dsearch-inp::placeholder{color:var(--g600);}
+.dfilter-chips{display:flex;gap:6px;flex-wrap:wrap;}
+.dfchip{padding:5px 12px;border:1px solid var(--g700);border-radius:100px;font-size:10px;color:var(--g400);background:transparent;cursor:pointer;font-family:'Geist',sans-serif;transition:all .15s;}.dfchip:hover{border-color:var(--g500);color:#fff;}.dfchip.on{background:#fff;color:#000;border-color:#fff;font-weight:600;}
+.pstatus{font-size:8px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;padding:2px 7px;border-radius:100px;white-space:nowrap;}
+.pstatus.draft{background:rgba(163,163,163,.1);color:var(--g300);border:1px solid var(--g700);}
+.pstatus.built{background:rgba(234,179,8,.1);color:var(--yellow);border:1px solid rgba(234,179,8,.25);}
+.pstatus.deployed{background:rgba(34,197,94,.1);color:var(--green);border:1px solid rgba(34,197,94,.25);}
+.pcred-used{font-size:9px;color:var(--g600);font-family:'Geist Mono',monospace;}
+/* COLLABORATION & SHARE */
+.collab-tabs{display:flex;gap:4px;margin-bottom:16px;border-bottom:1px solid var(--g800);}
+.ctab{padding:8px 14px;border:none;background:transparent;color:var(--g500);font-size:11px;font-weight:500;cursor:pointer;font-family:'Geist',sans-serif;border-bottom:2px solid transparent;margin-bottom:-1px;}.ctab.on{color:#fff;border-bottom-color:#fff;}
+.collab-label{font-size:10px;color:var(--g400);letter-spacing:.4px;text-transform:uppercase;display:block;margin-bottom:6px;margin-top:12px;}
+.collab-label:first-child{margin-top:0;}
+.access-options{display:flex;flex-direction:column;gap:6px;margin-top:6px;}
+.access-opt{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid var(--g700);border-radius:var(--r);background:rgba(0,0,0,.3);cursor:pointer;text-align:left;font-family:'Geist',sans-serif;transition:all .15s;}.access-opt:hover{border-color:var(--g500);}.access-opt.on{border-color:#fff;background:rgba(255,255,255,.05);}
+.ao-icon{font-size:16px;flex-shrink:0;}
+.ao-name{font-size:12px;font-weight:600;color:#fff;flex-shrink:0;min-width:90px;}
+.ao-desc{font-size:10px;color:var(--g500);}
+.collab-people-row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--g800);}
+.cpr-info{display:flex;align-items:center;gap:9px;}
+.cpr-avatar{width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,.08);border:1px solid var(--g700);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:var(--g200);}
+.cpr-email{font-size:11px;color:#fff;}.cpr-level{font-size:9px;color:var(--g500);text-transform:capitalize;}
+.cpr-revoke{font-size:9px;color:rgba(239,68,68,.7);border:1px solid rgba(239,68,68,.25);background:transparent;border-radius:4px;padding:3px 9px;cursor:pointer;font-family:'Geist',sans-serif;}.cpr-revoke:hover{color:var(--red);border-color:var(--red);}
+.activity-row{display:flex;gap:9px;padding:9px 0;border-bottom:1px solid var(--g800);}
+.activity-dot{width:6px;height:6px;border-radius:50%;background:var(--g600);flex-shrink:0;margin-top:5px;}
+.activity-text{font-size:11px;color:var(--g300);line-height:1.5;}.activity-text b{color:#fff;}
+.activity-time{font-size:9px;color:var(--g600);margin-top:2px;}
+.share-social-row{display:flex;gap:8px;margin-top:10px;}
+.ssoc{width:34px;height:34px;border-radius:8px;background:rgba(255,255,255,.05);border:1px solid var(--g700);color:var(--g200);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;text-decoration:none;transition:all .15s;}.ssoc:hover{border-color:var(--g400);background:rgba(255,255,255,.1);}
+.proj-action-row{display:flex;gap:6px;margin-top:6px;}
+.proj-share-btn{font-size:10px;padding:6px 12px;border:1px solid var(--g700);border-radius:6px;background:transparent;color:var(--g300);cursor:pointer;font-family:'Geist',sans-serif;}.proj-share-btn:hover{border-color:var(--g400);color:#fff;}
 .emptyp{text-align:center;padding:28px;font-size:11px;color:var(--g600);}
 #guide-modal{position:fixed;inset:0;z-index:9800;background:rgba(0,0,0,.8);backdrop-filter:blur(10px);display:none;align-items:center;justify-content:center;padding:14px;}
 #guide-modal.open{display:flex;}
@@ -310,7 +346,7 @@ footer{border-top:1px solid var(--g800);padding:44px 24px 24px;}
   .feats{grid-template-columns:1fr;}.nums-grid{grid-template-columns:1fr;}
   .num-card{min-height:120px;padding:24px 20px;}.num-big{font-size:48px;}
   .rtb-title{font-size:48px;letter-spacing:-2px;}.pricing-wrap{grid-template-columns:1fr;}
-  .pack-row-per{display:none;}.foot-grid{grid-template-columns:1fr 1fr;}footer{padding:30px 16px 18px;}
+  .pack-row-per{display:none;}.foot-grid{grid-template-columns:1fr 1fr;}.foot-brand{grid-column:1/-1;padding-right:0;margin-bottom:8px;}footer{padding:30px 16px 18px;}
   #bbody{flex-direction:column;}
   #ppane{height:42vh;min-height:180px;border-right:none;border-bottom:1px solid var(--g800);}
   #cpanel{width:100%;height:58vh;}
@@ -327,15 +363,15 @@ footer{border-top:1px solid var(--g800);padding:44px 24px 24px;}
   <div class="nav-links"><a href="#how">How it works</a><a href="#pricing">Pricing</a><a href="#compare">Compare</a><a href="#features">Features</a></div>
   <div class="nav-r">
     <button class="btn-ghost" onclick="openDash()">My Projects</button>
-    <button class="btn-w" onclick="openBld()">Build Your Website &rarr;</button>
+    <button class="btn-w" onclick="openBld()">Build Now</button>
   </div>
 </nav>
 <section id="hero">
-  <div class="badge"><div class="bdot"></div>Preview Free &middot; Pay Only to Build</div>
+  <div class="badge"><div class="bdot"></div>AI-Powered Web Builder</div>
   <h1>Build Any Website<br><em>in 30 Seconds.</em></h1>
-  <p class="sub">Describe your idea. Get a free preview with features, pages, and structure. Buy credits to build and launch &mdash; no subscriptions, ever.</p>
+  <p class="sub">Describe your idea. Our AI plans, designs, and builds your complete website in seconds. No code. No subscriptions. Pay only for what you build.</p>
   <div class="cta-row">
-    <button class="btn-hero" onclick="openBld()">&#9889; Build Your Website &mdash; Free Preview</button>
+    <button class="btn-hero" onclick="openBld()">Build Now</button>
     <button class="btn-hero-out" onclick="document.getElementById('how').scrollIntoView({behavior:'smooth'})">See how it works &rarr;</button>
   </div>
   <div class="stats fadein">
@@ -366,25 +402,6 @@ footer{border-top:1px solid var(--g800);padding:44px 24px 24px;}
       <div class="pricing-list">
         <div class="pricing-list-head"><h3>Credit Packs</h3><p>One-time purchase &middot; Credits never expire &middot; Instant top-up anytime</p></div>
         <div id="pricing-rows"></div>
-      </div>
-      <div class="pricing-info">
-        <div class="info-card">
-          <div class="info-card-head">What costs credits?</div>
-          <div class="info-row"><span>Free preview</span><span class="info-val-free">FREE</span></div>
-          <div class="info-row"><span>Full website build</span><span class="info-val-cr">50&ndash;200 cr</span></div>
-          <div class="info-row"><span>Small edit / text change</span><span class="info-val-cr">1&ndash;5 cr</span></div>
-          <div class="info-row"><span>Add new page</span><span class="info-val-cr">5&ndash;20 cr</span></div>
-          <div class="info-row"><span>Add new feature</span><span class="info-val-cr">10&ndash;50 cr</span></div>
-          <div class="info-row"><span>Deploy to live URL</span><span class="info-val-free">FREE</span></div>
-          <div class="info-row"><span>Credits expire?</span><span class="info-val-inf">Never</span></div>
-        </div>
-        <div class="info-card">
-          <div class="info-card-head">Project protection</div>
-          <div class="info-row"><span>View project anytime</span><span class="info-val-free">ALWAYS</span></div>
-          <div class="info-row"><span>Download HTML file</span><span class="info-val-free">ALWAYS</span></div>
-          <div class="info-row"><span>Project deleted if credits run out?</span><span style="color:var(--green);font-weight:600;font-size:10px;">NEVER</span></div>
-        </div>
-        <div class="cta-note"><p>Start with the free preview. See your full project plan before buying a single credit.</p><button onclick="openBld()">&#9889; Get Free Preview &rarr;</button></div>
       </div>
     </div>
   </div>
@@ -468,11 +485,21 @@ footer{border-top:1px solid var(--g800);padding:44px 24px 24px;}
 <footer>
   <div class="foot-wrap">
     <div class="foot-grid">
-      <div><div class="flogo">AIWEBBB.com</div><div class="ftag">Build any website in 30 seconds. Free preview. Credits-based. No subscriptions.</div><div style="font-size:10px;color:var(--g600);">Made in India &#127470;&#127475; &middot; Powered by Claude AI</div></div>
-      <div><div class="fh">Product</div><a class="fl" onclick="openBld()">Build Now</a><a class="fl" href="#how">How it works</a><a class="fl" href="#pricing">Pricing</a><a class="fl" href="#features">Features</a></div>
-      <div><div class="fh">Account</div><a class="fl" onclick="openDash()">My Projects</a><a class="fl" onclick="payPack(0)">Buy Credits</a></div>
-      <div><div class="fh">Legal</div><a class="fl" href="/privacy">Privacy Policy</a><a class="fl" href="/terms">Terms of Service</a><a class="fl" href="/refund">Refund Policy</a></div>
-      <div><div class="fh">Connect</div><a class="fl" href="mailto:hello@aiwebbb.com">Email Us</a><a class="fl" href="https://x.com/aiwebbb" target="_blank">X / Twitter</a></div>
+      <div class="foot-brand">
+        <div class="flogo">AIWEBBB<em>.com</em></div>
+        <div class="ftag">Build any website in 30 seconds. Free preview. Credits-based. No subscriptions, ever.</div>
+        <div class="foot-made">Made in India &#127470;&#127475; &middot; Powered by Claude AI</div>
+        <div class="foot-social-row">
+          <a class="fsoc" href="https://x.com/aiwebbb" target="_blank" rel="noopener" title="X"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 1.5h3.7l-8 9.2L24 22.5h-7.4l-5.8-7.6-6.6 7.6H.5l8.6-9.8L0 1.5h7.6l5.3 6.9 6-6.9zm-1.3 18.9h2L6.5 3.5h-2.1l13.2 16.9z"/></svg></a>
+          <a class="fsoc" href="https://linkedin.com/company/aiwebbb" target="_blank" rel="noopener" title="LinkedIn"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M20.4 20.4h-3.5v-5.6c0-1.3 0-3-1.9-3s-2.1 1.5-2.1 2.9v5.7H9.3V9h3.4v1.6h.1c.5-.9 1.6-1.9 3.4-1.9 3.6 0 4.3 2.4 4.3 5.5v6.2zM5.3 7.4a2 2 0 11.1-4.1 2 2 0 01-.1 4.1zM7 20.4H3.6V9H7v11.4zM22.2 0H1.8C.8 0 0 .8 0 1.8v20.4C0 23.2.8 24 1.8 24h20.4c1 0 1.8-.8 1.8-1.8V1.8C24 .8 23.2 0 22.2 0z"/></svg></a>
+          <a class="fsoc" href="https://youtube.com/@aiwebbb" target="_blank" rel="noopener" title="YouTube"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 00.5 6.2 31 31 0 000 12a31 31 0 00.5 5.8 3 3 0 002.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 002.1-2.1A31 31 0 0024 12a31 31 0 00-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg></a>
+          <a class="fsoc" href="https://discord.gg/aiwebbb" target="_blank" rel="noopener" title="Discord"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A19.8 19.8 0 0015.4 3l-.3.5a17 17 0 016.6 4.5 19.3 19.3 0 00-16.4 0A17 17 0 0111.9 3l-.3-.5a19.8 19.8 0 00-4.9 1.4C3.4 8.6 2.6 12.7 3 16.7a20 20 0 005.9 3l1.2-2a13 13 0 01-1.9-.9l.5-.4a14.2 14.2 0 0010.6 0l.5.4c-.6.4-1.2.7-1.9.9l1.2 2a20 20 0 006-3c.4-4.6-.8-8.6-2.8-12.3zM9 14.4c-1 0-1.7-.9-1.7-2s.8-2 1.7-2c1 0 1.7.9 1.7 2s-.7 2-1.7 2zm6.1 0c-1 0-1.7-.9-1.7-2s.7-2 1.7-2 1.7.9 1.7 2-.8 2-1.7 2z"/></svg></a>
+        </div>
+      </div>
+      <div><div class="fh">Product</div><a class="fl" href="/">Features</a><a class="fl" href="/">Templates</a><a class="fl" href="/">AI Builder</a><a class="fl" href="/">Pricing</a><a class="fl" href="/">Changelog</a></div>
+      <div><div class="fh">Resources</div><a class="fl" href="/">Documentation</a><a class="fl" href="/">Help Center</a><a class="fl" href="/">Tutorials</a><a class="fl" href="/">Community</a><a class="fl" href="/">Blog</a></div>
+      <div><div class="fh">Company</div><a class="fl" href="/">About</a><a class="fl" href="/">Contact</a><a class="fl" href="/">Careers</a><a class="fl" href="/">Partners</a><a class="fl" href="/">Affiliate Program</a></div>
+      <div><div class="fh">Legal</div><a class="fl" href="/">Privacy Policy</a><a class="fl" href="/">Terms of Service</a><a class="fl" href="/">Refund Policy</a><a class="fl" href="/">Cookie Policy</a></div>
     </div>
     <div class="fbot"><p>&copy; 2025 AIWEBBB.com &middot; All rights reserved</p><p>Payments by Razorpay &middot; Hosted on Vercel</p></div>
   </div>
@@ -489,6 +516,7 @@ footer{border-top:1px solid var(--g800);padding:44px 24px 24px;}
       <button class="btab on" id="tprev" onclick="swTab('prev')">&#9633; Preview</button>
       <button class="btab" id="tcode" onclick="swTab('code')">&#8963; Code</button>
       <button class="bint-btn" onclick="openIntPanel()">&#128299; Integrations</button>
+      <button class="bint-btn" onclick="openShareModal(BS.id)">&#128279; Share</button>
     </div>
     <div class="bnr">
       <div class="bcred" id="bcred" style="display:none;"><span class="cn" id="bcred-n">0</span><span>credits</span></div>
@@ -650,7 +678,19 @@ footer{border-top:1px solid var(--g800);padding:44px 24px 24px;}
           <div class="d-wallet-track"><div class="d-wallet-fill" id="d-wallet-fill" style="width:100%;"></div></div>
           <div class="d-wallet-sub"><span>0 used</span><span id="d-cred-total">0 total purchased</span></div>
         </div>
-        <div style="font-size:9px;color:var(--g500);letter-spacing:.8px;text-transform:uppercase;margin-bottom:8px;">My Projects</div>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+          <span style="font-size:9px;color:var(--g500);letter-spacing:.8px;text-transform:uppercase;">My Projects</span>
+          <span id="dplist-count" style="font-size:9px;color:var(--g600);"></span>
+        </div>
+        <div class="dsearch-row">
+          <input class="dsearch-inp" id="dsearch" type="text" placeholder="Search projects..." oninput="dashSearchInput(this.value)">
+          <div class="dfilter-chips">
+            <button class="dfchip on" data-status="" onclick="dashFilterStatus('')">All</button>
+            <button class="dfchip" data-status="draft" onclick="dashFilterStatus('draft')">Draft</button>
+            <button class="dfchip" data-status="built" onclick="dashFilterStatus('built')">Built</button>
+            <button class="dfchip" data-status="deployed" onclick="dashFilterStatus('deployed')">Deployed</button>
+          </div>
+        </div>
         <div id="dplist"></div>
         <div style="display:flex;justify-content:space-between;padding-top:14px;border-top:1px solid var(--g800);flex-wrap:wrap;gap:7px;margin-top:6px;">
           <button class="btn-ghost" style="font-size:10px;" onclick="dashOut()">Sign out</button>
@@ -670,6 +710,80 @@ footer{border-top:1px solid var(--g800);padding:44px 24px 24px;}
   <div id="int-list"></div>
 </div>
 <!-- DEPLOY GUIDE MODAL -->
+<!-- COLLABORATION MODAL -->
+<div class="mo" id="collabmo">
+  <div class="mb" style="max-width:440px;">
+    <div class="mh"><div class="mtitle">&#128101; Share &amp; Collaborate</div><button class="mx" onclick="closeCollab()">&#10005;</button></div>
+    <div class="mbody">
+      <div class="collab-tabs">
+        <button class="ctab on" data-tab="invite" onclick="switchCollabTab('invite')">Invite</button>
+        <button class="ctab" data-tab="people" onclick="switchCollabTab('people')">People</button>
+        <button class="ctab" data-tab="activity" onclick="switchCollabTab('activity')">Activity</button>
+      </div>
+      <div id="collab-invite-pane" class="collab-pane">
+        <label class="collab-label">Invite by email</label>
+        <input class="mi-inp" id="collab-email" type="email" placeholder="teammate@email.com">
+        <label class="collab-label">Access level</label>
+        <div class="access-options">
+          <button class="access-opt on" data-level="view" onclick="selectAccessLevel('view')">
+            <span class="ao-icon">&#128065;</span><span class="ao-name">View Only</span><span class="ao-desc">Can view the project</span>
+          </button>
+          <button class="access-opt" data-level="comment" onclick="selectAccessLevel('comment')">
+            <span class="ao-icon">&#128172;</span><span class="ao-name">Comment Only</span><span class="ao-desc">Can view &amp; leave feedback</span>
+          </button>
+          <button class="access-opt" data-level="edit" onclick="selectAccessLevel('edit')">
+            <span class="ao-icon">&#9999;&#65039;</span><span class="ao-name">Edit Access</span><span class="ao-desc">Coming soon</span>
+          </button>
+        </div>
+        <button class="mbtn" onclick="sendInvite()">Send Invite</button>
+      </div>
+      <div id="collab-people-pane" class="collab-pane" style="display:none;">
+        <div id="collab-people-list"></div>
+      </div>
+      <div id="collab-activity-pane" class="collab-pane" style="display:none;">
+        <div id="collab-activity-list"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- SHARE MODAL -->
+<div class="mo" id="sharemo">
+  <div class="mb" style="max-width:420px;">
+    <div class="mh"><div class="mtitle">&#128279; Share Project</div><button class="mx" onclick="closeShare()">&#10005;</button></div>
+    <div class="mbody">
+      <label class="collab-label">Privacy</label>
+      <div class="access-options" style="margin-bottom:16px;">
+        <button class="access-opt on" data-privacy="public" onclick="selectPrivacy('public')">
+          <span class="ao-icon">&#127760;</span><span class="ao-name">Public</span><span class="ao-desc">Anyone with the link can view</span>
+        </button>
+        <button class="access-opt" data-privacy="private" onclick="selectPrivacy('private')">
+          <span class="ao-icon">&#128274;</span><span class="ao-name">Private</span><span class="ao-desc">Only invited people</span>
+        </button>
+        <button class="access-opt" data-privacy="password" onclick="selectPrivacy('password')">
+          <span class="ao-icon">&#128273;</span><span class="ao-name">Password Protected</span><span class="ao-desc">Requires a password to view</span>
+        </button>
+      </div>
+      <div id="share-password-field" style="display:none;margin-bottom:14px;">
+        <input class="mi-inp" id="share-password" type="text" placeholder="Set a password">
+      </div>
+      <label class="collab-label" style="display:flex;align-items:center;justify-content:space-between;">
+        <span>Allow comments on public link</span>
+        <input type="checkbox" id="share-comments" checked style="width:16px;height:16px;">
+      </label>
+      <button class="mbtn" id="share-generate-btn" onclick="generateShareLink()" style="margin-top:14px;">Generate Share Link</button>
+      <div id="share-link-result" style="display:none;margin-top:14px;">
+        <div class="dsurow"><a id="share-url" class="dsurl" href="#" target="_blank"></a><button class="dscopy" onclick="copyShareURL()">Copy</button></div>
+        <div class="share-social-row">
+          <a id="share-whatsapp" class="ssoc" href="#" target="_blank" title="WhatsApp">&#128241;</a>
+          <a id="share-facebook" class="ssoc" href="#" target="_blank" title="Facebook">f</a>
+          <a id="share-twitter" class="ssoc" href="#" target="_blank" title="X / Twitter">&#120143;</a>
+          <a id="share-linkedin" class="ssoc" href="#" target="_blank" title="LinkedIn">in</a>
+          <a id="share-email" class="ssoc" href="#" title="Email">&#9993;&#65039;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <div id="guide-modal">
   <div class="guide-box">
     <div class="guide-head"><h3 id="guide-title">Deploy Guide</h3><button class="int-close" onclick="closeGuide()">&#10005;</button></div>
@@ -819,36 +933,102 @@ function toast(msg, icon) {
 // ── SESSION & DB ──────────────────────────────
 var S = { email: localStorage.getItem('awbb_em') || null, credits: 0, totalPurchased: 0 };
 
-async function proxyDB(action, table, data, filter) {
-  try {
-    var r = await fetch('/api/supabase', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({action:action, table:table, data:data, filter:filter})});
-    var res = await r.json();
-    if (res.fallback) return null;
-    return res.data;
-  } catch(e) { return null; }
-}
-
+// ── PERSISTENT DB LAYER ──────────────────────
+// Primary: Supabase via /api/users + /api/projects
+// localStorage is a CACHE ONLY for instant UI + offline resilience, never the source of truth.
 var DB = {
-  gU: async function(e) { var rows = await proxyDB('get','users',null,{email:e}); if (rows&&rows.length) return rows[0]; return JSON.parse(localStorage.getItem('u_'+e)||'null'); },
-  sU: async function(e, d) { var o = Object.assign({email:e}, d, {updated_at:new Date().toISOString()}); await proxyDB('upsert','users',o,null); localStorage.setItem('u_'+e, JSON.stringify(o)); return o; },
-  gP: async function(e) { var rows = await proxyDB('get','projects',null,{email:e}); if (rows&&rows.length) return rows.sort(function(a,b){return new Date(b.created_at)-new Date(a.created_at);}); return JSON.parse(localStorage.getItem('p_'+(e||'anon'))||'[]'); },
+  gU: async function(e) {
+    try {
+      var r = await fetch('/api/users?email='+encodeURIComponent(e));
+      var res = await r.json();
+      if (res.user) { localStorage.setItem('u_'+e, JSON.stringify(res.user)); return res.user; }
+    } catch(err) {}
+    return JSON.parse(localStorage.getItem('u_'+e)||'null');
+  },
+  sU: async function(e, d) {
+    var o = Object.assign({email:e}, d, {updated_at:new Date().toISOString()});
+    localStorage.setItem('u_'+e, JSON.stringify(o)); // instant cache
+    try {
+      await fetch('/api/users', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(o)});
+    } catch(err) {}
+    return o;
+  },
+  gP: async function(e) {
+    try {
+      var r = await fetch('/api/projects?email='+encodeURIComponent(e||'anon'));
+      var res = await r.json();
+      if (res.projects) {
+        localStorage.setItem('p_'+(e||'anon'), JSON.stringify(res.projects));
+        return res.projects;
+      }
+    } catch(err) {}
+    var l = JSON.parse(localStorage.getItem('p_'+(e||'anon'))||'[]');
+    return l.sort(function(a,b){return new Date(b.updated_at||b.created_at)-new Date(a.updated_at||a.created_at);});
+  },
+  gPSearch: async function(e, search, status) {
+    try {
+      var q = '/api/projects?email='+encodeURIComponent(e||'anon');
+      if (search) q += '&search='+encodeURIComponent(search);
+      if (status) q += '&status='+encodeURIComponent(status);
+      var r = await fetch(q);
+      var res = await r.json();
+      if (res.projects) return res.projects;
+    } catch(err) {}
+    var l = JSON.parse(localStorage.getItem('p_'+(e||'anon'))||'[]');
+    if (search) { var s=search.toLowerCase(); l = l.filter(function(p){return (p.brand||'').toLowerCase().includes(s);}); }
+    if (status) l = l.filter(function(p){return p.status===status;});
+    return l;
+  },
   sP: async function(p) {
-    await proxyDB('upsert','projects',p,null);
     var key = 'p_'+(p.email||'anon');
     var l = JSON.parse(localStorage.getItem(key)||'[]');
     var i = l.findIndex(function(x){return x.id===p.id;});
-    if (i>=0) l[i]=p; else l.unshift(p);
-    localStorage.setItem(key, JSON.stringify(l));
+    if (i>=0) l[i]=Object.assign({},l[i],p); else l.unshift(p);
+    localStorage.setItem(key, JSON.stringify(l)); // instant cache
+    try {
+      await fetch('/api/projects', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(p)});
+    } catch(err) {}
   },
   dP: async function(id, e) {
-    await proxyDB('delete','projects',null,{id:id,email:e});
     var key = 'p_'+e;
     var l = JSON.parse(localStorage.getItem(key)||'[]');
     localStorage.setItem(key, JSON.stringify(l.filter(function(p){return p.id!==id;})));
+    try {
+      await fetch('/api/projects', {method:'DELETE', headers:{'Content-Type':'application/json'}, body:JSON.stringify({id:id,email:e})});
+    } catch(err) {}
+  },
+  duplicateP: async function(id, e) {
+    try {
+      var r = await fetch('/api/projects', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({action:'duplicate', id:id, email:e})});
+      var res = await r.json();
+      if (res.project) {
+        var key = 'p_'+e;
+        var l = JSON.parse(localStorage.getItem(key)||'[]');
+        l.unshift(res.project);
+        localStorage.setItem(key, JSON.stringify(l));
+        return res.project;
+      }
+    } catch(err) {}
+    return null;
+  },
+  logTx: async function(email, projectId, type, amount, balanceAfter, description, paymentId) {
+    try {
+      await fetch('/api/projects', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({
+        action:'logTransaction', email:email, project_id:projectId, type:type, amount:amount,
+        balance_after:balanceAfter, description:description, payment_id:paymentId
+      })});
+    } catch(err) {}
   },
   saveDeployment: async function(did, html, email, brand) {
     localStorage.setItem('d_'+did, html);
-    try { await fetch('/api/save-deployment', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({deployId:did, html:html, email:email||'anon', brand:brand||'App'})}); } catch(e) {}
+    try {
+      var r = await fetch('/api/save-deployment', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({deployId:did, html:html, email:email||'anon', brand:brand||'App'})});
+      if (!r.ok) return { ok:false, status:r.status };
+      var res = await r.json().catch(function(){ return {}; });
+      return { ok: res.ok !== false, fallback: !!res.fallback };
+    } catch(e) {
+      return { ok:false, error:e.message };
+    }
   }
 };
 
@@ -887,16 +1067,21 @@ function updWallet() {
   } else { wb.classList.remove('show'); }
 }
 
-async function spendCredits(amount) {
+async function spendCredits(amount, type, description) {
   if (S.credits < amount) return false;
   S.credits = Math.max(0, S.credits - amount);
-  if (S.email) { var u = await DB.gU(S.email)||{}; await DB.sU(S.email, Object.assign({}, u, {credits:S.credits})); }
+  if (S.email) {
+    var u = await DB.gU(S.email)||{};
+    await DB.sU(S.email, Object.assign({}, u, {credits:S.credits}));
+    DB.logTx(S.email, BS.id, type||'spend', -amount, S.credits, description||'Credits spent');
+  }
+  if (BS.id) BS.creditsUsed = (BS.creditsUsed||0) + amount;
   updWallet();
   return true;
 }
 
 // ── BUILDER STATE ─────────────────────────────
-var BS = {id:null,code:'',deployed:false,durl:'',building:false,tab:'prev',hist:[],brand:'',pEmail:false,previewDone:false,buildDesc:'',complexity:2};
+var BS = {id:null,code:'',deployed:false,durl:'',building:false,tab:'prev',hist:[],brand:'',pEmail:false,previewDone:false,buildDesc:'',complexity:2,creditsUsed:0,pages:0,features:0,createdAt:null};
 
 function setStat(st, tx) { var d=document.getElementById('sdot'),t=document.getElementById('stxt'); if(d)d.className='sdot '+st; if(t)t.textContent=tx; }
 function updDepBtn() {
@@ -911,7 +1096,7 @@ function closeBld() { document.getElementById('bld').classList.remove('open'); d
 function newProj() { closeDash(); resetBS(); openBld(); }
 
 function resetBS() {
-  BS = {id:'proj_'+Date.now(),code:'',deployed:false,durl:'',building:false,tab:'prev',hist:[],brand:'',pEmail:false,previewDone:false,buildDesc:'',complexity:2};
+  BS = {id:'proj_'+Date.now(),code:'',deployed:false,durl:'',building:false,tab:'prev',hist:[],brand:'',pEmail:false,previewDone:false,buildDesc:'',complexity:2,creditsUsed:0,pages:0,features:0,createdAt:new Date().toISOString()};
   document.getElementById('msgs').innerHTML = '';
   var iframe = document.getElementById('piframe'); iframe.style.display='none'; iframe.srcdoc='';
   document.getElementById('cpane').style.display = 'none';
@@ -1156,14 +1341,14 @@ async function freeChat(msg, files) {
   var history = BS.hist.slice(-6);
   var messages = [{role:'system', content:sysPrompt}].concat(history);
 
-  // If files attached, use vision-capable model (gpt-4o-mini supports vision)
+  // If files attached, use dedicated vision-analyst model (Gemini 2.5 Flash - strong image understanding)
   var model = 'owl-alpha';
   var hasImages = files.some(function(f){return f.type.startsWith('image/');});
   if (hasImages) {
-    model = 'gpt-4o-mini'; // vision capable
+    model = 'vision-analyst';
     // Add image to last message
     var lastMsg = messages[messages.length - 1];
-    var contentArr = [{type:'text', text: msg || 'Please look at this reference image.'}];
+    var contentArr = [{type:'text', text: (msg || 'Please look at this reference image and describe what you see.') + '\n\nDescribe the UI/design in detail: layout, colors, components, style. Then ask how the user wants to use it as inspiration for their website.'}];
     for (var i = 0; i < files.length; i++) {
       if (files[i].type.startsWith('image/')) {
         var b64 = await readFileAsBase64(files[i]);
@@ -1211,6 +1396,48 @@ function triggerPreviewFromChat() {
 // Step 1: gpt-4o-mini → project plan (fast, cheap)
 // Step 2: gpt-image-1 → preview image (visual, free)
 // Step 3: claude-sonnet-4-6 → actual build (credits)
+// Sends attached images to the dedicated vision-analyst model and merges
+// the visual analysis into the user's text description for better planning + builds.
+async function analyzeImagesForBuild(desc, files) {
+  var imageFiles = files.filter(function(f){return f.type.startsWith('image/');});
+  if (!imageFiles.length) return desc;
+
+  try {
+    var contentArr = [{type:'text', text:
+      'Analyze this image as a website/app design reference. Describe in detail: ' +
+      'layout structure, color scheme, typography style, UI components visible, overall theme/vibe, ' +
+      'and any text/branding visible. Be specific and concise (max 150 words). ' +
+      'This will be used as a design brief for an AI website builder.'
+    }];
+    for (var i = 0; i < imageFiles.length; i++) {
+      var b64 = await readFileAsBase64(imageFiles[i]);
+      contentArr.push({type:'image_url', image_url:{url:b64}});
+    }
+
+    var res = await fetch('/api/ai', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({
+        model: 'vision-analyst',
+        messages: [
+          {role:'system', content:'You are a precise visual design analyst. Describe images factually and concisely for use in a website-building brief.'},
+          {role:'user', content: contentArr}
+        ]
+      })
+    });
+    var data = await res.json();
+    var analysis = (data.choices&&data.choices[0]&&data.choices[0].message&&data.choices[0].message.content || data.content || '').trim();
+
+    if (!analysis) return desc;
+
+    var merged = desc ? desc + '\n\nVisual reference analysis:\n' + analysis : 'Build a website based on this visual reference:\n' + analysis;
+    return merged;
+  } catch (e) {
+    console.error('Image analysis error:', e);
+    return desc;
+  }
+}
+
 async function genPreview(desc, files) {
   files = files || [];
   BS.building = true;
@@ -1232,6 +1459,14 @@ async function genPreview(desc, files) {
   else if (d.includes('landing')) appType = 'landing page';
 
   try {
+    // STEP 0: If images attached, analyze with dedicated vision-analyst model first
+    var enrichedDesc = desc;
+    var hasImages = files.some(function(f){return f.type.startsWith('image/');});
+    if (hasImages) {
+      setStat('bld', 'Analysing your reference image…');
+      enrichedDesc = await analyzeImagesForBuild(desc, files);
+    }
+
     // STEP 1: gpt-4o-mini → project plan JSON
     var planRes = await fetch('/api/ai', {
       method: 'POST',
@@ -1240,7 +1475,7 @@ async function genPreview(desc, files) {
         model: 'gpt-4o-mini',
         messages: [
           {role:'system', content:'You are AIWEBBB project planner. Analyze the user idea and return ONLY valid JSON (no markdown, no backticks): {"brand":"AppName","pages":12,"features":28,"buildTime":"~2 Minutes","description":"One sentence.","featureList":["F1","F2","F3","F4","F5","F6"],"costEst":"700-1500 credits"}'},
-          {role:'user', content:desc}
+          {role:'user', content:enrichedDesc}
         ]
       })
     });
@@ -1253,7 +1488,9 @@ async function genPreview(desc, files) {
     if (!plan) plan = {brand:'My App', pages:8, features:12, buildTime:'~2 Minutes', description:desc.substring(0,100), featureList:['Responsive Design','Modern UI','Fast Performance','SEO Ready'], costEst:'700-1500 credits'};
 
     BS.brand = plan.brand;
-    BS.buildDesc = desc;
+    BS.pages = plan.pages || 0;
+    BS.features = plan.features || 0;
+    BS.buildDesc = enrichedDesc; // use enriched description (with image insights) for the actual build
     document.getElementById('bproj').textContent = plan.brand;
 
     // Show text preview immediately while image loads
@@ -1362,6 +1599,55 @@ async function checkAndBuild(desc, files) {
   await trigBuild(desc, files);
 }
 
+// Robust extraction of {html, summary, brand} from a model response.
+// Tries several strategies because large HTML-in-JSON payloads are prone to
+// truncation or minor escaping issues — we want to recover real output
+// whenever possible instead of silently falling back to a thin template.
+function extractBuildJSON(raw) {
+  if (!raw) return null;
+  var cleaned = raw.replace(/```json|```/g, '').trim();
+
+  // Strategy 1: direct parse
+  try { return JSON.parse(cleaned); } catch(e) {}
+
+  // Strategy 2: find the outermost {...} block and parse that
+  try {
+    var first = cleaned.indexOf('{');
+    var last = cleaned.lastIndexOf('}');
+    if (first !== -1 && last > first) {
+      return JSON.parse(cleaned.substring(first, last + 1));
+    }
+  } catch(e) {}
+
+  // Strategy 3: regex-extract the html field directly even if outer JSON is malformed
+  // (handles cases where the model added trailing text or the JSON got cut off)
+  try {
+    var htmlMatch = cleaned.match(/"html"\s*:\s*"([\s\S]*?)"\s*,\s*"summary"/);
+    if (htmlMatch) {
+      var htmlVal = htmlMatch[1].replace(/\\"/g, '"').replace(/\\n/g, '\n').replace(/\\t/g, '\t');
+      var summaryMatch = cleaned.match(/"summary"\s*:\s*"([^"]*)"/);
+      var brandMatch = cleaned.match(/"brand"\s*:\s*"([^"]*)"/);
+      return {
+        html: htmlVal,
+        summary: summaryMatch ? summaryMatch[1] : 'Your website has been built.',
+        brand: brandMatch ? brandMatch[1] : null
+      };
+    }
+  } catch(e) {}
+
+  // Strategy 4: if the response IS html directly (model ignored JSON instruction)
+  if (cleaned.trim().toLowerCase().startsWith('<!doctype') || cleaned.trim().toLowerCase().startsWith('<html')) {
+    return { html: cleaned, summary: 'Your website has been built.', brand: null };
+  }
+
+  return null;
+}
+
+async function retryLastBuild() {
+  if (!BS.buildDesc) { toast('No previous build to retry', '⚠️'); return; }
+  await trigBuild(BS.buildDesc, BS.buildFiles || []);
+}
+
 async function trigBuild(prompt, files) {
   files = files || [];
   if (BS.building) return;
@@ -1370,9 +1656,9 @@ async function trigBuild(prompt, files) {
   var STEPS=[[3,'Designing layout…',18],[8,'Writing HTML & CSS…',38],[14,'Adding JavaScript…',58],[20,'Polishing UI…',76],[28,'Finalising…',92]];
   var si=0;
   var tmr=setInterval(function(){var s=Math.floor((Date.now()-t0)/1000);if(si<STEPS.length&&s>=STEPS[si][0]){updBld(STEPS[si][1],STEPS[si][2]);si++;}},700);
-  var sys='You are AIWEBBB — build complete, beautiful, production-ready single-page web apps. Return ONLY valid JSON (no markdown): {"html":"<complete self-contained HTML with inline CSS+JS>","summary":"one sentence","brand":"app name"}. Rules: fully self-contained HTML, Google Fonts CDN only, beautiful dark design, mobile-responsive, no alert()/confirm()/prompt(), works in iframe sandbox="allow-scripts allow-same-origin". If reference images are provided, use them as visual design inspiration.';
+  var sys='You are AIWEBBB, an expert web developer building production-grade, visually striking websites. Generate a COMPLETE, rich, multi-section single-page website — not a skeleton. Return ONLY valid JSON in this exact shape, no markdown fences, no commentary: {"html":"...","summary":"one sentence","brand":"app name"}\n\nCRITICAL JSON SAFETY: the html value must be valid inside a JSON string — escape every double-quote as \\" and every newline as \\n. Do not use literal line breaks inside the html string.\n\nDESIGN REQUIREMENTS (non-negotiable):\n- Build AT LEAST 6 distinct sections: navbar, hero, features/services, social proof or stats, gallery/showcase relevant to the business, pricing or CTA section, footer\n- Use real, specific, on-brand copy — never placeholder text like "Lorem ipsum" or generic "Get Started"/"Start Now" alone\n- Rich visual design: gradients, shadows, hover states, varied layouts (not just centered text blocks), icons (inline SVG or unicode), spacing rhythm\n- Fully responsive (mobile + desktop), dark theme by default unless the brief implies otherwise\n- Self-contained: inline CSS in <style>, inline JS in <script>, Google Fonts via CDN link only\n- Interactive where relevant (smooth scroll nav, hover effects, simple JS interactions) but no alert()/confirm()/prompt()\n- Must render correctly inside iframe sandbox="allow-scripts allow-same-origin"\n\nIf reference images were provided, replicate their layout, color palette, and component style precisely.';
   try {
-    var spent=await spendCredits(cost);
+    var spent=await spendCredits(cost, 'build', 'Website build: '+(BS.brand||'Untitled'));
     if (!spent) { rmBld(); addBuyCard('Not enough credits. You need '+cost+' credits to build this.', BS.complexity); BS.building=false; return; }
     // Build user message - include reference images if attached
     var userContent = prompt;
@@ -1391,18 +1677,24 @@ async function trigBuild(prompt, files) {
     clearInterval(tmr);
     if (res.status===402) { rmBld(); addBuyCard('Credits exhausted. Please top up.', BS.complexity); BS.building=false; return; }
     var data=await res.json();
-    var raw=(data.choices&&data.choices[0]&&data.choices[0].message&&data.choices[0].message.content||data.content||'').replace(/```json|```/g,'').trim();
-    var parsed=null; try{var mm=raw.match(/\{[\s\S]*\}/);if(mm)parsed=JSON.parse(mm[0]);}catch(e){}
-    var html=parsed&&parsed.html?parsed.html:fallback(prompt);
-    var summary=parsed&&parsed.summary?parsed.summary:'Your website has been built.';
+    var raw=(data.choices&&data.choices[0]&&data.choices[0].message&&data.choices[0].message.content||data.content||'').trim();
+    var parsed = extractBuildJSON(raw);
+    var usedFallback = !parsed || !parsed.html || parsed.html.length < 500;
+    var html = usedFallback ? fallback(prompt) : parsed.html;
+    var summary = (parsed && parsed.summary) ? parsed.summary : 'Your website has been built.';
     if (parsed&&parsed.brand&&!BS.brand) BS.brand=parsed.brand;
     if (BS.brand) document.getElementById('bproj').textContent=BS.brand;
     rmBld(); showPrev(html);
     BS.hist.push({role:'assistant',content:'Built: '+summary});
-    await DB.sP({id:BS.id,email:S.email||'anon',brand:BS.brand||'My App',code:html,deployed:false,created_at:new Date().toISOString()});
+    await DB.sP({id:BS.id,email:S.email||'anon',brand:BS.brand||'My App',code:html,deployed:false,credits_used:BS.creditsUsed||0,pages:BS.pages||0,features:BS.features||0,complexity:BS.complexity||2,created_at:BS.createdAt||new Date().toISOString()});
     var bt=Math.floor((Date.now()-t0)/1000);
-    addAI('Done in **'+bt+'s** — '+summary+'\n\nYou have **'+S.credits+' credits** remaining.','ok',
-      [{l:'🚀 Deploy Free',c:'p',fn:'doDeploy()'},{l:'⬇ Download',c:'',fn:'dlCode()'},{l:'🔌 Integrations',c:'',fn:'openIntPanel()'}]);
+    if (usedFallback) {
+      addAI('Built in **'+bt+'s**, but the result came out simpler than expected — this can happen with complex requests. Want me to try generating again with more detail?','er',
+        [{l:'🔄 Retry Build',c:'p',fn:'retryLastBuild()'},{l:'🚀 Deploy Anyway',c:'',fn:'doDeploy()'},{l:'⬇ Download',c:'',fn:'dlCode()'}]);
+    } else {
+      addAI('Done in **'+bt+'s** — '+summary+'\n\nYou have **'+S.credits+' credits** remaining.','ok',
+        [{l:'🚀 Deploy Free',c:'p',fn:'doDeploy()'},{l:'⬇ Download',c:'',fn:'dlCode()'},{l:'🔌 Integrations',c:'',fn:'openIntPanel()'}]);
+    }
     setStat('ok','Built · '+bt+'s');
     setTimeout(function(){document.getElementById('chat-ta').focus();},300);
   } catch(err) { clearInterval(tmr); rmBld(); addAI('Build error. Try again or rephrase.','er'); setStat('err','Error'); }
@@ -1413,12 +1705,12 @@ async function trigChange(req, cost, files) {
   files = files || [];
   if (BS.building) return;
   BS.building=true; setStat('bld','Updating…'); addTyp();
-  var spent=await spendCredits(cost);
+  var spent=await spendCredits(cost, 'edit', 'Edit: '+req.substring(0,60));
   if (!spent) { rmTyp(); addBuyCard('Not enough credits for this change.', BS.complexity); BS.building=false; return; }
   try {
     // Build user content - include images if attached
     var userContent;
-    var changeDesc = 'HTML:\n'+BS.code.substring(0,5000)+'\n\nChange: '+req;
+    var changeDesc = 'Current HTML:\n'+BS.code+'\n\nRequested change: '+req;
     var hasImages = files.some(function(f){return f.type.startsWith('image/');});
     if (hasImages) {
       var contentArr = [{type:'text', text:changeDesc}];
@@ -1432,17 +1724,28 @@ async function trigChange(req, cost, files) {
     } else {
       userContent = changeDesc;
     }
-    var res=await fetch('/api/ai',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-6',messages:[{role:'system',content:'Apply the change to the HTML. If images are attached use them as visual reference. Return ONLY JSON: {"html":"<complete updated HTML>","changes":"one sentence"}'},{role:'user',content:userContent}]})});
+    var res=await fetch('/api/ai',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-6',messages:[{role:'system',content:'Apply the requested change to the HTML and return the COMPLETE updated page. If images are attached, use them as visual reference. Return ONLY valid JSON, no markdown fences: {"html":"...","changes":"one sentence describing what changed"}. Escape all double-quotes as \\" and newlines as \\n inside the html string.'},{role:'user',content:userContent}]})});
     if (res.status===402) { rmTyp(); addBuyCard('Credits exhausted. Please top up.', BS.complexity); BS.building=false; return; }
     var data=await res.json();
-    var raw=(data.choices&&data.choices[0]&&data.choices[0].message&&data.choices[0].message.content||data.content||'').replace(/```json|```/g,'').trim();
-    var parsed=null; try{var mm=raw.match(/\{[\s\S]*\}/);if(mm)parsed=JSON.parse(mm[0]);}catch(e){}
-    var html=parsed&&parsed.html?parsed.html:BS.code;
-    var changes=parsed&&parsed.changes?parsed.changes:'Changes applied.';
+    var raw=(data.choices&&data.choices[0]&&data.choices[0].message&&data.choices[0].message.content||data.content||'').trim();
+    var parsed = extractBuildJSON(raw);
+    var html = (parsed && parsed.html && parsed.html.length > 200) ? parsed.html : BS.code;
+    var changes = (parsed && (parsed.changes || parsed.summary)) ? (parsed.changes || parsed.summary) : 'Changes applied.';
+    var editFailed = !parsed || !parsed.html || parsed.html.length <= 200;
     rmTyp(); showPrev(html);
-    if (BS.deployed) { var did=BS.durl.split('/').pop(); await DB.saveDeployment(did,html,S.email,BS.brand); addAI(changes+'\n\n🔄 Live site updated — **'+BS.durl+'**\n\n**'+S.credits+' credits** remaining.','ok'); }
+    if (editFailed) {
+      addAI('That change didn\'t apply cleanly — your site is unchanged. Try rephrasing the request, or be more specific.','er');
+    } else if (BS.deployed) {
+      var did=BS.durl.split('/').pop();
+      var saveRes = await DB.saveDeployment(did,html,S.email,BS.brand);
+      if (saveRes.ok) {
+        addAI(changes+'\n\n🔄 Live site updated — **'+BS.durl+'**\n\n**'+S.credits+' credits** remaining.','ok');
+      } else {
+        addAI(changes+'\n\n⚠️ Preview updated, but the live site at '+BS.durl+' could not be refreshed (temporary issue). Try deploying again to sync it.\n\n**'+S.credits+' credits** remaining.','er');
+      }
+    }
     else { addAI(changes+'\n\n**'+S.credits+' credits** remaining.','ok'); }
-    await DB.sP({id:BS.id,email:S.email||'anon',brand:BS.brand||'My App',code:html,deployed:BS.deployed,deploy_url:BS.durl,created_at:new Date().toISOString()});
+    await DB.sP({id:BS.id,email:S.email||'anon',brand:BS.brand||'My App',code:html,deployed:BS.deployed,deploy_url:BS.durl,credits_used:BS.creditsUsed||0,pages:BS.pages||0,features:BS.features||0,complexity:BS.complexity||2,created_at:BS.createdAt||new Date().toISOString()});
     BS.hist.push({role:'assistant',content:'Changed: '+changes}); setStat('ok','Updated'); updWallet();
   } catch(err) { rmTyp(); addAI('Could not apply that change. Try again.','er'); setStat('err','Error'); }
   BS.building=false;
@@ -1489,19 +1792,33 @@ function doDeploy() {
 
 async function execDeploy() {
   if (BS.deployed) { document.getElementById('dsucc').style.display='flex'; showDeploySuggestions(); return; }
-  setStat('bld','Deploying…'); addAI('Deploying your site for free…','bld');
+  setStat('bld','Deploying…'); addAI('Deploying your site…','bld');
   var chars='abcdefghjkmnpqrstuvwxyz23456789', id='';
   for (var i=0;i<10;i++) id+=chars[Math.floor(Math.random()*chars.length)];
   var url='https://aiwebbb.com/app/'+id;
+
+  var saveResult = await DB.saveDeployment(id,BS.code,S.email,BS.brand);
+
+  if (!saveResult.ok) {
+    setStat('err','Deploy failed');
+    addAI('⚠️ Deployment failed — your site could not be saved to the server. This is usually temporary. Please try **Deploy Free** again in a moment, or use **Download** to save your HTML file directly.','er',
+      [{l:'🔄 Retry Deploy',c:'p',fn:'execDeploy()'},{l:'⬇ Download Instead',c:'',fn:'dlCode()'}]);
+    toast('Deploy failed — try again', '⚠️');
+    return;
+  }
+
   BS.durl=url; BS.deployed=true;
-  await DB.saveDeployment(id,BS.code,S.email,BS.brand);
-  await DB.sP({id:BS.id,email:S.email||'anon',brand:BS.brand||'My App',code:BS.code,deployed:true,deploy_url:url,deploy_id:id,created_at:new Date().toISOString()});
-  await new Promise(function(r){setTimeout(r,1200);});
+  await DB.sP({id:BS.id,email:S.email||'anon',brand:BS.brand||'My App',code:BS.code,deployed:true,deploy_url:url,deploy_id:id,credits_used:BS.creditsUsed||0,pages:BS.pages||0,features:BS.features||0,complexity:BS.complexity||2,created_at:BS.createdAt||new Date().toISOString()});
   document.getElementById('dsurl').textContent=url;
   document.getElementById('dsurl').href=url;
   showDeploySuggestions();
   document.getElementById('dsucc').style.display='flex';
-  addAI('🎉 **Live at '+url+'**\n\nShare it anywhere. You have **'+S.credits+' credits** left.\n\n💡 Want faster speed? Check the deployment options above!','ok');
+
+  if (saveResult.fallback) {
+    addAI('🎉 **Live at '+url+'**\n\n⚠️ Note: this was saved locally only (database temporarily unavailable) — the link may not load from other devices yet. Try redeploying later to make it fully permanent.\n\nYou have **'+S.credits+' credits** left.','ok');
+  } else {
+    addAI('🎉 **Live at '+url+'**\n\nShare it anywhere. You have **'+S.credits+' credits** left.\n\n💡 Want faster speed? Check the deployment options above!','ok');
+  }
   setStat('ok','Live!'); updDepBtn(); updWallet(); toast('Deployed! 🎉','🚀');
 }
 
@@ -1541,6 +1858,8 @@ async function delP(id) {
 }
 
 // ── DASHBOARD ─────────────────────────────────
+var DASH_STATE = { search: '', status: '', allProjects: [] };
+
 async function renderDash() {
   if (!S.email) { document.getElementById('dlogin').style.display='block'; document.getElementById('dcontent').style.display='none'; return; }
   document.getElementById('dlogin').style.display='none'; document.getElementById('dcontent').style.display='block';
@@ -1548,6 +1867,7 @@ async function renderDash() {
   document.getElementById('dav').textContent=S.email[0].toUpperCase();
   document.getElementById('dplan').textContent='Credits wallet';
   var projs=await DB.gP(S.email);
+  DASH_STATE.allProjects = projs;
   document.getElementById('dspr').textContent=projs.length;
   document.getElementById('dsdep').textContent=projs.filter(function(p){return p.deployed;}).length;
   document.getElementById('dscred').textContent=S.credits.toLocaleString();
@@ -1555,21 +1875,86 @@ async function renderDash() {
   document.getElementById('d-cred-total').textContent=(S.totalPurchased||S.credits).toLocaleString()+' total purchased';
   var wf=document.getElementById('d-wallet-fill');
   if (wf) wf.style.width=(S.totalPurchased>0?Math.max(0,Math.min(100,(S.credits/S.totalPurchased)*100)):100)+'%';
+  renderProjectList();
+}
+
+function renderProjectList() {
+  var projs = DASH_STATE.allProjects.slice();
+  if (DASH_STATE.search) {
+    var s = DASH_STATE.search.toLowerCase();
+    projs = projs.filter(function(p){ return (p.brand||'').toLowerCase().includes(s); });
+  }
+  if (DASH_STATE.status) {
+    projs = projs.filter(function(p){
+      var st = p.status || (p.deployed ? 'deployed' : (p.code ? 'built' : 'draft'));
+      return st === DASH_STATE.status;
+    });
+  }
+
+  var countEl = document.getElementById('dplist-count');
+  if (countEl) countEl.textContent = projs.length + ' shown';
+
   var list=document.getElementById('dplist');
-  if (!projs.length) { list.innerHTML='<div class="emptyp">No projects yet. Build your first one!</div>'; }
-  else {
-    list.innerHTML=projs.map(function(p){
-      var pid = p.id.replace(/"/g,'');
-      return '<div class="pcrd"><div style="flex:1;min-width:0;"><div class="pname">'+(p.brand||'Untitled')+'</div>' +
-        '<div class="pmeta">'+(p.deployed?'🟢 <a href="'+p.deploy_url+'" target="_blank" style="color:#fff;font-family:monospace;font-size:9px;text-decoration:none;">'+(p.deploy_url||'')+'</a>':'⚪ Not deployed')+
-        ' · '+new Date(p.created_at).toLocaleDateString('en-IN')+'</div></div>' +
-        '<div class="pbtns"><button class="pbtn2" data-pid="'+pid+'" onclick="reopenP(this.dataset.pid)">Open</button>' +
-        '<button class="pbtn2 del" data-pid="'+pid+'" onclick="delP(this.dataset.pid)">Del</button></div></div>';
-    }).join('');
+  if (!projs.length) {
+    list.innerHTML='<div class="emptyp">'+(DASH_STATE.search||DASH_STATE.status ? 'No projects match your search.' : 'No projects yet. Build your first one!')+'</div>';
+    return;
+  }
+
+  list.innerHTML=projs.map(function(p){
+    var pid = p.id.replace(/"/g,'');
+    var status = p.status || (p.deployed ? 'deployed' : (p.code ? 'built' : 'draft'));
+    var statusLabel = status.charAt(0).toUpperCase() + status.slice(1);
+    var creditsUsed = p.credits_used || 0;
+    var updated = p.updated_at || p.created_at;
+    return '<div class="pcrd"><div style="flex:1;min-width:0;">' +
+      '<div style="display:flex;align-items:center;gap:6px;margin-bottom:3px;flex-wrap:wrap;">' +
+      '<span class="pname" style="margin-bottom:0;">'+(p.brand||'Untitled')+'</span>' +
+      '<span class="pstatus '+status+'">'+statusLabel+'</span>' +
+      '</div>' +
+      '<div class="pmeta">'+(p.deployed?'<a href="'+p.deploy_url+'" target="_blank" style="color:var(--g300);font-family:monospace;font-size:9px;text-decoration:none;">'+(p.deploy_url||'')+'</a>':'Not deployed yet')+
+      ' &middot; '+new Date(updated).toLocaleDateString('en-IN')+
+      (creditsUsed ? ' &middot; <span class="pcred-used">'+creditsUsed+' credits used</span>' : '') +
+      '</div></div>' +
+      '<div class="pbtns"><button class="pbtn2" data-pid="'+pid+'" onclick="reopenP(this.dataset.pid)">Open</button>' +
+      '<button class="pbtn2" data-pid="'+pid+'" onclick="openShareModal(this.dataset.pid)">Share</button>' +
+      '<button class="pbtn2" data-pid="'+pid+'" onclick="openCollabModal(this.dataset.pid)">Collab</button>' +
+      '<button class="pbtn2" data-pid="'+pid+'" onclick="duplicateProj(this.dataset.pid)">Duplicate</button>' +
+      '<button class="pbtn2 del" data-pid="'+pid+'" onclick="delP(this.dataset.pid)">Del</button></div></div>';
+  }).join('');
+}
+
+var dashSearchDebounce;
+function dashSearchInput(val) {
+  clearTimeout(dashSearchDebounce);
+  dashSearchDebounce = setTimeout(function() {
+    DASH_STATE.search = val.trim();
+    renderProjectList();
+  }, 200);
+}
+
+function dashFilterStatus(status) {
+  DASH_STATE.status = status;
+  document.querySelectorAll('.dfchip').forEach(function(chip) {
+    chip.classList.toggle('on', chip.dataset.status === status);
+  });
+  renderProjectList();
+}
+
+async function duplicateProj(id) {
+  toast('Duplicating project...', '📋');
+  var newProj = await DB.duplicateP(id, S.email);
+  if (newProj) {
+    toast('Project duplicated!', '✅');
+    var projs = await DB.gP(S.email);
+    DASH_STATE.allProjects = projs;
+    renderProjectList();
+    document.getElementById('dspr').textContent = projs.length;
+  } else {
+    toast('Could not duplicate project', '⚠️');
   }
 }
 
-function openDash() { document.getElementById('dashmo').classList.add('open'); document.body.style.overflow='hidden'; renderDash(); }
+function openDash() { document.getElementById('dashmo').classList.add('open'); document.body.style.overflow='hidden'; DASH_STATE.search=''; DASH_STATE.status=''; var si=document.getElementById('dsearch'); if(si) si.value=''; renderDash(); }
 function closeDash() { document.getElementById('dashmo').classList.remove('open'); document.body.style.overflow=document.getElementById('bld').classList.contains('open')?'hidden':''; }
 async function dashLogin() {
   var e=document.getElementById('dein').value.trim();
@@ -1632,6 +2017,7 @@ async function paySuccess(packIdx, email, pid) {
   var ex=await DB.gU(email)||{credits:0,total_purchased:0};
   var newCredits=(ex.credits||0)+pack.credits, newTotal=(ex.total_purchased||0)+pack.credits;
   await DB.sU(email,Object.assign({},ex,{credits:newCredits,total_purchased:newTotal,last_pay:pid,plan:'credits'}));
+  DB.logTx(email, null, 'purchase', pack.credits, newCredits, pack.name+' pack purchased', pid);
   S.credits=newCredits; S.totalPurchased=newTotal;
   updWallet(); closePay();
   toast(pack.credits.toLocaleString()+' credits added! Total: '+newCredits.toLocaleString(),'🎉');
@@ -2195,6 +2581,181 @@ async function buildMessagesWithFiles(userText, files, systemPrompt) {
 
   messages.push({role:'user', content:contentArr.length === 1 && contentArr[0].type === 'text' ? contentArr[0].text : contentArr});
   return messages;
+}
+
+// ── COLLABORATION SYSTEM (Feature 2) ──────────
+var COLLAB_STATE = { projectId: null, accessLevel: 'view' };
+
+function openCollabModal(projectId) {
+  COLLAB_STATE.projectId = projectId;
+  COLLAB_STATE.accessLevel = 'view';
+  document.querySelectorAll('.access-opt[data-level]').forEach(function(b){b.classList.toggle('on', b.dataset.level==='view');});
+  document.getElementById('collab-email').value = '';
+  switchCollabTab('invite');
+  document.getElementById('collabmo').classList.add('open');
+}
+function closeCollab() { document.getElementById('collabmo').classList.remove('open'); }
+
+function switchCollabTab(tab) {
+  document.querySelectorAll('.ctab').forEach(function(t){t.classList.toggle('on', t.dataset.tab===tab);});
+  document.getElementById('collab-invite-pane').style.display = tab==='invite' ? 'block' : 'none';
+  document.getElementById('collab-people-pane').style.display = tab==='people' ? 'block' : 'none';
+  document.getElementById('collab-activity-pane').style.display = tab==='activity' ? 'block' : 'none';
+  if (tab === 'people') loadCollabPeople();
+  if (tab === 'activity') loadCollabActivity();
+}
+
+function selectAccessLevel(level) {
+  if (level === 'edit') { toast('Edit access is coming soon — use View or Comment for now', 'ℹ️'); return; }
+  COLLAB_STATE.accessLevel = level;
+  document.querySelectorAll('.access-opt[data-level]').forEach(function(b){b.classList.toggle('on', b.dataset.level===level);});
+}
+
+async function sendInvite() {
+  var email = document.getElementById('collab-email').value.trim();
+  if (!email || !email.includes('@')) { toast('Enter a valid email', '⚠️'); return; }
+  if (!S.email) { toast('Please sign in first (use My Projects)', '⚠️'); return; }
+  try {
+    var r = await fetch('/api/collaborate', {
+      method: 'POST', headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({action:'invite', project_id:COLLAB_STATE.projectId, owner_email:S.email, collaborator_email:email, access_level:COLLAB_STATE.accessLevel})
+    });
+    var res = await r.json();
+    if (res.ok) {
+      toast(email + ' invited as ' + COLLAB_STATE.accessLevel, '✅');
+      document.getElementById('collab-email').value = '';
+      switchCollabTab('people');
+    } else {
+      toast('Could not send invite', '⚠️');
+    }
+  } catch(e) { toast('Could not send invite', '⚠️'); }
+}
+
+async function loadCollabPeople() {
+  var list = document.getElementById('collab-people-list');
+  list.innerHTML = '<div style="text-align:center;padding:16px;font-size:11px;color:var(--g600);">Loading…</div>';
+  try {
+    var r = await fetch('/api/collaborate?project_id=' + encodeURIComponent(COLLAB_STATE.projectId));
+    var res = await r.json();
+    var people = res.collaborators || [];
+    if (!people.length) { list.innerHTML = '<div class="emptyp">No collaborators yet. Invite someone!</div>'; return; }
+    list.innerHTML = people.map(function(p) {
+      return '<div class="collab-people-row"><div class="cpr-info">' +
+        '<div class="cpr-avatar">' + p.collaborator_email[0].toUpperCase() + '</div>' +
+        '<div><div class="cpr-email">' + p.collaborator_email + '</div><div class="cpr-level">' + p.access_level + ' access</div></div>' +
+        '</div><button class="cpr-revoke" data-email="' + p.collaborator_email.replace(/"/g,'') + '" onclick="revokeAccess(this.dataset.email)">Revoke</button></div>';
+    }).join('');
+  } catch(e) { list.innerHTML = '<div class="emptyp">Could not load collaborators</div>'; }
+}
+
+async function revokeAccess(email) {
+  try {
+    await fetch('/api/collaborate', {
+      method: 'POST', headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({action:'revoke', project_id:COLLAB_STATE.projectId, collaborator_email:email, owner_email:S.email})
+    });
+    toast('Access revoked', '✅');
+    loadCollabPeople();
+  } catch(e) { toast('Could not revoke access', '⚠️'); }
+}
+
+async function loadCollabActivity() {
+  var list = document.getElementById('collab-activity-list');
+  list.innerHTML = '<div style="text-align:center;padding:16px;font-size:11px;color:var(--g600);">Loading…</div>';
+  try {
+    var r = await fetch('/api/collaborate?type=logs&project_id=' + encodeURIComponent(COLLAB_STATE.projectId));
+    var res = await r.json();
+    var logs = res.logs || [];
+    if (!logs.length) { list.innerHTML = '<div class="emptyp">No activity yet</div>'; return; }
+    var actionText = { invited:'invited a collaborator', revoked:'revoked access', commented:'left a comment', duplicated:'duplicated this project', viewed:'viewed this project', shared:'shared this project', edited:'edited this project' };
+    list.innerHTML = logs.map(function(l) {
+      var who = l.actor_email || 'Someone';
+      var txt = actionText[l.action] || l.action;
+      return '<div class="activity-row"><div class="activity-dot"></div><div>' +
+        '<div class="activity-text"><b>' + who + '</b> ' + txt + '</div>' +
+        '<div class="activity-time">' + new Date(l.created_at).toLocaleString('en-IN') + '</div>' +
+        '</div></div>';
+    }).join('');
+  } catch(e) { list.innerHTML = '<div class="emptyp">Could not load activity</div>'; }
+}
+
+// ── SHARE SYSTEM (Feature 3) ──────────────────
+var SHARE_STATE = { projectId: null, privacy: 'public' };
+
+function openShareModal(projectId) {
+  if (!projectId) { toast('Build something first!', '⚠️'); return; }
+  SHARE_STATE.projectId = projectId;
+  SHARE_STATE.privacy = 'public';
+  document.querySelectorAll('.access-opt[data-privacy]').forEach(function(b){b.classList.toggle('on', b.dataset.privacy==='public');});
+  document.getElementById('share-password-field').style.display = 'none';
+  document.getElementById('share-link-result').style.display = 'none';
+  document.getElementById('share-generate-btn').style.display = 'block';
+  document.getElementById('sharemo').classList.add('open');
+}
+function closeShare() { document.getElementById('sharemo').classList.remove('open'); }
+
+function selectPrivacy(privacy) {
+  SHARE_STATE.privacy = privacy;
+  document.querySelectorAll('.access-opt[data-privacy]').forEach(function(b){b.classList.toggle('on', b.dataset.privacy===privacy);});
+  document.getElementById('share-password-field').style.display = privacy === 'password' ? 'block' : 'none';
+}
+
+async function generateShareLink() {
+  if (privacy_password_check()) return;
+  var btn = document.getElementById('share-generate-btn');
+  btn.textContent = 'Generating…'; btn.disabled = true;
+
+  var allowComments = document.getElementById('share-comments').checked;
+  var password = document.getElementById('share-password').value;
+
+  try {
+    var r = await fetch('/api/share', {
+      method: 'POST', headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({
+        action: 'create',
+        project_id: SHARE_STATE.projectId,
+        owner_email: S.email || 'anon',
+        privacy: SHARE_STATE.privacy,
+        password: SHARE_STATE.privacy === 'password' ? password : null,
+        allow_comments: allowComments
+      })
+    });
+    var res = await r.json();
+    btn.textContent = 'Generate Share Link'; btn.disabled = false;
+
+    if (res.url) {
+      document.getElementById('share-url').textContent = res.url;
+      document.getElementById('share-url').href = res.url;
+      var encodedUrl = encodeURIComponent(res.url);
+      var text = encodeURIComponent('Check out my project on AIWEBBB: ');
+      document.getElementById('share-whatsapp').href = 'https://wa.me/?text=' + text + encodedUrl;
+      document.getElementById('share-facebook').href = 'https://www.facebook.com/sharer/sharer.php?u=' + encodedUrl;
+      document.getElementById('share-twitter').href = 'https://twitter.com/intent/tweet?text=' + text + '&url=' + encodedUrl;
+      document.getElementById('share-linkedin').href = 'https://www.linkedin.com/sharing/share-offsite/?url=' + encodedUrl;
+      document.getElementById('share-email').href = 'mailto:?subject=Check out my project&body=' + text + encodedUrl;
+      document.getElementById('share-link-result').style.display = 'block';
+      btn.style.display = 'none';
+      toast('Share link created!', '🔗');
+    } else {
+      toast('Could not generate share link', '⚠️');
+    }
+  } catch(e) {
+    btn.textContent = 'Generate Share Link'; btn.disabled = false;
+    toast('Could not generate share link', '⚠️');
+  }
+}
+
+function privacy_password_check() {
+  if (SHARE_STATE.privacy === 'password') {
+    var pw = document.getElementById('share-password').value.trim();
+    if (!pw) { toast('Set a password first', '⚠️'); return true; }
+  }
+  return false;
+}
+
+function copyShareURL() {
+  var url = document.getElementById('share-url').textContent;
+  navigator.clipboard.writeText(url).then(function(){ toast('Link copied!', '📋'); });
 }
 
 // ── RTB SECTION ───────────────────────────────
