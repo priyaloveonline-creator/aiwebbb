@@ -22,12 +22,14 @@ export default async function handler(req, res) {
 
   // Build a strong prompt for gpt-image-1
   const appType = type || 'web app';
-  const prompt = `Professional UI/UX mockup screenshot of a modern ${appType} called "${brand || 'App'}". 
-Dark theme, mobile app design, 9:16 aspect ratio phone screenshot style. 
-The app is: ${desc.substring(0, 150)}.
-Show realistic UI elements: navigation bar, cards, buttons, icons, content sections.
-Pixel-perfect, high-fidelity, professional design similar to top apps on the App Store.
-No text overlays explaining what it is. Pure UI mockup only.`;
+  const prompt = `Professional, ultra-high-fidelity website UI mockup for "${brand || 'App'}" — a ${appType}.
+Context: ${desc.substring(0, 200)}.
+
+Style: Clean modern web design, desktop browser viewport mockup, realistic and polished like a top-tier SaaS or e-commerce site (Stripe, Linear, Apple-level design quality).
+Show: a complete visible homepage layout with navigation bar, hero section with real-looking headline text, product/content cards, and clear visual hierarchy.
+Typography should look crisp and intentional. Use a cohesive color palette matching the brand's industry.
+Lighting and rendering should look like a real screenshot — sharp edges, proper alignment, consistent spacing, no warped text, no garbled letters.
+Pure UI design only — no browser chrome, no device frame, no watermarks, no explanatory text overlays.`;
 
   try {
     const r = await fetch('https://api.openai.com/v1/images/generations', {
@@ -40,8 +42,8 @@ No text overlays explaining what it is. Pure UI mockup only.`;
         model: 'gpt-image-1',
         prompt: prompt,
         n: 1,
-        size: '1024x1792',  // 9:16 portrait
-        quality: 'medium'   // balance speed vs quality
+        size: '1536x1024',  // widescreen - matches desktop website layouts
+        quality: 'high'     // best quality tier
       })
     });
 
