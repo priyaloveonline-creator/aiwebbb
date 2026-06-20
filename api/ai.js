@@ -16,8 +16,9 @@ export default async function handler(req, res) {
   if (!apiKey) return res.status(500).json({ error: 'AI service not configured' });
 
   // MODEL ROUTING:
-  // owl-alpha        → FREE conversation layer (chat, Q&A, consultation)
-  // gpt-4o-mini      → cheap project planning / understanding
+  // owl-alpha         → FREE conversation layer (chat, Q&A, consultation)
+  // gpt-4o-mini       → cheap project planning / understanding (text only)
+  // vision-analyst    → DEDICATED image/screenshot/reference analysis (Gemini 2.5 Flash - strong vision)
   // claude-sonnet-4-6 → full website build (default, credits charged)
   // claude-opus-4-8   → complex builds when requested
   let selectedModel = 'anthropic/claude-sonnet-4-6';
@@ -26,6 +27,8 @@ export default async function handler(req, res) {
     selectedModel = 'openrouter/owl-alpha';
   } else if (model === 'gpt-4o-mini' || model === 'openai/gpt-4o-mini') {
     selectedModel = 'openai/gpt-4o-mini';
+  } else if (model === 'vision-analyst' || model === 'google/gemini-2.5-flash') {
+    selectedModel = 'google/gemini-2.5-flash';
   } else if (model === 'claude-opus-4-8' || model === 'anthropic/claude-opus-4-8') {
     selectedModel = 'anthropic/claude-opus-4-8';
   }
@@ -42,8 +45,8 @@ export default async function handler(req, res) {
       body: JSON.stringify({
         model: selectedModel,
         messages,
-        max_tokens: selectedModel === 'openai/gpt-4o-mini' ? 2000 : 4000,
-        temperature: 0.7
+        max_tokens: selectedModel === 'openai/gpt-4o-mini' ? 2000 : (selectedModel === 'google/gemini-2.5-flash' ? 3000 : selectedModel === 'anthropic/claude-opus-4-8' ? 16000 : 12000),
+        temperature: selectedModel === 'google/gemini-2.5-flash' ? 0.4 : 0.7
       })
     });
 
