@@ -1,6 +1,9 @@
 import { cors } from './_supabase.js';
 
-export const config = { maxDuration: 120 };
+// Vercel Hobby caps every function at 60s regardless of this value —
+// streaming is what actually lets long builds complete within that window,
+// since we forward tokens as they arrive instead of waiting for the full response.
+export const config = { maxDuration: 60 };
 
 export default async function handler(req, res) {
   cors(res, req.headers.origin);
@@ -33,6 +36,15 @@ export default async function handler(req, res) {
     selectedModel = 'anthropic/claude-opus-4-8';
   }
 
+  const maxTokens = selectedModel === 'openai/gpt-4o-mini' ? 2000
+    : selectedModel === 'google/gemini-2.5-flash' ? 3000
+    : selectedModel === 'anthropic/claude-opus-4-8' ? 16000
+    : 12000;
+
+  // Only stream for the heavy build/edit models — keep simple chat calls as
+  // plain JSON since they're fast and the frontend already expects that shape.
+  const shouldStream = selectedModel === 'anthropic/claude-sonnet-4-6' || selectedModel === 'anthropic/claude-opus-4-8';
+
   try {
     const orRes = await fetch('https://openrouter.ai/api/v1/chat/completions', {
       method: 'POST',
@@ -45,8 +57,9 @@ export default async function handler(req, res) {
       body: JSON.stringify({
         model: selectedModel,
         messages,
-        max_tokens: selectedModel === 'openai/gpt-4o-mini' ? 2000 : (selectedModel === 'google/gemini-2.5-flash' ? 3000 : selectedModel === 'anthropic/claude-opus-4-8' ? 16000 : 12000),
-        temperature: selectedModel === 'google/gemini-2.5-flash' ? 0.4 : 0.7
+        max_tokens: maxTokens,
+        temperature: selectedModel === 'google/gemini-2.5-flash' ? 0.4 : 0.7,
+        stream: shouldStream
       })
     });
 
@@ -55,14 +68,61 @@ export default async function handler(req, res) {
     if (!orRes.ok) {
       const errText = await orRes.text();
       console.error('OpenRouter error:', orRes.status, errText);
-      return res.status(orRes.status).json({ error: 'AI service error' });
+      return res.status(orRes.status).json({ error: 'AI service error', detail: errText.substring(0, 300) });
     }
 
-    const data = await orRes.json();
-    return res.status(200).json(data);
+    if (!shouldStream) {
+      const data = await orRes.json();
+      return res.status(200).json(data);
+    }
+
+    // ── STREAMING PATH ──
+    // Forward Server-Sent Events to the browser as Newline-Delimited JSON chunks.
+    // Frontend accumulates `content` deltas, then has the full text once 'done' arrives.
+    res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+    res.setHeader('Cache-Control', 'no-cache, no-transform');
+    res.setHeader('X-Accel-Buffering', 'no');
+
+    const reader = orRes.body.getReader();
+    const decoder = new TextDecoder();
+    let buffer = '';
+    let fullContent = '';
+
+    try {
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        buffer += decoder.decode(value, { stream: true });
+        const lines = buffer.split('\n');
+        buffer = lines.pop(); // keep incomplete last line for next chunk
+
+        for (const line of lines) {
+          const trimmed = line.trim();
+          if (!trimmed || !trimmed.startsWith('data:')) continue;
+          const payload = trimmed.slice(5).trim();
+          if (payload === '[DONE]') continue;
+          try {
+            const json = JSON.parse(payload);
+            const delta = json.choices?.[0]?.delta?.content || '';
+            if (delta) {
+              fullContent += delta;
+              res.write(JSON.stringify({ type: 'delta', content: delta }) + '\n');
+            }
+          } catch (e) { /* partial JSON line, ignore */ }
+        }
+      }
+    } catch (streamErr) {
+      console.error('stream read error:', streamErr.message);
+    }
+
+    res.write(JSON.stringify({ type: 'done', content: fullContent }) + '\n');
+    return res.end();
 
   } catch (err) {
     console.error('ai.js error:', err.message);
-    return res.status(500).json({ error: 'Internal error' });
+    if (!res.headersSent) {
+      return res.status(500).json({ error: 'Internal error', detail: err.message });
+    }
+    res.end();
   }
 }
