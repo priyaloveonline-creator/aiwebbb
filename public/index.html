@@ -118,14 +118,18 @@ footer{border-top:1px solid var(--g800);padding:56px 24px 24px;}
 #toast.show{transform:translateY(0);opacity:1;}
 /* BUILDER */
 #bld{position:fixed;inset:0;z-index:8000;background:#000;display:none;flex-direction:column;}#bld.open{display:flex;}
-#bnav{height:46px;background:var(--g900);border-bottom:1px solid var(--g800);display:flex;align-items:center;justify-content:space-between;padding:0 12px;flex-shrink:0;}
+#bnav{height:46px;background:var(--g900);border-bottom:1px solid var(--g800);display:flex;align-items:center;justify-content:space-between;padding:0 12px;flex-shrink:0;position:relative;}
 .bnl{display:flex;align-items:center;gap:9px;}
 .bback{width:26px;height:26px;border-radius:5px;background:transparent;border:1px solid var(--g700);color:var(--g400);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;transition:all .15s;}.bback:hover{border-color:var(--g500);color:#fff;}
 .blogo{font-size:13px;font-weight:700;color:#fff;}
-.bproj{font-size:10px;color:var(--g500);background:rgba(255,255,255,.04);border:1px solid var(--g800);border-radius:3px;padding:2px 8px;font-family:'Geist Mono',monospace;max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.bproj{font-size:11px;color:#fff;font-weight:600;background:transparent;border:none;padding:0;font-family:'Geist',sans-serif;max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 .bnc{display:flex;gap:2px;}
 .btab{display:flex;align-items:center;gap:4px;padding:5px 12px;border-radius:5px;font-size:10px;color:var(--g500);background:transparent;border:none;cursor:pointer;transition:all .15s;font-family:'Geist',sans-serif;}.btab.on{background:rgba(255,255,255,.06);color:#fff;border:1px solid var(--g700);}
-.bint-btn{display:flex;align-items:center;gap:4px;padding:5px 10px;border-radius:5px;font-size:10px;color:var(--g400);background:rgba(255,255,255,.03);border:1px solid var(--g700);cursor:pointer;transition:all .15s;font-family:'Geist',sans-serif;margin-left:4px;}.bint-btn:hover{border-color:var(--g500);color:#fff;}
+.bmenu-btn{width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;color:var(--g400);background:rgba(255,255,255,.03);border:1px solid var(--g700);cursor:pointer;transition:all .15s;position:relative;flex-shrink:0;}.bmenu-btn:hover{border-color:var(--g500);color:#fff;}.bmenu-btn.on{border-color:var(--g400);color:#fff;background:rgba(255,255,255,.08);}
+.bmenu-dropdown{display:none;position:absolute;top:42px;right:12px;background:var(--g900);border:1px solid var(--g700);border-radius:10px;padding:6px;min-width:170px;box-shadow:0 8px 28px rgba(0,0,0,.5);z-index:600;flex-direction:column;gap:1px;}
+.bmenu-dropdown.open{display:flex;}
+.bmenu-item{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:6px;font-size:12px;color:var(--g200);background:transparent;border:none;cursor:pointer;text-align:left;font-family:'Geist',sans-serif;transition:background .12s;width:100%;}.bmenu-item:hover{background:rgba(255,255,255,.06);color:#fff;}
+.bmenu-divider{height:1px;background:var(--g800);margin:4px 2px;}
 .bnr{display:flex;align-items:center;gap:7px;}
 .bcred{display:flex;align-items:center;gap:5px;font-size:10px;color:var(--g400);background:rgba(255,255,255,.04);border:1px solid var(--g800);border-radius:4px;padding:3px 8px;font-family:'Geist Mono',monospace;}.bcred .cn{color:#fff;font-weight:600;}.bcred.low{border-color:rgba(234,179,8,.3);color:var(--yellow);}.bcred.critical{border-color:rgba(239,68,68,.3);color:var(--red);animation:urgpulse 1.5s infinite;}
 .bdeploy{display:flex;align-items:center;gap:5px;padding:5px 13px;border-radius:5px;background:#fff;color:#000;border:none;font-family:'Geist',sans-serif;font-size:11px;font-weight:600;cursor:pointer;transition:all .15s;}.bdeploy:hover{background:var(--g100);}.bdeploy.locked{background:var(--g800);color:var(--g500);border:1px solid var(--g700);cursor:default;}.bdeploy.live{background:rgba(34,197,94,.1);color:var(--green);border:1px solid rgba(34,197,94,.3);}
@@ -509,18 +513,26 @@ footer{border-top:1px solid var(--g800);padding:56px 24px 24px;}
   <div id="bnav">
     <div class="bnl">
       <button class="bback" onclick="closeBld()">&#8592;</button>
-      <span class="blogo">AIWEBBB</span>
       <span class="bproj" id="bproj">New Project</span>
     </div>
     <div class="bnc">
       <button class="btab on" id="tprev" onclick="swTab('prev')">&#9633; Preview</button>
       <button class="btab" id="tcode" onclick="swTab('code')">&#8963; Code</button>
-      <button class="bint-btn" onclick="openIntPanel()">&#128299; Integrations</button>
-      <button class="bint-btn" onclick="openShareModal(BS.id)">&#128279; Share</button>
     </div>
     <div class="bnr">
       <div class="bcred" id="bcred" style="display:none;"><span class="cn" id="bcred-n">0</span><span>credits</span></div>
-      <button class="bdeploy locked" id="bdeploy" onclick="doDeploy()">&#8593; Deploy Free</button>
+      <button class="bdeploy locked" id="bdeploy" onclick="doDeploy()">&#8593; Deploy</button>
+      <button class="bmenu-btn" id="bmenu-btn" onclick="toggleBMenu()" title="More options">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 4h12M2 8h12M2 12h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+      <div class="bmenu-dropdown" id="bmenu-dropdown">
+        <button class="bmenu-item" onclick="openIntPanel();closeBMenu();">&#128299; Integrations</button>
+        <button class="bmenu-item" onclick="openShareModal(BS.id);closeBMenu();">&#128279; Share</button>
+        <button class="bmenu-item" onclick="openCollabModal(BS.id);closeBMenu();">&#128101; Collaborate</button>
+        <div class="bmenu-divider"></div>
+        <button class="bmenu-item" onclick="dlCode();closeBMenu();">&#8595; Download</button>
+        <button class="bmenu-item" onclick="openDash();closeBMenu();">&#9633; My Projects</button>
+      </div>
     </div>
   </div>
   <div id="bbody">
@@ -1536,15 +1548,19 @@ async function generatePreviewImage(desc, brand, appType) {
       };
       img.onerror = function() {
         if (shimmer) shimmer.classList.add('done');
+        var wrap3 = document.querySelector('.prev-img-wrap');
+        if (wrap3) wrap3.style.display = 'none';
       };
       img.src = data.imageUrl;
     } else {
       // No image - hide shimmer, show nothing (text preview is enough)
+      if (data.reason) console.warn('Preview image unavailable:', data.reason);
       if (shimmer) shimmer.classList.add('done');
       var wrap = document.querySelector('.prev-img-wrap');
       if (wrap) wrap.style.display = 'none';
     }
   } catch(e) {
+    console.warn('Preview image request failed:', e.message);
     if (shimmer) shimmer.classList.add('done');
     var wrap2 = document.querySelector('.prev-img-wrap');
     if (wrap2) wrap2.style.display = 'none';
@@ -1653,9 +1669,6 @@ async function trigBuild(prompt, files) {
   if (BS.building) return;
   BS.building=true; setStat('bld','Building…'); addBld();
   var cost=estimateBuildCost(prompt), t0=Date.now();
-  var STEPS=[[3,'Designing layout…',18],[8,'Writing HTML & CSS…',38],[14,'Adding JavaScript…',58],[20,'Polishing UI…',76],[28,'Finalising…',92]];
-  var si=0;
-  var tmr=setInterval(function(){var s=Math.floor((Date.now()-t0)/1000);if(si<STEPS.length&&s>=STEPS[si][0]){updBld(STEPS[si][1],STEPS[si][2]);si++;}},700);
   var sys='You are AIWEBBB, an expert web developer building production-grade, visually striking websites. Generate a COMPLETE, rich, multi-section single-page website — not a skeleton. Return ONLY valid JSON in this exact shape, no markdown fences, no commentary: {"html":"...","summary":"one sentence","brand":"app name"}\n\nCRITICAL JSON SAFETY: the html value must be valid inside a JSON string — escape every double-quote as \\" and every newline as \\n. Do not use literal line breaks inside the html string.\n\nDESIGN REQUIREMENTS (non-negotiable):\n- Build AT LEAST 6 distinct sections: navbar, hero, features/services, social proof or stats, gallery/showcase relevant to the business, pricing or CTA section, footer\n- Use real, specific, on-brand copy — never placeholder text like "Lorem ipsum" or generic "Get Started"/"Start Now" alone\n- Rich visual design: gradients, shadows, hover states, varied layouts (not just centered text blocks), icons (inline SVG or unicode), spacing rhythm\n- Fully responsive (mobile + desktop), dark theme by default unless the brief implies otherwise\n- Self-contained: inline CSS in <style>, inline JS in <script>, Google Fonts via CDN link only\n- Interactive where relevant (smooth scroll nav, hover effects, simple JS interactions) but no alert()/confirm()/prompt()\n- Must render correctly inside iframe sandbox="allow-scripts allow-same-origin"\n\nIf reference images were provided, replicate their layout, color palette, and component style precisely.';
   try {
     var spent=await spendCredits(cost, 'build', 'Website build: '+(BS.brand||'Untitled'));
@@ -1673,11 +1686,27 @@ async function trigBuild(prompt, files) {
       }
       userContent = contentArr;
     }
+
     var res=await fetch('/api/ai',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-6',messages:[{role:'system',content:sys},{role:'user',content:userContent}]})});
-    clearInterval(tmr);
+
     if (res.status===402) { rmBld(); addBuyCard('Credits exhausted. Please top up.', BS.complexity); BS.building=false; return; }
-    var data=await res.json();
-    var raw=(data.choices&&data.choices[0]&&data.choices[0].message&&data.choices[0].message.content||data.content||'').trim();
+    if (!res.ok) {
+      rmBld();
+      var errMsg = 'Build failed (server error '+res.status+').';
+      if (res.status === 504 || res.status === 408) errMsg = 'Build timed out — try a slightly simpler description, or try again.';
+      else if (res.status === 429) errMsg = 'AI service is busy right now. Please wait a few seconds and try again.';
+      else if (res.status >= 500) errMsg = 'AI service had a temporary issue. Please try again.';
+      addAI(errMsg, 'er', [{l:'🔄 Retry Build',c:'p',fn:'retryLastBuild()'}]);
+      setStat('err','Error'); BS.building=false; updDepBtn(); return;
+    }
+
+    // Stream the response, updating real progress as content arrives
+    var raw = await streamBuildResponse(res, function(charsReceived) {
+      var pct = Math.min(92, 15 + Math.floor(charsReceived / 80));
+      var stage = charsReceived < 800 ? 'Designing layout…' : charsReceived < 3000 ? 'Writing HTML & CSS…' : charsReceived < 7000 ? 'Adding JavaScript…' : 'Polishing details…';
+      updBld(stage, pct);
+    });
+
     var parsed = extractBuildJSON(raw);
     var usedFallback = !parsed || !parsed.html || parsed.html.length < 500;
     var html = usedFallback ? fallback(prompt) : parsed.html;
@@ -1697,8 +1726,50 @@ async function trigBuild(prompt, files) {
     }
     setStat('ok','Built · '+bt+'s');
     setTimeout(function(){document.getElementById('chat-ta').focus();},300);
-  } catch(err) { clearInterval(tmr); rmBld(); addAI('Build error. Try again or rephrase.','er'); setStat('err','Error'); }
+  } catch(err) {
+    rmBld();
+    console.error('trigBuild error:', err);
+    var msg = 'Build error: ' + (err.message || 'connection issue') + '. Try again.';
+    addAI(msg, 'er', [{l:'🔄 Retry Build',c:'p',fn:'retryLastBuild()'}]);
+    setStat('err','Error');
+  }
   BS.building=false; updDepBtn();
+}
+
+// Reads the streaming NDJSON response from /api/ai, calling onProgress(charCount)
+// as content arrives, and resolves with the full accumulated text once done.
+async function streamBuildResponse(res, onProgress) {
+  if (!res.body || !res.body.getReader) {
+    // Fallback for environments without streaming support: read as plain JSON
+    var data = await res.json();
+    return (data.choices&&data.choices[0]&&data.choices[0].message&&data.choices[0].message.content || data.content || '').trim();
+  }
+  var reader = res.body.getReader();
+  var decoder = new TextDecoder();
+  var buffer = '';
+  var fullContent = '';
+
+  while (true) {
+    var chunk = await reader.read();
+    if (chunk.done) break;
+    buffer += decoder.decode(chunk.value, {stream:true});
+    var lines = buffer.split('\n');
+    buffer = lines.pop();
+    for (var i=0;i<lines.length;i++) {
+      var line = lines[i].trim();
+      if (!line) continue;
+      try {
+        var obj = JSON.parse(line);
+        if (obj.type === 'delta') {
+          fullContent += obj.content;
+          if (onProgress) onProgress(fullContent.length);
+        } else if (obj.type === 'done') {
+          fullContent = obj.content || fullContent;
+        }
+      } catch(e) { /* ignore partial lines */ }
+    }
+  }
+  return fullContent.trim();
 }
 
 async function trigChange(req, cost, files) {
@@ -1726,8 +1797,13 @@ async function trigChange(req, cost, files) {
     }
     var res=await fetch('/api/ai',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-6',messages:[{role:'system',content:'Apply the requested change to the HTML and return the COMPLETE updated page. If images are attached, use them as visual reference. Return ONLY valid JSON, no markdown fences: {"html":"...","changes":"one sentence describing what changed"}. Escape all double-quotes as \\" and newlines as \\n inside the html string.'},{role:'user',content:userContent}]})});
     if (res.status===402) { rmTyp(); addBuyCard('Credits exhausted. Please top up.', BS.complexity); BS.building=false; return; }
-    var data=await res.json();
-    var raw=(data.choices&&data.choices[0]&&data.choices[0].message&&data.choices[0].message.content||data.content||'').trim();
+    if (!res.ok) {
+      rmTyp();
+      var errMsg = res.status===504 ? 'Edit timed out — try a more specific, smaller change.' : 'Edit failed (server error '+res.status+'). Please try again.';
+      addAI(errMsg, 'er');
+      setStat('err','Error'); BS.building=false; return;
+    }
+    var raw = await streamBuildResponse(res, null);
     var parsed = extractBuildJSON(raw);
     var html = (parsed && parsed.html && parsed.html.length > 200) ? parsed.html : BS.code;
     var changes = (parsed && (parsed.changes || parsed.summary)) ? (parsed.changes || parsed.summary) : 'Changes applied.';
@@ -2141,6 +2217,24 @@ function renderIntList(filter) {
   });
   list.innerHTML = html || '<div style="padding:20px;text-align:center;font-size:11px;color:var(--g600);">No integrations found</div>';
 }
+
+// ── BUILDER HAMBURGER MENU ────────────────────
+function toggleBMenu() {
+  var dd = document.getElementById('bmenu-dropdown');
+  var btn = document.getElementById('bmenu-btn');
+  var isOpen = dd.classList.contains('open');
+  if (isOpen) { closeBMenu(); } else { dd.classList.add('open'); btn.classList.add('on'); }
+}
+function closeBMenu() {
+  document.getElementById('bmenu-dropdown').classList.remove('open');
+  document.getElementById('bmenu-btn').classList.remove('on');
+}
+document.addEventListener('click', function(e) {
+  var dd = document.getElementById('bmenu-dropdown');
+  var btn = document.getElementById('bmenu-btn');
+  if (!dd || !dd.classList.contains('open')) return;
+  if (!dd.contains(e.target) && !btn.contains(e.target)) closeBMenu();
+});
 
 function openIntPanel() { document.getElementById('int-panel').classList.add('open'); renderIntList(); }
 function closeIntPanel() { document.getElementById('int-panel').classList.remove('open'); }
