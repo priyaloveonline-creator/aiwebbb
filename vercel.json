@@ -3,16 +3,57 @@
   "buildCommand": "npm install",
   "outputDirectory": "public",
   "routes": [
-    { "src": "/api/(.*)", "dest": "/api/$1" },
-    { "src": "/app/(.*)", "dest": "/api/app/$1" },
-    { "src": "/", "dest": "/public/index.html" },
-    { "src": "/(.*)", "dest": "/public/index.html" }
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/$1"
+    },
+    {
+      "src": "/app/(.*)",
+      "dest": "/api/app/$1"
+    },
+    {
+      "src": "/s/(.*)",
+      "dest": "/api/share/$1"
+    },
+    {
+      "src": "/",
+      "dest": "/public/index.html"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/public/index.html"
+    }
   ],
   "functions": {
-    "api/ai.js":              { "maxDuration": 120 },
-    "api/preview-image.js":   { "maxDuration": 60 },
-    "api/webhook.js":         { "maxDuration": 30 },
-    "api/save-deployment.js": { "maxDuration": 30 },
-    "api/app/[id].js":        { "maxDuration": 10 }
+    "api/ai.js": {
+      "maxDuration": 60
+    },
+    "api/preview-image.js": {
+      "maxDuration": 60
+    },
+    "api/projects.js": {
+      "maxDuration": 30
+    },
+    "api/users.js": {
+      "maxDuration": 20
+    },
+    "api/share.js": {
+      "maxDuration": 20
+    },
+    "api/collaborate.js": {
+      "maxDuration": 20
+    },
+    "api/webhook.js": {
+      "maxDuration": 30
+    },
+    "api/save-deployment.js": {
+      "maxDuration": 30
+    },
+    "api/app/[id].js": {
+      "maxDuration": 10
+    },
+    "api/share/[token].js": {
+      "maxDuration": 10
+    }
   }
 }
