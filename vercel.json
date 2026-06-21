@@ -1,13 +1,12 @@
 {
   "version": 2,
   "buildCommand": "npm install",
-  "outputDirectory": "public",
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api/$1" },
     { "source": "/app/(.*)", "destination": "/api/app/$1" },
     { "source": "/s/(.*)", "destination": "/api/share/$1" },
-    { "source": "/", "destination": "/index.html" },
-    { "source": "/(.*)", "destination": "/index.html" }
+    { "source": "/", "destination": "/public/index.html" },
+    { "source": "/(.*)", "destination": "/public/index.html" }
   ],
   "functions": {
     "api/ai.js": { "maxDuration": 60 },
