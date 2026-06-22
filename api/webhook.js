@@ -2,21 +2,9 @@
 
 import crypto from 'crypto';
 import { getSupabase } from './_supabase.js';
+import { PACKS } from './_packs.js';
 
 export const config = { api: { bodyParser: false } };
-
-const PACKS = [
-  {credits:100},   // 0 Starter
-  {credits:250},   // 1 Builder
-  {credits:700},   // 2 Creator
-  {credits:1500},  // 3 Creator Plus
-  {credits:3500},  // 4 Growth
-  {credits:10000}, // 5 Growth Plus
-  {credits:25000}, // 6 Premium
-  {credits:60000}, // 7 Premium Plus
-  {credits:160000},// 8 Ultimate
-  {credits:350000} // 9 Unlimited Build
-];
 
 async function readRawBody(req) {
   return new Promise((resolve, reject) => {
@@ -37,7 +25,14 @@ export default async function handler(req, res) {
   if (!secret) { console.error('RZP_WEBHOOK_SECRET not set'); return res.status(500).end(); }
 
   const expected = crypto.createHmac('sha256', secret).update(rawBody).digest('hex');
-  if (expected !== signature) {
+
+  // Timing-safe comparison — a plain !== check leaks timing information that
+  // could theoretically help an attacker guess a valid signature byte-by-byte.
+  const sigBuf = Buffer.from(signature || '', 'utf8');
+  const expBuf = Buffer.from(expected, 'utf8');
+  const validSig = sigBuf.length === expBuf.length && crypto.timingSafeEqual(sigBuf, expBuf);
+
+  if (!validSig) {
     console.warn('Webhook signature mismatch');
     return res.status(400).json({ error: 'Invalid signature' });
   }
@@ -70,7 +65,7 @@ export default async function handler(req, res) {
     const { data: existing } = await sb.from('users').select('*').eq('email', email).single();
     const prev = existing || { email, credits: 0, total_purchased: 0 };
 
-    const newCredits       = (prev.credits        || 0) + pack.credits;
+    const newCredits        = (prev.credits        || 0) + pack.credits;
     const newTotalPurchased = (prev.total_purchased || 0) + pack.credits;
 
     await sb.from('users').upsert({
@@ -81,6 +76,12 @@ export default async function handler(req, res) {
       last_pay:         payId,
       updated_at:       new Date().toISOString()
     }, { onConflict: 'email' });
+
+    await sb.from('credit_transactions').insert({
+      email, project_id: null, type: 'purchase',
+      amount: pack.credits, balance_after: newCredits,
+      description: `${pack.name} pack purchased`, payment_id: payId
+    });
 
     console.log(`✓ Webhook: ${email} +${pack.credits} credits → total ${newCredits}, pid=${payId}`);
     return res.status(200).json({ status: 'ok', credits: newCredits });
