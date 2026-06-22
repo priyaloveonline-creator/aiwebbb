@@ -1092,6 +1092,21 @@ async function spendCredits(amount, type, description) {
   return true;
 }
 
+// ── HONESTY GUARANTEE: refund credits if a build/edit failed to apply ──
+// Called from every failure branch in trigBuild/trigChange so users are never
+// charged for output that didn't actually land.
+async function refundCredits(amount, reason) {
+  if (!amount) return;
+  S.credits += amount;
+  if (S.email) {
+    var u = await DB.gU(S.email) || {};
+    await DB.sU(S.email, Object.assign({}, u, { credits: S.credits }));
+    DB.logTx(S.email, BS.id, 'refund', amount, S.credits, reason || 'Refund: action failed');
+  }
+  if (BS.id) BS.creditsUsed = Math.max(0, (BS.creditsUsed || 0) - amount);
+  updWallet();
+}
+
 // ── BUILDER STATE ─────────────────────────────
 var BS = {id:null,code:'',deployed:false,durl:'',building:false,tab:'prev',hist:[],brand:'',pEmail:false,previewDone:false,buildDesc:'',complexity:2,creditsUsed:0,pages:0,features:0,createdAt:null};
 
@@ -1636,11 +1651,17 @@ function extractBuildJSON(raw) {
   } catch(e) {}
 
   // Strategy 3: regex-extract the html field directly even if outer JSON is malformed
-  // (handles cases where the model added trailing text or the JSON got cut off)
+  // (handles cases where the model added trailing text or the JSON got cut off).
+  // Backslashes are unescaped FIRST so a literal "\\\"" in the source HTML doesn't
+  // get corrupted by the later quote/newline replacements running out of order.
   try {
     var htmlMatch = cleaned.match(/"html"\s*:\s*"([\s\S]*?)"\s*,\s*"summary"/);
     if (htmlMatch) {
-      var htmlVal = htmlMatch[1].replace(/\\"/g, '"').replace(/\\n/g, '\n').replace(/\\t/g, '\t');
+      var htmlVal = htmlMatch[1]
+        .replace(/\\\\/g, '\\')
+        .replace(/\\"/g, '"')
+        .replace(/\\n/g, '\n')
+        .replace(/\\t/g, '\t');
       var summaryMatch = cleaned.match(/"summary"\s*:\s*"([^"]*)"/);
       var brandMatch = cleaned.match(/"brand"\s*:\s*"([^"]*)"/);
       return {
@@ -1670,8 +1691,9 @@ async function trigBuild(prompt, files) {
   BS.building=true; setStat('bld','Building…'); addBld();
   var cost=estimateBuildCost(prompt), t0=Date.now();
   var sys='You are AIWEBBB, an expert web developer building production-grade, visually striking websites. Generate a COMPLETE, rich, multi-section single-page website — not a skeleton. Return ONLY valid JSON in this exact shape, no markdown fences, no commentary: {"html":"...","summary":"one sentence","brand":"app name"}\n\nCRITICAL JSON SAFETY: the html value must be valid inside a JSON string — escape every double-quote as \\" and every newline as \\n. Do not use literal line breaks inside the html string.\n\nDESIGN REQUIREMENTS (non-negotiable):\n- Build AT LEAST 6 distinct sections: navbar, hero, features/services, social proof or stats, gallery/showcase relevant to the business, pricing or CTA section, footer\n- Use real, specific, on-brand copy — never placeholder text like "Lorem ipsum" or generic "Get Started"/"Start Now" alone\n- Rich visual design: gradients, shadows, hover states, varied layouts (not just centered text blocks), icons (inline SVG or unicode), spacing rhythm\n- Fully responsive (mobile + desktop), dark theme by default unless the brief implies otherwise\n- Self-contained: inline CSS in <style>, inline JS in <script>, Google Fonts via CDN link only\n- Interactive where relevant (smooth scroll nav, hover effects, simple JS interactions) but no alert()/confirm()/prompt()\n- Must render correctly inside iframe sandbox="allow-scripts allow-same-origin"\n\nIf reference images were provided, replicate their layout, color palette, and component style precisely.';
+  var spent = false;
   try {
-    var spent=await spendCredits(cost, 'build', 'Website build: '+(BS.brand||'Untitled'));
+    spent = await spendCredits(cost, 'build', 'Website build: '+(BS.brand||'Untitled'));
     if (!spent) { rmBld(); addBuyCard('Not enough credits. You need '+cost+' credits to build this.', BS.complexity); BS.building=false; return; }
     // Build user message - include reference images if attached
     var userContent = prompt;
@@ -1689,13 +1711,14 @@ async function trigBuild(prompt, files) {
 
     var res=await fetch('/api/ai',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-6',messages:[{role:'system',content:sys},{role:'user',content:userContent}]})});
 
-    if (res.status===402) { rmBld(); addBuyCard('Credits exhausted. Please top up.', BS.complexity); BS.building=false; return; }
+    if (res.status===402) { rmBld(); await refundCredits(cost, 'Build failed — credits exhausted upstream, refunded'); addBuyCard('Credits exhausted. Please top up.', BS.complexity); BS.building=false; return; }
     if (!res.ok) {
       rmBld();
-      var errMsg = 'Build failed (server error '+res.status+').';
-      if (res.status === 504 || res.status === 408) errMsg = 'Build timed out — try a slightly simpler description, or try again.';
-      else if (res.status === 429) errMsg = 'AI service is busy right now. Please wait a few seconds and try again.';
-      else if (res.status >= 500) errMsg = 'AI service had a temporary issue. Please try again.';
+      await refundCredits(cost, 'Build failed — server error, refunded');
+      var errMsg = 'Build failed (server error '+res.status+'). Your credits have been refunded.';
+      if (res.status === 504 || res.status === 408) errMsg = 'Build timed out — try a slightly simpler description, or try again. Your credits have been refunded.';
+      else if (res.status === 429) errMsg = 'AI service is busy right now. Please wait a few seconds and try again. Your credits have been refunded.';
+      else if (res.status >= 500) errMsg = 'AI service had a temporary issue. Please try again. Your credits have been refunded.';
       addAI(errMsg, 'er', [{l:'🔄 Retry Build',c:'p',fn:'retryLastBuild()'}]);
       setStat('err','Error'); BS.building=false; updDepBtn(); return;
     }
@@ -1718,7 +1741,10 @@ async function trigBuild(prompt, files) {
     await DB.sP({id:BS.id,email:S.email||'anon',brand:BS.brand||'My App',code:html,deployed:false,credits_used:BS.creditsUsed||0,pages:BS.pages||0,features:BS.features||0,complexity:BS.complexity||2,created_at:BS.createdAt||new Date().toISOString()});
     var bt=Math.floor((Date.now()-t0)/1000);
     if (usedFallback) {
-      addAI('Built in **'+bt+'s**, but the result came out simpler than expected — this can happen with complex requests. Want me to try generating again with more detail?','er',
+      // Build technically "succeeded" but produced a thin fallback — partially refund
+      // half the cost as an honesty gesture, since some real AI work did happen.
+      await refundCredits(Math.floor(cost/2), 'Partial refund — build came out simplified');
+      addAI('Built in **'+bt+'s**, but the result came out simpler than expected — this can happen with complex requests. I\'ve refunded half the credits since this wasn\'t a full build. Want me to try generating again with more detail?','er',
         [{l:'🔄 Retry Build',c:'p',fn:'retryLastBuild()'},{l:'🚀 Deploy Anyway',c:'',fn:'doDeploy()'},{l:'⬇ Download',c:'',fn:'dlCode()'}]);
     } else {
       addAI('Done in **'+bt+'s** — '+summary+'\n\nYou have **'+S.credits+' credits** remaining.','ok',
@@ -1728,8 +1754,9 @@ async function trigBuild(prompt, files) {
     setTimeout(function(){document.getElementById('chat-ta').focus();},300);
   } catch(err) {
     rmBld();
+    if (spent) await refundCredits(cost, 'Build failed — connection error, refunded');
     console.error('trigBuild error:', err);
-    var msg = 'Build error: ' + (err.message || 'connection issue') + '. Try again.';
+    var msg = 'Build error: ' + (err.message || 'connection issue') + '. Your credits have been refunded. Try again.';
     addAI(msg, 'er', [{l:'🔄 Retry Build',c:'p',fn:'retryLastBuild()'}]);
     setStat('err','Error');
   }
@@ -1796,10 +1823,11 @@ async function trigChange(req, cost, files) {
       userContent = changeDesc;
     }
     var res=await fetch('/api/ai',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-6',messages:[{role:'system',content:'Apply the requested change to the HTML and return the COMPLETE updated page. If images are attached, use them as visual reference. Return ONLY valid JSON, no markdown fences: {"html":"...","changes":"one sentence describing what changed"}. Escape all double-quotes as \\" and newlines as \\n inside the html string.'},{role:'user',content:userContent}]})});
-    if (res.status===402) { rmTyp(); addBuyCard('Credits exhausted. Please top up.', BS.complexity); BS.building=false; return; }
+    if (res.status===402) { rmTyp(); await refundCredits(cost, 'Edit failed — credits exhausted upstream, refunded'); addBuyCard('Credits exhausted. Please top up.', BS.complexity); BS.building=false; return; }
     if (!res.ok) {
       rmTyp();
-      var errMsg = res.status===504 ? 'Edit timed out — try a more specific, smaller change.' : 'Edit failed (server error '+res.status+'). Please try again.';
+      await refundCredits(cost, 'Edit failed — server error, refunded');
+      var errMsg = res.status===504 ? 'Edit timed out — try a more specific, smaller change. Your credits have been refunded.' : 'Edit failed (server error '+res.status+'). Your credits have been refunded.';
       addAI(errMsg, 'er');
       setStat('err','Error'); BS.building=false; return;
     }
@@ -1808,10 +1836,14 @@ async function trigChange(req, cost, files) {
     var html = (parsed && parsed.html && parsed.html.length > 200) ? parsed.html : BS.code;
     var changes = (parsed && (parsed.changes || parsed.summary)) ? (parsed.changes || parsed.summary) : 'Changes applied.';
     var editFailed = !parsed || !parsed.html || parsed.html.length <= 200;
-    rmTyp(); showPrev(html);
+    rmTyp();
     if (editFailed) {
-      addAI('That change didn\'t apply cleanly — your site is unchanged. Try rephrasing the request, or be more specific.','er');
-    } else if (BS.deployed) {
+      await refundCredits(cost, 'Edit didn\'t apply cleanly, refunded');
+      addAI('That change didn\'t apply cleanly — your site is unchanged, and your credits have been refunded. Try rephrasing the request, or be more specific.','er');
+      setStat('ok','Unchanged'); BS.building=false; updWallet(); return;
+    }
+    showPrev(html);
+    if (BS.deployed) {
       var did=BS.durl.split('/').pop();
       var saveRes = await DB.saveDeployment(did,html,S.email,BS.brand);
       if (saveRes.ok) {
@@ -1823,7 +1855,11 @@ async function trigChange(req, cost, files) {
     else { addAI(changes+'\n\n**'+S.credits+' credits** remaining.','ok'); }
     await DB.sP({id:BS.id,email:S.email||'anon',brand:BS.brand||'My App',code:html,deployed:BS.deployed,deploy_url:BS.durl,credits_used:BS.creditsUsed||0,pages:BS.pages||0,features:BS.features||0,complexity:BS.complexity||2,created_at:BS.createdAt||new Date().toISOString()});
     BS.hist.push({role:'assistant',content:'Changed: '+changes}); setStat('ok','Updated'); updWallet();
-  } catch(err) { rmTyp(); addAI('Could not apply that change. Try again.','er'); setStat('err','Error'); }
+  } catch(err) {
+    rmTyp();
+    await refundCredits(cost, 'Edit failed — connection error, refunded');
+    addAI('Could not apply that change. Your credits have been refunded. Try again.','er'); setStat('err','Error');
+  }
   BS.building=false;
 }
 
