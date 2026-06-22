@@ -1,17 +1,8 @@
 import { cors } from './_supabase.js';
+import { PACKS } from './_packs.js';
+
 const USD_TO_INR = 85;
-const PACKS = [
-  { name:'Starter',        credits:100,    inPaise:9900,    usdCents:500   },
-  { name:'Builder',        credits:250,    inPaise:19900,   usdCents:1000  },
-  { name:'Creator',        credits:700,    inPaise:49900,   usdCents:2500  },
-  { name:'Creator Plus',   credits:1500,   inPaise:99900,   usdCents:5000  },
-  { name:'Growth',         credits:3500,   inPaise:199900,  usdCents:10000 },
-  { name:'Growth Plus',    credits:10000,  inPaise:499900,  usdCents:25000 },
-  { name:'Premium',        credits:25000,  inPaise:999900,  usdCents:50000 },
-  { name:'Premium Plus',   credits:60000,  inPaise:1999900, usdCents:100000},
-  { name:'Ultimate',       credits:160000, inPaise:4999900, usdCents:250000},
-  { name:'Unlimited Build',credits:350000, inPaise:9999900, usdCents:500000}
-];
+
 export default async function handler(req, res) {
   cors(res, req.headers.origin);
   if (req.method === 'OPTIONS') return res.status(200).end();
